@@ -13,6 +13,12 @@ console.log(1 === '1'); // строгое равенство сравнивае�
 
 /*
  * Операторы сравнения (<, >, <=, >=, ==, ===, !=, !==)
+a > b і a < b - більше/менше
+a >= b і a <= b - більше/менше або дорівнює
+a == b - рівність «Нестрогі» оператори рівності == і != виконують перетворення типів порівнюваних значень у число
+a != b - нерівність
+a === b - строга рівність
+a !== b - строга нерівність
  */
 
 /*
@@ -34,49 +40,49 @@ console.log(1 === '1'); // строгое равенство сравнивае�
  */
 
 //* Оператор меньше (<)
-// console.log(2 < 12);
-// console.log(12 < 2);
-// console.log('a' < 'b');
-// console.log('b' < 'a');
-// console.log('A' < 'a');
-// console.log('apple' < 'Appleb');
-// console.log('bananana' < 'apple');
-// console.log(true < false);
-// console.log(false < true);
+console.log(2 < 12); // true
+console.log(12 < 2); // false
+console.log('a' < 'b'); // true
+console.log('b' < 'a'); // false
+console.log('A' < 'a'); // true
+console.log('apple' < 'Appleb'); // false
+console.log('bananana' < 'apple'); // false
+console.log(true < false); // false
+console.log(false < true); // true
 
 // * Оператор больше (>)
-// console.log(10 > 20);
-// console.log(20 > 10);
+// console.log(10 > 20); // false
+// console.log(20 > 10); // true
 
 //* Оператор меньше или равно (<=)
-// console.log(5 <= 6);
-// console.log(5 <= 5);
-// console.log(5 <= 4);
+console.log(5 <= 6); // true
+console.log(5 <= 5); // true
+console.log(5 <= 4); // false
 
 //* Оператор больше или равно (>=)
-// console.log(5 >= 3);
-// console.log(5 >= 5);
-// console.log(3 >= 4);
+console.log(5 >= 3); // true
+console.log(5 >= 5); // true
+console.log(3 >= 4); // false
 
 //* Не строгое равно (==)
-// console.log(null > 0);
-// console.log(null == 0);
-// console.log(null >= 0);
+console.log(null > 0); // false
+console.log(null == 0); // false
+console.log(null >= 0); // true
 
-// console.log(undefined == null);
+console.log(undefined == null); // true
 
-// console.log('123' == 123);
-// console.log(true == '1');
-// console.log(4 == 5);
+console.log('123' == 123); // true
+console.log(true == '1'); // true
+console.log(4 == 5); // false
 
 //* Строгое равно (===)
-// console.log('123' === 123);
-// console.log(null === null);
-// console.log(2 + 2 === 4);
-// console.log(0 === -0);
+console.log('123' === 123); // false
+console.log(null === null); // true
+console.log(2 + 2 === 4); // true
+console.log(0 === -0); // true
 
 //* Не равно (!=)
-// console.log('4' != 4);
+console.log('4' != 4); // false
 
 //* Строго не равно (!==)
-// console.log('4' !== 4);
+console.log('4' !== 4); // true
