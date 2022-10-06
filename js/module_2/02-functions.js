@@ -113,3 +113,260 @@
 // 		: `Пользователь ${loginToFind} не найден`;
 // };
 // console.log(findLogin(logins, 'login888'));
+
+
+
+/*
+? Напиши функцию calcBMI(weight, height) которая рассчитывает и возвращает индекс массы тела человека.
+? Для этого необходимо разделить вес в киллограммах на квадрат высоты человека в метрах.
+? Вес и высота будут специально переданы как строки. Нецелые числа могут быть заданы в виде 24.7 или 24,7,
+? то есть в качестве разделителя дробной части может быть запятая.
+? Индекс массы тела необходимо округлить до одной цифры после запятой;
+*/
+
+// function calcBMI(weight, height) {
+//   const rightWeight = Number(weight.replace(',', '.'));
+//   const rightHeight = Number(height.replace(',', '.'));
+
+//   const result = rightWeight / rightHeight ** 2;
+
+//   return Number(result.toFixed(1));
+// }
+
+// const result = calcBMI('70,5', '1,85');
+
+// console.log(result);
+
+/*
+? Напиши функцию min(a,b), которая возвращает меньшее из чисел a и b.
+*/
+
+// function min(a, b) {
+//   return Math.min(a, b);
+// }
+
+// function min(a, b) {
+//   if (a > b) {
+//     return b;
+//   }
+
+//   return a;
+// }
+
+// console.log(min(-101, -0));
+
+/*
+? Напиши функцию getRectArea(dimensions) для вычисления площади прямоугольника со сторонами,
+? значения которых будут переданы в параметр dimensions в виде строки.
+? Значения гарантированно разделены пробелом.
+*/
+
+// function getRectArea1(dimensions) {
+//   const dmsArray = dimensions.split(' ');
+
+//   return dmsArray[0] * dmsArray[1];
+// }
+
+// function getRectArea2(dimensions) {
+//   const dmsArray = dimensions.split(' ');
+
+//   let area = 1;
+
+//   for (let num of dmsArray) {
+//     area *= num;
+//   }
+
+//   return area;
+// }
+
+// console.log(getRectArea1('10 100'));
+// console.log(getRectArea2('3 4'));
+
+/*
+? Напиши функцию logItems(items), которая получает массив и использует цикл for,
+? который для каждого элемента массива будет выводить в консоль сообщение
+? в формате <номер элемента> - <значение элемента>. Нумерация элементов должна начинаться с 1.
+? Например для первого элемента массива ['Mango', 'Poly', 'Ajax'] с индексом 0 будет выведено '1 - Mango',
+? а для индекса 2 выведет '3 - Ajax'.
+*/
+
+// const logItems = function (items) {
+//   for (let index = 0; index < items.length; index += 1) {
+//     console.log(`${index + 1} - ${items[index]}`);
+//   }
+// };
+
+// const numbers = ['Mango', 'Poly', 'Ajax'];
+
+// logItems(['Mango', 'Poly', 'Ajax']);
+
+/*
+? Напиши функцию printContactsInfo(names, phones) которая выводит в консоль имя и телефонный номер пользователя.
+? В параметры names и phones будут переданы строки имен и телефонных номеров, разделенные запятыми.
+? Порядковый номер имен и телефонов в строках указывают на соответствие.
+? Количество имен и телефонов гарантированно одинаковое.
+*/
+
+// function printContactsInfo(names, phones) {
+//   const namesArray = names.split(',');
+//   const phonesArray = phones.split(',');
+
+//   // console.log(namesArray, phonesArray);
+
+//   for (let index = 0; index < namesArray.length; index += 1) {
+//     console.log(`${namesArray[index]} - ${phonesArray[index]}`);
+//   }
+// }
+
+// printContactsInfo(
+//   'Jacob,William,Solomon,Artemis',
+//   '89001234567,89001112233,890055566377,890055566300'
+// );
+
+// printContactsInfo(
+//   'Vera,Carr,Violet,Sherman',
+//   '89001234567,89001112233,890055566377,890055566300'
+// );
+
+/*
+? Напиши функцию findLargestNumber(numbers)которая ищет самое большое число в массиве.
+*/
+
+// const findLargestNumber = function (numbers) {
+//   let largestNumber = numbers[0];
+
+//   for (let index = 1; index < numbers.length; index += 1) {
+//     if (largestNumber < numbers[index]) {
+//       largestNumber = numbers[index];
+//     }
+//   }
+
+//   return largestNumber;
+// };
+
+// const result = findLargestNumber([1, 24, -0]);
+
+// console.log(result);
+
+/*
+? Напишите функцию calcAverage() которая принимает произвольное кол-во аргументов и возвращает их среднее значение.
+? Все аругменты будут только числами. Тут покажи решение с псевдомасивом arguments и расскажи про его особенности
+*/
+
+// function calcAverage() {
+//   let total = 0;
+
+//   for (let num of arguments) {
+//     console.log(num);
+//     total += num;
+//   }
+
+//   console.log(arguments.length);
+
+//   return total / arguments.length;
+// }
+
+// const result = calcAverage(5, 10, 17, 18);
+
+// console.log(result);
+
+/*----------------------*/
+
+/*
+? Напишите функции для работы с коллекцией обучающих курсов courses:
+? addCourse(name) - добавляет курс в конец коллекции
+? removeCourse(name) - удаляет курс из коллекции
+? updateCourse(oldName, newName) - изменяет имя на новое
+? Додати виключення (логи) у випадках коли курс є/нема в масиві
+*/
+
+// const courses = ['HTML', 'CSS', 'JavaScript', 'React', 'PostgreSQL'];
+
+// function addCourse(name) {
+//   courses.push(name);
+//   console.log('Adding new course was successful');
+// }
+
+// function removeCourse(name) {
+//   const courseIndex = courses.indexOf(name);
+
+//   if (courseIndex === -1) {
+//     console.log('Sorry, this course does not exist in array');
+//     return;
+//   }
+
+//   courses.splice(courseIndex, 1);
+//   console.log('Removing course was successful');
+// }
+
+// function updateCourse(oldName, newName) {
+//   const courseIndex = courses.indexOf(oldName);
+
+//   if (courseIndex === -1) {
+//     console.log('Sorry, this course does not exist in array');
+//     return;
+//   }
+
+//   courses.splice(courseIndex, 1, newName);
+//   console.log('Updating of course name was successful');
+// }
+
+// // addCourse('TypeScript');
+
+// // removeCourse('Java');
+
+// updateCourse('C++', 'Java');
+
+// const b = function () {
+//   console.log(`HI!`);
+// };
+
+// function a(func) {
+//   //   func();
+
+//   return func;
+// }
+
+// console.log(a(b));
+
+// console.log(courses);
+
+// first()
+
+// example 2
+
+// function bar() {
+//   console.log('bar');
+// }
+
+// function baz() {
+//   console.log('baz');
+// }
+
+// function foo() {
+//   console.log('foo');
+//   bar();
+//   baz();
+// }
+
+// foo();
+
+// example 3
+
+// const fn1 = function () {
+//   console.log('fn1');
+// };
+
+// const fn2 = function () {
+//   console.log('fn2');
+
+//   fn1();
+// };
+
+// const fn3 = function () {
+//   console.log('fn3');
+
+//   fn2();
+// };
+
+// fn3();
