@@ -167,8 +167,32 @@
 // numbers.push(5);
 // console.log(numbers); // [1, 2, 3, 10, 12, 4, 5]
 
-//? .shift() удаляет элемент из начала массива, .unshift() добавляет элемент в начало массива
+//? ------ Методи .shift() удаляет элемент из начала массива, .unshift() добавляет элемент в начало массива
+// const array = [1, 2, 3, 4, 5];
 
+// const firstEl = array.shift();
+
+// console.log(array);
+// console.log(firstEl);
+
+/* --------- */
+
+// const array = [1, 2, 3, 4, 5];
+
+// array.unshift(8);
+
+// console.log(array);
+
+/* --------- */
+
+// const array = [1, 2, 3, 4, 5];
+
+// const newArray = array.concat([[1]], [['STR']]);
+
+// newArray.shift();
+
+// console.log(array);
+// console.log(newArray);
 
 //? ------ Метод pop() видаляє останній елемент з кінця масиву і повертає видалений елемент. Якщо масив порожній, метод повертає undefined -------
 // const numbers = [1, 2, 3, 4, 5];
@@ -288,4 +312,12 @@
 // console.log(oldClients); // ["Mango", "Ajax", "Poly", "Kiwi"]
 // console.log(newClients); // ["Monkong", "Singu"]
 
+//? -------- Метод flat() ---------
 
+
+
+//? -------- Метод flatMap() ---------
+
+
+
+//? -------- Метод reverse() ---------

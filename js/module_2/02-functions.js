@@ -87,3 +87,29 @@
 //!Увага
 // Slug - це завжди рядок у нижньому регістрі, слова якого розділені тире.
 
+
+//? Напиши функцию поиска логина
+//? - Если логина нет, вывести сообщение "Пользователь (логин) не найден"
+//? - Если логин найден, вывести сообщение "Пользователь (логин) найден"
+/* ----- for... of ------- */
+// const logins = ['sdgsdsdhns', 'sdgsdgdsggf', 'login888', 'dgsdgsdgsdg'];
+
+// function findLogin(allLogins, loginToFind) {
+// 	for (const login of logins) {
+// 		if (login === loginToFind) {
+// 			return `Пользователь ${loginToFind} найден`;
+// 		}
+// 	}
+// 	return `Пользователь ${loginToFind} не найден`;
+// }
+// console.log(findLogin(logins, 'login888'));
+
+/* -------- тернарный оператор -------- */
+// const logins = ['sdgsdsdhns', 'sdgsdgdsggf', 'login888', 'dgsdgsdgsdg'];
+
+// function findLogin(allLogins, loginToFind) {
+// 	return allLogins.includes(loginToFind)
+// 		? `Пользователь ${loginToFind} найден`
+// 		: `Пользователь ${loginToFind} не найден`;
+// };
+// console.log(findLogin(logins, 'login888'));
