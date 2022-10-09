@@ -50,17 +50,67 @@
 // };
 // console.log(apartment);
 
-// Перебери объект apartment используя цикл for...in и запиши в массив keys все его ключи, а в массив values все значения его свойств.
-const apartment = {
-  descr: 'Spacious apartment in the city center',
-  rating: 4,
-  price: 2153,
-};
-const keys = [];
-const values = [];
-for (const key in apartment) {
-  keys.push(key);
-  values.push(apartment[key]);
+//? Перебери объект apartment используя цикл for...in и запиши в массив keys все его ключи, а в массив values все значения его свойств.
+//? Выполни рефакторинг решения, добавив в цикл for...in проверку на собственное свойство.
+// const apartment = {
+//   descr: 'Spacious apartment in the city center',
+//   rating: 4,
+//   price: 2153,
+// };
+// const keys = [];
+// const values = [];
+// for (const key in apartment) {
+//   if (apartment.hasOwnProperty(key)) {
+//     keys.push(key);
+//     values.push(apartment[key]);
+//   }
+// }
+// console.log(keys);
+// console.log(values);
+
+//? Напиши функцию countProps(object), которая считает и возвращает количество собственных свойств объекта в параметре object.
+//? Используй переменную propCount для хранения количества свойств объекта.
+// function countProps(object) {
+//   let propCount = 0;
+
+//   for (const key in object) {
+//     if (object.hasOwnProperty(key)) {
+//       propCount += 1;
+//     }
+//   }
+//   return propCount;
+// }
+// console.log(countProps({ mail: 'poly@mail.com', isOnline: true, score: 500 }));
+
+//? Перебери объект apartment используя метод Object.keys() и цикл for...of.
+//? Запиши в переменную keys массив ключей собственных свойств объекта apartment, и добавь в массив values все значения его свойств.
+// const apartment = {
+//   descr: 'Spacious apartment in the city center',
+//   rating: 4,
+//   price: 2153,
+// };
+// const values = [];
+// const keys = Object.keys(apartment);
+
+// for (const key of keys) {
+//   values.push(apartment[key]);
+// }
+// console.log(keys);
+// console.log(values);
+
+//? Напиши функцию countTotalSalary(salaries) которая принимает объект зарплат, где имя свойства это имя сотрудника, а значение свойства это зарплата.
+//? Функция должна рассчитать общую сумму зарплат сотрудников и вернуть её.
+//? Используй переменную totalSalary для хранения общей суммы зарплаты.
+function countTotalSalary(salaries) {
+  let totalSalary = 0;
+  const values = Object.values(countTotalSalary);
+
+  for (let i of values) {
+    totalSalary += values[i];
+  }
+
+  return totalSalary;
 }
-console.log(keys);
-console.log(values);
+console.log(countTotalSalary({}));
+console.log(countTotalSalary({ mango: 100, poly: 150, alfred: 80 }));
+console.log(countTotalSalary({ kiwi: 200, poly: 50, ajax: 150 }));
