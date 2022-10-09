@@ -2,11 +2,11 @@
 
 // ========== Numbers ==========
 // =============================
-/* Більшість арифметичних операцій і математичних функцій перетворюють значення у число автоматично. 
-Для того, щоб зробити це явно, використовуйте функцію Number(val), передаючи їй у val те, що потрібно привести до числа.
+/* Большинство арифметических операций и математических функций преобразуют значение в число автоматически.
+Для того чтобы сделать это явно, используйте функцию Number(val), передавая ей в val то, что надо привести к числу.
 
-Якщо значення привести до числа неможливо, результатом буде спеціальне числове значення NaN(Not a Number). 
-Аналогічним чином відбувається перетворення і в інших математичних операторах і функціях. */
+Если значение не возможно привести к числу, результатом будет специальное числовое значение NaN (Not a Number). 
+Аналогичным образом происходит преобразование и в других математических операторах и функциях. */
 
 // const valueA = "5";
 // console.log(Number(valueA)); // 5
@@ -16,38 +16,44 @@
 // console.log(Number(valueB)); // NaN
 // console.log(typeof Number(valueB)); // "number"
 
-
 /* 
 ? Парсинг числа с Number.parseInt() и Number.parseFloat() 
-Перетворюють рядок символ за символом, доки це можливо. У разі виникнення помилки повертається підсумкове число.
-Метод Number.parseInt() парсить з рядка ціле число.
-Метод Number.parseFloat() парсить з рядка дробове число.
+Преобразуют строку символ за символом, пока это возможно. 
+При возникновении ошибки возвращается число, которое получилось.
+Метод Number.parseInt() парсит из строки целое число.
 */
-// let elementWidth = '50px';
-// const result = Number.parseInt(elementWidth); 
+//? Метод Number.parseInt() парсит из строки целое число.
 
-// console.log('elementWidth ', result); // 50
+// console.log(Number.parseInt("5px")); // 5
+// console.log(Number.parseInt("12qwe74")); // 12
+// console.log(Number.parseInt("12.46qwe79")); // 12
+// console.log(Number.parseInt("qweqwe")); // NaN
 
-// let elementHeight = '25.8px';
-// const resultFloat = Number.parseFloat(elementHeight);
+//? Метод Number.parseFloat() парсит из строки дробное число.
 
-// console.log(resultFloat); // 25.8
+// console.log(Number.parseFloat("5px")); // 5
+// console.log(Number.parseFloat("12qwe74")); // 12
+// console.log(Number.parseFloat("12.46qwe79")); // 12.46
+// console.log(Number.parseFloat("qweqwe")); // NaN
 
-/* 
-? Метод число.toFixed(digits)
-*/
+//? Метод число.toFixed(digits)
+
 // let salary = 1300.16472;
 // salary = Number(salary.toFixed(2));
 
 // console.log(salary);
 
 /* 
-? Перевірка на число
-Для перевірки на число можна використовувати метод Number.isNaN(val). Він перевіряє, чи вказане значення є NaN. Метод відповідає на запитання "Це Not A Number?" і повертає:
+? -------- Проверка на число --------
+Для проверки на число можно использовать метод Number.isNaN(val).
+Он проверяет, является ли указанное значение NaN или нет.
+Метод отвечает на вопрос "Это Not A Number?" и возвращает:
 
-true - якщо значення val - NaN
-false - якщо значення val - не NaN
-Для всіх значень val, крім NaN, при передачі в Number.isNaN(val) поверне false. Цей метод не намагається перетворити val в число, а просто виконує перевірку на NaN.
+true - если значение val это NaN
+false - если значение val это не NaN
+
+Для всех значений val кроме NaN, при передаче в Number.isNaN(val) вернёт false.
+Этот метод не производит попытку преобразовать val к числу, а просто выполняет проверку на NaN.
 */
 
 // const validNumber = Number("51"); // 51
@@ -56,33 +62,47 @@ false - якщо значення val - не NaN
 // const invalidNumber = Number("qweqwe"); // NaN
 // console.log(Number.isNaN(invalidNumber)); // true
 
-/* ========== NaN ========== */
+/* 
+? ========== NaN ========== 
+*/
 // let quantity = '30';
 // let value = 'Эту строку невозможно привести к числу';
 
 // console.log(Number(quantity)); /* return 30 */
 // console.log(Number(value)); /* return NaN */
 
-/* ========= Object Math ========= */
-// const base = 3;
-// const power = 5;
+/* 
+? ========= Object Math ========= 
+*/
+// Math.floor(num) - возвращает наибольшее целое число,
+// меньшее, либо равное указанному
+// console.log(Math.floor(1.7)); // 1
 
-// const result = Math.pow(base, power); /* возведение в степень */
-// const squareResult = Math.sqrt(base, power); /* квадратный корень */
+// Math.ceil(num) - возвращает наименьшее целое число,
+// большее, либо равное указанному числу.
+// console.log(Math.ceil(1.2)); // 2
 
-// console.log(result);
-// console.log(squareResult);
+// Math.round(num) - возвращает значение числа,
+// округлённое до ближайшего целого
+//console.log(Math.round(1.2)); // 1
+// console.log(Math.round(1.5)); // 2
 
-// let base = prompt('Enter base number');
-// base = Number(base);
-// let power = prompt('Enter power number');
-// power = Number(power);
-// const result = Math.pow(base, power);
+// Math.max(num1, num2, ...) - возвращает наибольшее число из набора
+// console.log(Math.max(20, 10, 50, 40)); // 50
 
-// alert(result);
-// console.log(result);
+// Math.min(num1, num2, ...) - возвращает наименьшее число из набора
+// console.log(Math.min(20, 10, 50, 40)); // 10
 
-/* ======== Генератор случайных чисел ======= */
+// Math.pow(base, exponent) - возведение в степень
+// console.log(Math.pow(2, 4)); // 16
+
+// Math.random() - возвращает псевдослучайное число в диапазоне [0, 1)
+// console.log(Math.random()); // случайное число между 0 и 1
+// console.log(Math.random() * (10 - 1) + 1); // псевдослучайное число от 1 до 10
+
+/* 
+? ======== Генератор случайных чисел ======= 
+*/
 // console.log(Math.random());
 
 // const max = 50;

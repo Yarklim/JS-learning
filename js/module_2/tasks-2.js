@@ -1,10 +1,10 @@
 //? ---------
 // function calculateEngravingPrice(message, pricePerWord) {
-	
+
 //    const arrWords = message.split(' ');
 // 	let valueWords = 0;
 // 	let result = 0;
-	
+
 // 	for (let i = 0; i < arrWords.length; i += 1) {
 // 		valueWords += 1;
 // 		result = valueWords * pricePerWord;
@@ -16,7 +16,7 @@
 //? ---------
 // function slugify(title) {
 // 	const titleArr = title.toLowerCase().split(' ').join('-');
-	
+
 // 	return titleArr;
 // }
 // console.log(slugify("Arrays for begginers"));;
@@ -87,7 +87,7 @@
 
 // for (let i = 0; i < logins.length; i += 1) {
 // 	const login = logins[i];
-	
+
 // 	if (login === loginToFind) {
 // 		message = `Пользователь ${loginToFind} найден`;
 // 		break;
@@ -104,13 +104,12 @@
  ? Вставте «Country» та «Raggy» на початок масиву.  ✅
  */
 
-
 //? Напиши функцію makeArray(firstArray, secondArray, maxLength) для створення нового масиву з усіма елементами двох вихідних firstArray і secondArray.
 //? Параметр maxLength містить максимально допустиму довжину нового масиву.
 //? Якщо кількість елементів нового масиву більша за maxLength, функція повинна повернути копію масиву довжиною maxLength елементів.
 //? В іншому випадку функція повинна повернути новий масив повністю.
 // function makeArray(firstArray, secondArray, maxLength) {
-  
+
 // const concatArr = firstArray.concat(secondArray);
 // 	let newArr = [];
 // 	if (concatArr.length > maxLength) {
@@ -127,7 +126,7 @@
 // function findLongestWord(string) {
 // 	const newArr = string.split(' ');
 // 	let maxWord = newArr[0];
-  
+
 // 	for (let i = 0; i < newArr.length; i += 1) {
 // 		if (newArr[i].length > maxWord.length) {
 // 		  maxWord = newArr[i];
@@ -173,7 +172,6 @@
 
 // console.log(newArray);
 
-
 //? У нас есть несколько массивов с зарплатами сотрудников из разных отделов, нужно посчитать общую сумму зарплат.
 //? Придумай варіанти рішення через цикли, через push та через concat
 // const managerSalaries = [100, 150, 250, 400, 500];
@@ -201,7 +199,6 @@
 
 // console.log(total);
 
-
 //? Напиши скрипт для вычисления площади прямоугольника со сторонами,
 //? значения которых хранятся в переменной values в виде строки.
 //? Значения гарантированно разделены пробелом.
@@ -225,7 +222,6 @@
 
 // console.log(flat);
 
-
 //? Напиши скрипт который выводит в консоль имя и телефонный номер пользователя.
 //? В переменных names и phones хранятся строки имен и телефонных номеров, разделенные запятыми.
 //? Порядковый номер имен и телефонов в строках указывают на соответствие.
@@ -245,7 +241,6 @@
 
 //   console.log(message);
 // }
-
 
 //? Напиши скрипт который «разворачивает» строку (обратный порядок букв)
 //? и выводит ее в консоль.
@@ -276,7 +271,6 @@
 // }
 
 // console.log(reversedArray.join(''));
-
 
 //? У нас есть массив сотрудников, отфльтруйте его, чтобы сотрудники не повторялись
 //? Показати варіанти з indexOf, includes
@@ -316,10 +310,8 @@
 //? Добавьте нового сотрудника Thornton, перед Watkins;
 // Розділення з допомогою split та join
 
-
 //? slug
 //? Отримати результат title-about-array-methods зі строки 'Title about array methods', дайте якомога більше варіантів
-
 
 // const str = 'Title about array methods';
 
@@ -347,7 +339,7 @@
 //? в якому будуть тільки ті елементи масиву numbers, які більші за значення параметра value(число).
 // function filterArray(numbers, value) {
 //    const newArr = [];
- 
+
 //    for (const number of numbers) {
 // 	 if (number > value) {
 // 	   newArr.push(number);
@@ -363,7 +355,7 @@
 //? Напиши функцію getCommonElements(array1, array2), яка отримує два масиви довільної довжини в параметри array1
 //? і array2, і повертає новий масив, що складається з тих елементів, які присутні в обох вихідних масивах.
 // function getCommonElements(array1, array2) {
-	
+
 // 	const newArr = [];
 
 // 	for (let element of array1) {
@@ -399,7 +391,7 @@
 
 // 	  if (element === value) {
 // 		return true;
-// 	  } 
+// 	  }
 // 	}
 // 	return false;
 // }
