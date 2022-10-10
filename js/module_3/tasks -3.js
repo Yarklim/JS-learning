@@ -103,12 +103,12 @@
 //? Используй переменную totalSalary для хранения общей суммы зарплаты.
 function countTotalSalary(salaries) {
   let totalSalary = 0;
-  const values = Object.values(countTotalSalary);
-
+  // Change code below this line
+  const values = Object.values(salaries);
   for (let i of values) {
-    totalSalary += values[i];
+    totalSalary += i;
   }
-
+  // Change code above this line
   return totalSalary;
 }
 console.log(countTotalSalary({}));
