@@ -44,20 +44,20 @@ if (n6 === 7) {
 
 //? ========= Задание обязательного значения ========
 function f7(param) {
-	if (param === undefined) {
-		throw new Error('problem');
-	}
-	return param;
+  if (param === undefined) {
+    throw new Error('problem');
+  }
+  return param;
 }
 console.log(f7(4));
 
 let checkParam = () => {
-	throw new Error('problem');
-}
+  throw new Error('problem');
+};
 
 let f7_1 = (param = checkParam()) => {
-	return param;
-}
+  return param;
+};
 console.log(f7_1(444));
 
 //? ========= Получение символа строки =========
@@ -65,8 +65,8 @@ let n8 = 'sample string';
 console.log(n8.charAt(4));
 console.log(n8[4]);
 
-//? ========= ========
-let n9 = 'hello 
-hi
-test';
-console.log(n9);
+//? ========= Значение по дефолту ========
+let n9 = 34;
+let result = n9 || false;
+
+console.log(result);
