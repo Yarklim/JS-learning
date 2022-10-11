@@ -1,110 +1,110 @@
 /* ============= Strings ============= */
 
-// Длина строки .length
-const message = 'В этой строке 26 символов.';
-console.log(message.length); // 26
-
-// Конкатенация строк
+//? Конкатенация строк
 const firstName = 'Chelsy';
 const lastName = 'Emerald';
 
 console.log(firstName + ' ' + lastName); // Chelsy Emerald
 console.log(5 + '5'); /* выведет строку 55 */
 
-// Шаблонные строки
+//? Шаблонные строки
 const guestFirstName = 'Yar';
 const guestLastName = 'Klim';
 const hotelName = 'Aria';
 const roomNumber = 1082;
 
 const guestDescription = `Гость ${guestFirstName} ${guestLastName} поселился в гостинице ${hotelName}, комната ${roomNumber}`;
- 
+
 console.log(guestDescription); // Гость Yar Klim поселился в гостинице aria, комната 1082
 
-/* ======= Индексация, Свойства и Методы ========= */
+//? ========== Свойства и методы строк =========
+//? У каждой строки есть встроенные свойства и методы, рассмотрим некоторые из них.
 
-// Индексация строки string[], .slice() Метод рядків slice (startIndex, endIndex) використовується для створення копії частини або всього рядка. 
-// Він робить копію елементів рядка від startIndex і до, але не включно endIndex і повертає новий рядок, не змінюючи оригінал.
-let stringIndex = 'Dynamo'; 
-console.log(stringIndex[4]); // m
-console.log(stringIndex.slice(3)); // amo
-console.log(stringIndex.slice(2, 5)); // nam
-console.log(stringIndex[0].toLowerCase() + stringIndex.slice(1).toUpperCase()); // dYNAMO
+//? ------ Свойство length -------
+//? Для того чтобы узнать длину строки, то есть количество её символов, у всех строк есть встроенное свойство length, значение которого можно получить обратившись к нему через точку после имени переменной или строкового литерала.
 
-const productName = "Repair droid";
+const message1 = 'Welcome to Bahamas!';
+console.log(message1.length); // 19
+console.log('There is nothing impossible to him who will try'.length); // 47
+
+//? ------- Методы toLowerCase() и toUpperCase() -------
+//? Возвращают новую строку в соответствующем регистре, не изменяя оригинальную строку.
+
+const message2 = 'Welcome to Bahamas!';
+console.log(message2.toLowerCase()); // "welcome to bahamas!"
+console.log(message2.toUpperCase()); // "WELCOME TO BAHAMAS!"
+console.log(message2); // "Welcome to Bahamas!"
+
+//? Бывают ситуации когда все символы в строке необходимо преобразовать в один регистр, верхний или нижний.
+//? Например, при поиске по ключевому слову, когда пользователь вводит строку 'saMsUng', а сравнить её надо со строкой 'samsung' или 'SAMSUNG'.
+
+console.log('saMsUng' === 'samsung'); // false
+console.log('saMsUng' === 'SAMSUNG'); // false
+
+// Чтобы не требовать абсолютно точный ввод можно сделать «нормализацию» введённой пользователем строки, то есть преобразовать все её символы в верхний или нижний регистр.
+// Методы строки toLowerCase() и toUpperCase() вернут новую строку в соответствующем регистре, не изменяя оригинальную.
+
+const BRAND_NAME = 'SAMSUNG';
+const userInput = 'saMsUng';
+const normalizedToUpperCaseInput = userInput.toUpperCase();
+
+console.log(userInput); // 'saMsUng'
+console.log(userInput === BRAND_NAME); // false
+console.log(normalizedToUpperCaseInput); // 'SAMSUNG'
+console.log(normalizedToUpperCaseInput === BRAND_NAME); // true
+
+//? --------- Метод indexOf() ---------
+//? Возвращает позицию (индекс) на которой находится первое совпадение подстроки или -1, если ничего не найдено.
+
+const message = 'Welcome to Bahamas!';
+console.log(message.indexOf('to')); // 8
+console.log(message.indexOf('hello')); // -1
+
+//? --------- Метод includes() ---------
+//? Проверяет входит ли подстрока в строку, возвращает буль - true если входит и false в противном случае.
+//? Регистр символов в строке и подстроке имеет значение, так как например буква "a" не равна букве "А".
+
+const productName1 = 'Ремонтный дроид';
+
+console.log(productName1.includes('н')); // true
+console.log(productName1.includes('Н')); // false
+console.log(productName1.includes('дроид')); // true
+console.log(productName1.includes('Дроид')); // false
+console.log(productName1.includes('Ремонтный')); // true
+console.log(productName1.includes('ремонтный')); // false
+
+//? ИНТЕРЕСНО
+//? Все методы строк чувствительны к регистру.
+
+//? --------- Метод endsWith() ----------
+//? Позволяет определить, заканчивается ли строка символами (подстрокой) указанными в скобках, возвращая true или false.
+
+const jsFileName1 = 'script.js';
+console.log(jsFileName1.endsWith('.js')); // true
+
+const cssFileName = 'styles.css';
+console.log(cssFileName.endsWith('.js')); // false
+
+//? --------- Методы replace() и replaceAll() ----------
+//? Возвращают новую строку, в которой первое (replace) или все совпадения (replaceAll) подстроки заменены на указанное значение.
+
+const jsFileName = 'script.js';
+const minifiedJsFileName = jsFileName.replace('.js', '.min.js');
+console.log(minifiedJsFileName); // "script.min.js"
+
+const cssFileNames = 'styles.css, about.css, portfolio.css';
+const minifiedCssFileNames = cssFileNames.replaceAll('.css', '.min.css');
+console.log(minifiedCssFileNames); // "styles.min.css, about.min.css, portfolio.min.css"
+
+//? ------- Метод slice() ---------
+//? Метод строк slice(startIndex, endIndex) используется для создания копии части или всей строки.
+//? Он делает копию элементов строки от startIndex и до, но не включая endIndex и возвращает новую строку, не изменяя оригинал.
+
+const productName = 'Repair droid';
 console.log(productName.slice(0, 4)); // "Repa"
 console.log(productName.slice(3, 9)); // "air dr"
 console.log(productName.slice(0, productName.length)); // "Repair droid"
 console.log(productName.slice(7, productName.length)); // "droid"
-
-// Поиск в строке .includes()
-// Перевіряє, чи міститься підрядок в рядку, повертає буль - true, якщо міститься, і false - в іншому випадку. 
-// Регістр символів в рядку і підрядку має значення, оскільки, наприклад, літера "a" не дорівнює літері "А".
-const blackListWord1 = 'спам';
-const blackListWord2 = 'распродажа';
-
-const string1 = 'Привет, я принц Абдул, это не спам, предлагаю тебе миллион!';
-const string2 = 'Самая большая РАСПРОДАЖА этой недели, не пропусти!';
-const string3 = 'Рекламная кампания #fatlivesmatter';
-
-console.log(string1.includes(blackListWord1)); // true
-console.log(string1.includes(blackListWord2)); // false
-
-console.log(string2.includes(blackListWord1)); // false
-console.log(string2.toLowerCase().includes(blackListWord2)); // true
-
-console.log(string3.includes(blackListWord1)); // false
-console.log(string3.includes(blackListWord2)); // false
-
-/*=======*/
-string1.indexOf();// Повертає позицію (індекс), на якій знаходиться перший збіг підрядка або -1, якщо нічого не знайдено.
-string1.lastIndexOf(); 
-const message1 = "Welcome to Bahamas!";
-console.log(message.indexOf("to")); // 8
-console.log(message.indexOf("hello")); // -1
-/*=======*/
-
-/*=======*/
-string1.replace(); // Повертає новий рядок, в якому перше (replace) або усі збіги (replaceAll) підрядка замінені на вказане значення.
-string1.replaceAll();
-const jsFileName = "script.js";
-const minifiedJsFileName = jsFileName.replace(".js", ".min.js");
-console.log(minifiedJsFileName); // "script.min.js"
-
-const cssFileNames = "styles.css, about.css, portfolio.css";
-const minifiedCssFileNames = cssFileNames.replaceAll(".css", ".min.css");
-console.log(minifiedCssFileNames); // "styles.min.css, about.min.css, portfolio.min.css"
-/*=======*/
-
-/*=======*/
-string1.toLowerCase(); // Приводить усі символи строки до ніжнього регістру
-string1.toUpperCase(); // Приводить усі символи строки до верхнього регістру
-let brand = 'Samsung';
-brand = brand.toLowerCase();
-
-let inSearch = 'SamSung';
-inSearch = inSearch.toLowerCase();
-
-let searchResult = brand === inSearch;
-
-console.log(searchResult); // true
-/*=======*/
-
-/*=======*/
-string1.trim(); // убирает пробелы в строке
-/*=======*/
-
-/*=======*/
-string1.endsWith(); // Дозволяє визначити, чи завершується (або починается) рядок символами (підрядком), зазначеними в дужках, повертаючи true або false.
-string1.startsWith();
-const jsFileName1 = "script.js";
-console.log(jsFileName.endsWith(".js")); // true
-
-const cssFileName = "styles.css";
-console.log(cssFileName.endsWith(".js")); // false
-/*=======*/
-
-
 
 /*
   ? Запросите у пользователя имя с возрастом и выведете в консоль сообщение:
