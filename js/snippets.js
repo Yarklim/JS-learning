@@ -62,8 +62,8 @@ console.log(f7_1(444));
 
 //? ========= Получение символа строки =========
 let n8 = 'sample string';
-console.log(n8.charAt(4));
-console.log(n8[4]);
+console.log(n8.charAt(5));
+console.log(n8[5]);
 
 //? ========= Значение по дефолту ========
 let n9 = 34;
