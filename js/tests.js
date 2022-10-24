@@ -41,3 +41,9 @@
 //   alert(`Hello, ${name} how are you doing today?`);
 // }
 // greet('Yar');
+
+//? Возьмите массив и удалите каждый второй элемент из массива.
+//? Всегда сохраняйте первый элемент и начинайте удаление со следующего элемента. РЕШИТЬ!!!
+// const array = ['Keep', 'Remove', 'Keep', 'Remove', 'Keep'];
+
+// console.log(array);

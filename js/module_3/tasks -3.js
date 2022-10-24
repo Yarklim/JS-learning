@@ -101,16 +101,114 @@
 //? Напиши функцию countTotalSalary(salaries) которая принимает объект зарплат, где имя свойства это имя сотрудника, а значение свойства это зарплата.
 //? Функция должна рассчитать общую сумму зарплат сотрудников и вернуть её.
 //? Используй переменную totalSalary для хранения общей суммы зарплаты.
-function countTotalSalary(salaries) {
-  let totalSalary = 0;
-  // Change code below this line
-  const values = Object.values(salaries);
-  for (let i of values) {
-    totalSalary += i;
-  }
-  // Change code above this line
-  return totalSalary;
-}
-console.log(countTotalSalary({}));
-console.log(countTotalSalary({ mango: 100, poly: 150, alfred: 80 }));
-console.log(countTotalSalary({ kiwi: 200, poly: 50, ajax: 150 }));
+// function countTotalSalary(salaries) {
+//   let totalSalary = 0;
+//   // Change code below this line
+//   const values = Object.values(salaries);
+//   for (let i of values) {
+//     totalSalary += i;
+//   }
+//   // Change code above this line
+//   return totalSalary;
+// }
+// console.log(countTotalSalary({}));
+// console.log(countTotalSalary({ mango: 100, poly: 150, alfred: 80 }));
+// console.log(countTotalSalary({ kiwi: 200, poly: 50, ajax: 150 }));
+
+//? ====== Карточка товаров =======
+const cart = {
+  items: [],
+  getItems() {
+    return this.items;
+  },
+  add(product) {
+    for (const item of this.items) {
+      if (item.name === product.name) {
+        item.quantity += 1;
+        return;
+      }
+    }
+    const newProduct = {
+      ...product,
+      quantity: 1,
+    };
+
+    this.items.push(newProduct);
+  },
+  remove(productName) {
+    const { items } = this;
+
+    for (let i = 0; i < items.length; i += 1) {
+      const { name } = items[i];
+
+      if (productName === name) {
+        items.splice(i, 1);
+      }
+    }
+  },
+  clear() {
+    this.items = [];
+  },
+  countTotalPrice() {
+    const { items } = this;
+    let total = 0;
+
+    for (const { price, quantity } of items) {
+      total += price * quantity;
+    }
+
+    return total;
+  },
+  increaseQuantity(productName) {},
+  decreaseQuantity(productName) {},
+};
+
+console.log(cart.getItems());
+
+cart.add({ name: '🍅', price: 50 });
+cart.add({ name: '🍋', price: 60 });
+cart.add({ name: '🍓', price: 60 });
+cart.add({ name: '🍏', price: 110 });
+cart.add({ name: '🍏', price: 110 });
+cart.add({ name: '🍏', price: 110 });
+
+console.table(cart.getItems());
+
+cart.remove('🍅');
+console.table(cart.getItems());
+
+// cart.clear();
+// console.log(cart.getItems());
+
+// cart.increaseQuantity('🍓');
+// console.table(cart.getItems);
+
+// cart.decreaseQuantity('🍏');
+// cart.decreaseQuantity('🍋');
+// console.table(cart.getItems);
+
+console.log('Total: ', cart.countTotalPrice());
+
+//? ====== spread ======
+// const array = [1, 2, 3];
+// const arrayBig = ['A', 'B', 'C'];
+// const newArray = [0, ...array, 4, 5, 6, 7, ...arrayBig];
+
+// console.log(newArray);
+// console.log(array);
+
+//? Найти самое маленькое число в массиве
+// const numbers = [18, 17, 46, 90, 4, 24, 32];
+
+// console.log(Math.min(...numbers));
+
+//? Распыление объектов
+//? Object.assign() и spread
+// const a = { x: 1, y: 2 };
+// const b = { x: 0, z: 3 };
+
+// // const c = Object.assign({}, a, b); // старый метод
+
+// const c = { ...a, ...b }; // современный метод
+
+// console.log(c); // {x: 0, y: 2, z: 3}
