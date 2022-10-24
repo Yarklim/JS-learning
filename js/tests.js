@@ -43,7 +43,22 @@
 // greet('Yar');
 
 //? Возьмите массив и удалите каждый второй элемент из массива.
-//? Всегда сохраняйте первый элемент и начинайте удаление со следующего элемента. РЕШИТЬ!!!
-// const array = ['Keep', 'Remove', 'Keep', 'Remove', 'Keep'];
+//? Всегда сохраняйте первый элемент и начинайте удаление со следующего элемента.
+// const array = [
+//   'Keep',
+//   'Remove',
+//   'Keep',
+//   'Remove',
+//   'Keep',
+//   'Remove',
+//   'Keep',
+//   'Remove',
+//   'Keep',
+// ];
+// let pos = 0;
 
+// for (let i = 0; i < array.length; i++) {
+//   pos = 1 + i;
+//   array.splice(pos, 1);
+// }
 // console.log(array);
