@@ -62,3 +62,19 @@
 //   array.splice(pos, 1);
 // }
 // console.log(array);
+
+//? Проверить наличие х в массиве а
+// function check(a, x) {
+//   return a.includes(x) ? true : false;
+// }
+
+// console.log(check([1, 2, 3, 7, 'f', 0], 'f'));
+
+//? Просто удалите пробелы из строки, затем верните результирующую строку.
+// function noSpace(x) {
+//   return x.split(' ').join('');
+// или
+// return x.replace(/\s/g, '');
+// }
+
+// console.log(noSpace('8 j 8   mBliB8g  imjB8B8  jl  B'));
