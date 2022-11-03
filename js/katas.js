@@ -179,3 +179,137 @@ name + " does not play banjo"
 
 // console.log(areYouPlayingBanjo('Adam'));
 // console.log(areYouPlayingBanjo('Ringo'));
+
+/*
+? Часы показывают h часы, m минуты и s секунды после полуночи.
+Ваша задача — написать функцию, которая возвращает время с полуночи в миллисекундах.
+Пример:
+h = 0
+m = 1
+s = 1
+
+result = 61000
+Входные ограничения:
+0 <= h <= 23
+0 <= m <= 59
+0 <= s <= 59
+*/
+// function past(h, m, s) {
+//   return h * 3600000 + m * 60000 + s * 1000;
+// }
+
+// console.log(past(0, 1, 1)); // 61000
+// console.log(past(1, 1, 1)); // 3661000
+
+/*
+? Ваша функция принимает два аргумента:
+текущий возраст отца (лет)
+текущий возраст его сына (лет)
+Подсчитайте, сколько лет назад отец был вдвое старше сына (или через сколько лет он будет вдвое старше). 
+Ответ всегда больше или равен 0, независимо от того, был он в прошлом или в будущем.
+*/
+// function twiceAsOld(dadYearsOld, sonYearsOld) {
+//   return Math.abs(dadYearsOld - sonYearsOld * 2);
+// }
+// console.log(twiceAsOld(55, 30));
+
+/*
+? В этом небольшом задании вам дается строка чисел, разделенных пробелами, и вы должны вернуть наибольшее и наименьшее число.
+
+Примеры
+highAndLow("1 2 3 4 5");  // return "5 1"
+highAndLow("1 2 -3 4 5"); // return "5 -3"
+highAndLow("1 9 3 4 -5"); // return "9 -5"
+*/
+// function highAndLow(numbers) {
+//   //   const array = numbers.split(' ');
+//   //   const newArr = [];
+//   //   const highAndLowArray = [];
+//   //   for (let i of array) {
+//   //     newArr.push(Number(i));
+//   //   }
+//   //   highAndLowArray.push(Math.max(...newArr));
+//   //   highAndLowArray.push(Math.min(...newArr));
+
+//   //   return highAndLowArray.join(',');
+
+//   // рефакторинг
+//   numbers = numbers.split(' ').map(Number);
+//   return Math.max.apply(0, numbers) + ' ' + Math.min.apply(0, numbers);
+// }
+
+// console.log(highAndLow('8 3 -5 42 -1 0 0 -9 4 7 4 -4')); // "42 -9"
+// console.log(highAndLow('1 2 3')); // "3 1"
+
+//--------------------------------------
+
+/*
+? Ваша задача состоит в том, чтобы преобразовать строки в то, как они были бы написаны Джейденом Смитом. 
+Строки являются настоящими цитатами Джейдена Смита, но они не написаны с заглавной буквы так, как он их изначально напечатал.
+Пример:
+Not Jaden-Cased: "How can mirrors be real if our eyes aren't real"
+Jaden-Cased:     "How Can Mirrors Be Real If Our Eyes Aren't Real"
+*/
+String.prototype.toJadenCase = function () {};
+
+/*
+? Вы уже реализовали класс Cube , но теперь нам снова нужна ваша помощь! 
+Я говорю о конструкторах. У нас его нет. 
+Давайте закодируем два: один принимает целое число, а другой не обрабатывает заданные аргументы!
+Также у нас возникла проблема с отрицательными значениями. 
+Исправьте код, чтобы отрицательные значения были заменены на положительные!
+Конструктор, не принимающий аргументов, должен присвоить 0 свойству Cube Side.
+*/
+// This Cube class needs help
+// Implement the constructor so that it can take an integer for the side or no args
+class Cube {
+  getSide() {
+    return this.side;
+  }
+  setSide(n) {
+    this.side = Math.abs(n);
+  }
+}
+
+// const expect = require('chai').expect;
+
+// describe('Cube', () => {
+//   it('constructs a cube with side s if positive s is passed', () => {
+//     let cube = new Cube(12);
+//     expect(cube.getSide()).to.equal(12);
+//     cube.setSide(42);
+//     expect(cube.getSide()).to.equal(42);
+//   });
+// });
+
+/*
+? Задание
+Подумайте о способе хранения языков в виде базы данных (например, объекта). 
+Языки перечислены ниже, так что вы можете копировать и вставлять!
+Напишите функцию «приветствия», которая принимает параметр «язык» (всегда строка) и возвращает приветствие, если оно есть в вашей базе данных. 
+По умолчанию должен быть английский, если языка нет в базе данных или в случае неверного ввода.
+База данных
+english: 'Welcome',
+czech: 'Vitejte',
+danish: 'Velkomst',
+dutch: 'Welkom',
+estonian: 'Tere tulemast',
+finnish: 'Tervetuloa',
+flemish: 'Welgekomen',
+french: 'Bienvenue',
+german: 'Willkommen',
+irish: 'Failte',
+italian: 'Benvenuto',
+latvian: 'Gaidits',
+lithuanian: 'Laukiamas',
+polish: 'Witamy',
+spanish: 'Bienvenido',
+swedish: 'Valkommen',
+welsh: 'Croeso'
+Возможные недопустимые входные данные включают:
+
+IP_ADDRESS_INVALID - not a valid ipv4 or ipv6 ip address
+IP_ADDRESS_NOT_FOUND - ip address not in the database
+IP_ADDRESS_REQUIRED - no ip address was supplied
+*/
+function greet(language) {}

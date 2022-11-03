@@ -101,6 +101,20 @@ false - если значение val это не NaN
 // console.log(Math.random()); // случайное число между 0 и 1
 // console.log(Math.random() * (10 - 1) + 1); // псевдослучайное число от 1 до 10
 
+// Math.abs() - возвращает абсолютное значение числа.
+/*
+Math.abs('-1');     // 1
+Math.abs(-2);       // 2
+Math.abs(null);     // 0
+Math.abs('');       // 0
+Math.abs([]);       // 0
+Math.abs([2]);      // 2
+Math.abs([1,2]);    // NaN
+Math.abs({});       // NaN
+Math.abs('string'); // NaN
+Math.abs();         // NaN
+*/
+
 /* 
 ? ======== Генератор случайных чисел ======= 
 */
