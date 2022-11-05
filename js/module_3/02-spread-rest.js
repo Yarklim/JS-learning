@@ -53,6 +53,14 @@ console.log(allTemps); // [14, 25, 11, 23, 17, 18]
 Операция ... (spread) позволяет распылить свойства произвольного количества объектов в один новый.
 */
 
+// Распыление объекта (старый метод):
+const a = { x: 1, y: 2 };
+const b = { x: 0, z: 3 };
+
+const c = Object.assign({}, a, b);
+console.log(c); // {x: 0, y: 2, z: 3}
+
+// Распыление объекта в современном синтаксисе:
 const first1 = { propA: 5, propB: 10 };
 const second1 = { propC: 15 };
 const third1 = { ...first1, ...second1 };
