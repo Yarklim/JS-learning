@@ -243,6 +243,178 @@ highAndLow("1 9 3 4 -5"); // return "9 -5"
 
 //--------------------------------------
 
+//? --------------------------------------------
+/*
+Очень просто, по заданному целому числу или числу с плавающей запятой найти его противоположность.
+Примеры:
+1: -1
+14: -14
+-34: 34
+*/
+// function opposite(number) {
+//   //   return number * -1;
+//   return -number;
+// }
+
+// console.log(opposite(1)); // -1
+// console.log(opposite(4.25)); // -4.25
+// console.log(opposite(-12525220.3325)); // 12525220.3325
+
+//? -------------------------------------------
+/*
+Учитывая непустой массив целых чисел, вернуть результат умножения значений вместе по порядку. 
+Пример:
+[1, 2, 3, 4] => 1 * 2 * 3 * 4 = 24
+*/
+// function grow(x) {
+//   let sum = 1;
+
+//   for (let el of x) {
+//     sum *= el;
+//   }
+
+//   return sum;
+// }
+
+// const grow = (x) => x.reduce((a, b) => a * b);
+
+// console.log(grow([1, 2, 3])); // 6
+// console.log(grow([4, 1, 1, 1, 4])); // 16
+// console.log(grow([2, 2, 2, 2, 2, 2])); // 64
+
+//? ------------------------------------------
+/*
+Герой направляется в замок, чтобы выполнить свою миссию. 
+Однако ему сказали, что замок окружен парочкой могущественных драконов! каждому дракону требуется 2 пули, 
+чтобы быть побежденным, наш герой понятия не имеет, сколько пуль он должен нести.. 
+Предполагая, что он собирается схватить определенное количество пуль и двигаться вперед, 
+чтобы сразиться с другим заданным количеством драконов, выживет ли он?
+Верните True, если да, False в противном случае :)
+*/
+// function hero(bullets, dragons) {
+// 	// return bullets / dragons >= 2 ? true : false;
+
+// 	return bullets >= dragons * 2;
+// }
+
+// console.log(hero(10, 5)); // true
+// console.log(hero(7, 4)); // false
+// console.log(hero(4, 5)); // false
+// console.log(hero(100, 40)); // true
+
+//? -------------------------------------------
+/*
+Завершите решение так, чтобы оно перевернуло переданную в него строку.
+'world'  =>  'dlrow'
+'word'   =>  'drow'
+*/
+// function solution(str) {
+// 	return str.split('').reverse().join('');
+
+// //   let result = '';
+
+// //   for (const el of str) {
+// //     result = el + result;
+// //   }
+// //   return result;
+// }
+
+// console.log(solution('world')); // 'dlrow'
+// console.log(solution('hello')); // 'olleh'
+// console.log(solution('')); // ''
+// console.log(solution('w')); // 'w'
+
+//? ------------------------------------------
+/*
+Создайте функцию с двумя аргументами, которая будет возвращать массив первых n-кратных x.
+Предположим, что и заданное число, и количество раз для подсчета будут положительными числами больше, чем 0.
+Возвращайте результаты в виде массива или списка (в зависимости от языка).
+Примеры
+countBy(1,10) === [1,2,3,4,5,6,7,8,9,10]
+countBy(2,5) === [2,4,6,8,10]
+*/
+// function countBy(x, n) {
+//   let z = [];
+
+//   for (let i = 1; i <= n; i += 1) {
+//     z.push(i * x);
+//   }
+//   return z;
+// }
+
+// console.log(countBy(1, 10)); // [1,2,3,4,5,6,7,8,9,10]
+// console.log(countBy(2, 5)); // [2,4,6,8,10]
+// console.log(countBy(4, 7));
+
+//? ------------------------------------------
+/*
+По городу движется автобус, и на каждой остановке он берет и высаживает несколько человек.
+Вам предоставляется список (или массив) целочисленных пар. 
+Элементы каждой пары представляют количество людей, садящихся в автобус (первый элемент) и количество людей, выходящих из автобуса (второй элемент) на автобусной остановке.
+Ваша задача — вернуть количество людей, оставшихся в автобусе после последней автобусной остановки (после последнего массива). 
+Несмотря на то, что это последняя автобусная остановка, автобус не пустой, и некоторые люди все еще в автобусе, и они, вероятно, спят там :D
+Взгляните на тест-кейсы.
+Имейте в виду, что тестовые примеры гарантируют, что количество людей в автобусе всегда >= 0. Таким образом, возвращаемое целое число не может быть отрицательным.
+Второе значение в первом целочисленном массиве равно 0, так как автобус на первой остановке пуст.
+*/
+// var number = function (busStops) {
+//   let passResult = 0;
+
+//   for (let el of busStops) {
+//     passResult += el[0] - el[1];
+//   }
+
+//   return passResult;
+// };
+
+// console.log(
+//   number([
+//     [10, 0],
+//     [3, 5],
+//     [5, 8],
+//   ])
+// ); //   5
+
+// console.log(
+//   number([
+//     [3, 0],
+//     [9, 1],
+//     [4, 10],
+//     [12, 2],
+//     [6, 1],
+//     [7, 10],
+//   ])
+// ); //   17
+
+// console.log(number([[0, 0]])); // 0
+
+// Напиши функцию getAllPropValues(propName) которая принимает один параметр propName - имя (ключ) свойства.
+// Функция должна вернуть массив всех значений свойства с таким именем из каждого объекта в массиве products.
+// Если в объектах нет свойства с таким именем, функция должна вернуть пустой массив.
+// const products = [
+//   { name: 'Radar', price: 1300, quantity: 4 },
+//   { name: 'Scanner', price: 2700, quantity: 3 },
+//   { name: 'Droid', price: 400, quantity: 7 },
+//   { name: 'Grip', price: 1200, quantity: 9 },
+// ];
+
+// function getAllPropValues(propName) {
+//   const newProducts = [];
+
+//   for (const product of products) {
+//     if (Object.keys(product).includes(propName)) {
+//       newProducts.push(product[propName]);
+//     }
+//   }
+
+//   return newProducts;
+// }
+
+// console.log(getAllPropValues('name'));
+// console.log(getAllPropValues('quantity'));
+// console.log(getAllPropValues('online'));
+
+//? ------------------------------------
 /*
 ? Ваша задача состоит в том, чтобы преобразовать строки в то, как они были бы написаны Джейденом Смитом. 
 Строки являются настоящими цитатами Джейдена Смита, но они не написаны с заглавной буквы так, как он их изначально напечатал.
@@ -250,11 +422,11 @@ highAndLow("1 9 3 4 -5"); // return "9 -5"
 Not Jaden-Cased: "How can mirrors be real if our eyes aren't real"
 Jaden-Cased:     "How Can Mirrors Be Real If Our Eyes Aren't Real"
 */
-String.prototype.toJadenCase = function () {
-  return this.charAt(0).toUpperCase() + this.slice(1);
-};
+// String.prototype.toJadenCase = function () {
+//   return this.charAt(0).toUpperCase() + this.slice(1);
+// };
 
-console.log(str.toJadenCase("How can mirrors be real if our eyes aren't real"));
+// console.log(str.toJadenCase("How can mirrors be real if our eyes aren't real"));
 
 /*
 ? Вы уже реализовали класс Cube , но теперь нам снова нужна ваша помощь! 
@@ -266,25 +438,25 @@ console.log(str.toJadenCase("How can mirrors be real if our eyes aren't real"));
 */
 // This Cube class needs help
 // Implement the constructor so that it can take an integer for the side or no args
-class Cube {
-  getSide() {
-    return this.side;
-  }
-  setSide(n) {
-    this.side = Math.abs(n);
-  }
-}
+// class Cube {
+//   getSide() {
+//     return this.side;
+//   }
+//   setSide(n) {
+//     this.side = Math.abs(n);
+//   }
+// }
 
-const expect = require('chai').expect;
+// const expect = require('chai').expect;
 
-describe('Cube', () => {
-  it('constructs a cube with side s if positive s is passed', () => {
-    let cube = new Cube(12);
-    expect(cube.getSide()).to.equal(12);
-    cube.setSide(42);
-    expect(cube.getSide()).to.equal(42);
-  });
-});
+// describe('Cube', () => {
+//   it('constructs a cube with side s if positive s is passed', () => {
+//     let cube = new Cube(12);
+//     expect(cube.getSide()).to.equal(12);
+//     cube.setSide(42);
+//     expect(cube.getSide()).to.equal(42);
+//   });
+// });
 
 //? ---------------------------------------------
 /*
@@ -317,13 +489,37 @@ IP_ADDRESS_INVALID - not a valid ipv4 or ipv6 ip address
 IP_ADDRESS_NOT_FOUND - ip address not in the database
 IP_ADDRESS_REQUIRED - no ip address was supplied
 */
-function greet(language) {}
+// function greet(language) {}
 
-console.log(greet('english')); // 'Welcome'
-console.log(greet('dutch')); // 'Welkome'
-console.log(greet('IP_ADDRESS_INVALID')); // 'Welcome'
+// console.log(greet('english')); // 'Welcome'
+// console.log(greet('dutch')); // 'Welkome'
+// console.log(greet('IP_ADDRESS_INVALID')); // 'Welcome'
 
 // ? ----------------------------------------
+
+/*
+Дезоксирибонуклеиновая кислота (ДНК) представляет собой химическое вещество, находящееся в ядре клеток и несущее «инструкции» по развитию и функционированию живых организмов.
+
+Если вы хотите узнать больше: http://en.wikipedia.org/wiki/DNA
+
+В цепочках ДНК символы «А» и «Т» дополняют друг друга, как «С» и «G». Ваша функция получает одну сторону ДНК (строка, кроме Haskell); 
+вам нужно вернуть другую дополнительную сторону. Нить ДНК никогда не бывает пустой или ДНК вообще не существует (опять же, кроме Haskell).
+
+Другие подобные упражнения можно найти здесь: http://rosalind.info/problems/list-view/ (источник)
+
+Пример: ( ввод --> вывод )
+
+"ATTGC" --> "TAACG"
+"GTAT" --> "CATA"
+*/
+function DNAStrand(dna) {
+  //your code here
+}
+
+assert.strictEqual(DNAStrand('AAAA'), 'TTTT', 'String AAAA is');
+assert.strictEqual(DNAStrand('ATTGC'), 'TAACG', 'String ATTGC is');
+assert.strictEqual(DNAStrand('GTAT'), 'CATA', 'String GTAT is');
+
 /*
 Дезоксирибонуклеиновая кислота, ДНК является основной молекулой хранения информации в биологических системах. 
 Он состоит из четырех оснований нуклеиновых кислот гуанина («G»), цитозина («C»), аденина («A») и тимина («T»).
@@ -340,133 +536,141 @@ console.log(greet('IP_ADDRESS_INVALID')); // 'Welcome'
 Входная строка может быть произвольной длины, в частности, она может быть пустой. 
 Гарантируется, что все входные данные верны, т. е. каждая входная строка будет состоять только из 'G', 'C', 'A'и/или 'T'.
 */
-function DNAtoRNA(dna) {
-  // create a function which returns an RNA sequence from the given DNA sequence
-}
+// function DNAtoRNA(dna) {
+//   let rna = '';
 
-console.log(DNAtoRNA('TTTT')); // "UUUU"
-console.log(DNAtoRNA('GCAT')); // "GCAU"
-console.log(DNAtoRNA('GACCGCCGCC')); // "GACCGCCGCC"
+//   for (const el of dna) {
+//     el === 'T' ? (rna += 'U') : (rna += el);
+//   }
+//   return rna;
+// }
 
-//? --------------------------------------------
-/*
-Очень просто, по заданному целому числу или числу с плавающей запятой найти его противоположность.
-Примеры:
-1: -1
-14: -14
--34: 34
-*/
-function opposite(number) {
-  //your code here
-}
-
-console.log(opposite(1)); // -1
-console.log(opposite(4.25)); // 4.25
-console.log(opposite(-12525220.3325)); // 12525220.3325
-
-//? -------------------------------------------
-/*
-Учитывая непустой массив целых чисел, вернуть результат умножения значений вместе по порядку. 
-Пример:
-[1, 2, 3, 4] => 1 * 2 * 3 * 4 = 24
-*/
-function grow(x) {}
-
-console.log(grow([1, 2, 3])); // 6
-console.log(grow([4, 1, 1, 1, 4])); // 16
-console.log(grow([2, 2, 2, 2, 2, 2])); // 64
+// console.log(DNAtoRNA('TTTT')); // "UUUU"
+// console.log(DNAtoRNA('GCAT')); // "GCAU"
+// console.log(DNAtoRNA('GACCGCCGCC')); // "GACCGCCGCC"
 
 //? ------------------------------------------
 /*
-Герой направляется в замок, чтобы выполнить свою миссию. 
-Однако ему сказали, что замок окружен парочкой могущественных драконов! каждому дракону требуется 2 пули, 
-чтобы быть побежденным, наш герой понятия не имеет, сколько пуль он должен нести.. 
-Предполагая, что он собирается схватить определенное количество пуль и двигаться вперед, чтобы сразиться с другим заданным количеством драконов, выживет ли он?
-Верните True, если да, False в противном случае :)
+Даны два целых числа aи b, которые могут быть положительными или отрицательными, найдите сумму всех целых чисел между ними и включая их и верните ее. 
+Если два числа равны, верните aили b.
+
+Примечание: a и bне заказываются!
+
+Примеры (а, б) --> вывод (пояснение)
+(1, 0) --> 1 (1 + 0 = 1)
+(1, 2) --> 3 (1 + 2 = 3)
+(0, 1) --> 1 (0 + 1 = 1)
+(1, 1) --> 1 (1 since both are same)
+(-1, 0) --> -1 (-1 + 0 = -1)
+(-1, 2) --> 2 (-1 + 0 + 1 + 2 = 2)
 */
-function hero(bullets, dragons) {
-  //Get Coding!
+function getSum(a, b) {
+  //Good luck!
 }
+console.log(getSum(0, -1)); // -1
+console.log(getSum(0, 1)); // 1
 
-console.log(hero(10, 5)); // true
-console.log(hero(7, 4)); // false
-console.log(hero(4, 5)); // false
-console.log(hero(100, 40)); // true
-
-//? -------------------------------------------
+//? -----------------------------------------
 /*
-Завершите решение так, чтобы оно перевернуло переданную в него строку.
-'world'  =>  'dlrow'
-'word'   =>  'drow'
+Ваша задача состоит в том, чтобы сделать две функции ( maxи min, или maximumи и minimumт. д., в зависимости от языка), 
+которые получают на вход список целых чисел и возвращают наибольшее и наименьшее число в этом списке соответственно.
+
+Примеры (ввод -> вывод)
+* [4,6,2,1,9,63,-134,566]         -> max = 566, min = -134
+* [-52, 56, 30, 29, -54, 0, -110] -> min = -110, max = 56
+* [42, 54, 65, 87, 0]             -> min = 0, max = 87
+* [5]                             -> min = 5, max = 5
+Заметки
+Вы можете считать, что пустых массивов/векторов не будет.
 */
-function solution(str) {}
-
-console.log(solution('world')); // 'dlrow'
-console.log(solution('hello')); // 'olleh'
-console.log(solution('')); // ''
-console.log(solution('w')); // 'w'
-
-//? ------------------------------------------
-/*
-Создайте функцию с двумя аргументами, которая будет возвращать массив первых n-кратных x.
-Предположим, что и заданное число, и количество раз для подсчета будут положительными числами больше, чем 0.
-Возвращайте результаты в виде массива или списка (в зависимости от языка).
-Примеры
-countBy(1,10) === [1,2,3,4,5,6,7,8,9,10]
-countBy(2,5) === [2,4,6,8,10]
-*/
-function countBy(x, n) {
-  let z = [];
-
-  return z;
-}
-
-console.log(countBy(1, 10)); // [1,2,3,4,5,6,7,8,9,10]
-console.log(countBy(2, 5)); // [2,4,6,8,10]
-
-//? ------------------------------------------
-/*
-По городу движется автобус, и на каждой остановке он берет и высаживает несколько человек.
-Вам предоставляется список (или массив) целочисленных пар. 
-Элементы каждой пары представляют количество людей, садящихся в автобус (первый элемент) и количество людей, выходящих из автобуса (второй элемент) на автобусной остановке.
-Ваша задача — вернуть количество людей, оставшихся в автобусе после последней автобусной остановки (после последнего массива). 
-Несмотря на то, что это последняя автобусная остановка, автобус не пустой, и некоторые люди все еще в автобусе, и они, вероятно, спят там :D
-Взгляните на тест-кейсы.
-Имейте в виду, что тестовые примеры гарантируют, что количество людей в автобусе всегда >= 0. Таким образом, возвращаемое целое число не может быть отрицательным.
-Второе значение в первом целочисленном массиве равно 0, так как автобус на первой остановке пуст.
-*/
-var number = function (busStops) {
-  // Good Luck!
+var min = function (list) {
+  return list[0];
 };
 
-assert.strictEqual(
-  number([
-    [10, 0],
-    [3, 5],
-    [5, 8],
-  ]),
-  5
-);
-assert.strictEqual(
-  number([
-    [3, 0],
-    [9, 1],
-    [4, 10],
-    [12, 2],
-    [6, 1],
-    [7, 10],
-  ]),
-  17
-);
-assert.strictEqual(
-  number([
-    [3, 0],
-    [9, 1],
-    [4, 8],
-    [12, 2],
-    [6, 1],
-    [7, 8],
-  ]),
-  21
-);
-assert.strictEqual(number([[0, 0]]), 0);
+var max = function (list) {
+  return list[0];
+};
+console.log(min([-52, 56, 30, 29, -54, 0, -110])); // -110
+console.log(min([42, 54, 65, 87, 0])); // 0
+console.log(min([5])); // 5
+
+//? ------------------------------------------
+/*
+Напишите функцию, которая разбивает строку и преобразует ее в массив слов.
+Примеры (ввод ==> вывод):
+"Robin Singh" ==> ["Robin", "Singh"]
+"I love arrays they are my favorite" ==> ["I", "love", "arrays", "they", "are", "my", "favorite"]
+*/
+function stringToArray(string) {
+  // code code code
+}
+console.log(stringToArray('Robin Singh')); // ["Robin", "Singh"]
+console.log(stringToArray('I love arrays they are my favorite')); // ["I", "love", "arrays", "they", "are", "my", "favorite"]
+
+//? ------------------------------------------
+/*
+Первое столетие охватывает период с 1 года по 100 год включительно , второе столетие — с 101 года по 200 год включительно и т. д.
+Задача
+Учитывая год, верните столетие, в котором он находится.
+Примеры
+1705 --> 18
+1900 --> 19
+1601 --> 17
+2000 --> 20
+*/
+function century(year) {
+  // Finish this :)
+  return;
+}
+console.log(century(1705)); // 18
+console.log(century(1900)); // 19
+console.log(century(1601)); // 17
+console.log(century(2000)); // 20
+console.log(century(89)); // 1
+
+//? -----------------------------------------
+/*
+Ваша задача состоит в том, чтобы создать функцию, которая может принимать любое неотрицательное целое число в качестве аргумента 
+и возвращать его с цифрами в порядке убывания. 
+По сути, переставьте цифры, чтобы получить максимально возможное число.
+
+Примеры:
+Вход: 42145 Выход:54421
+
+Вход: 145263 Выход:654321
+
+Вход: 123456789 Выход:987654321
+*/
+function descendingOrder(n) {
+  //...
+}
+console.log(descendingOrder(0)); // 0
+console.log(descendingOrder(1)); // 1
+console.log(descendingOrder(111)); // 111
+console.log(descendingOrder(15)); // 51
+console.log(descendingOrder(1021)); // 2110
+
+//? ------------------------------------------
+/*
+Напиши функцию calculateTotalPrice(productName) которая принимает один параметр productName - название товара. 
+Функция должна вернуть общую стоимость (цена * количество) товара с таким именем из массива products.
+*/
+const products = [
+  { name: 'Radar', price: 1300, quantity: 4 },
+  { name: 'Scanner', price: 2700, quantity: 3 },
+  { name: 'Droid', price: 400, quantity: 7 },
+  { name: 'Grip', price: 1200, quantity: 9 },
+];
+
+function calculateTotalPrice(productName) {
+  // Пиши код ниже этой строки
+  // Пиши код выше этой строки
+}
+
+console.log(calculateTotalPrice('Blaster')); // 0
+console.log(calculateTotalPrice('Radar')); // 5200
+console.log(calculateTotalPrice('Droid')); // 2800
+console.log(calculateTotalPrice('Grip')); // 10800
+console.log(calculateTotalPrice('Scanner')); // 8100
+
+//? ---------------------------------------------
