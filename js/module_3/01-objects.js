@@ -137,6 +137,15 @@ const user2 = {
 console.log(user2.name2); // "Генрі Сибола"
 console.log(user2.age2); // 25
 
+function makeUserInfo(name, age) {
+  return {
+    name,
+    age,
+  };
+}
+let userYar = makeUserInfo('Yar', 50);
+console.log(userYar); // {name: 'Yar', age: 50}
+
 //? -------- Синтаксис вычисляемых свойств (computed properties) --------
 
 const propName = 'name';
@@ -219,6 +228,18 @@ console.log(langIt?.name);
 if ('rating' in langIt) {
   console.log(langIt.rating);
 }
+
+//? ============= Удаление свойства ============
+let userYarInfo = {
+  fisrtName: 'Yar',
+  lastName: 'Klim',
+  age: 50,
+};
+console.log(userYarInfo); // {fisrtName: 'Yar',	lastName: 'Klim', age: 50}
+
+delete userYarInfo.age;
+
+console.log(userYArInfo); // {fisrtName: 'Yar',	lastName: 'Klim'}
 
 //? ============= Итерация объекта =============
 //? В отличие от массива или строки, объект - это неитерабельная сущность, то есть его нельзя перебрать циклами for или for...of.
@@ -364,7 +385,7 @@ let userInfo3 = {
   age: 27,
 };
 let userNew2 = Object.assign({}, userInfo3);
-userNew2 = 25;
+userNew2.age = 25;
 console.log(userInfo3);
 console.log(userNew3);
 
