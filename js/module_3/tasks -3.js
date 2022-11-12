@@ -212,3 +212,33 @@ console.log('Total: ', cart.countTotalPrice());
 // const c = { ...a, ...b }; // современный метод
 
 // console.log(c); // {x: 0, y: 2, z: 3}
+
+//? --------------------------------------
+
+// function findMatches(arr, ...args) {
+//   const matches = [];
+
+//   for (const arg of args) {
+//     if (arr.includes(arg)) {
+//       matches.push(arg);
+//     }
+//   }
+//   return matches;
+// }
+// console.log(findMatches([1, 2, 3, 4, 5], 1, 8, 2, 7));
+
+//? --------------------------------------
+
+// Дополни метод updateBook(oldName, newName) так, чтобы он изменял название книги с oldName на newName в свойстве books.
+// Используй indexOf() для того, чтобы найти нужный элемент массива, и splice() для того чтобы заменить этот элемент
+const bookShelf = {
+  books: ['The last kingdom', 'Haze', 'The guardian of dreams'],
+  updateBook(oldName, newName) {
+    // Change code below this line
+    // Change code above this line
+  },
+};
+
+// После вызова метода bookShelf.updateBook("Haze", "Dungeon chronicles"), значение свойства books это массив ["The last kingdom", "Dungeon chronicles", "The guardian of dreams"]
+
+// После вызова метода bookShelf.updateBook("The last kingdom", "Dune"), значение свойства books это массив ["Dune", "Haze", "The guardian of dreams"]

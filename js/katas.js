@@ -520,6 +520,7 @@ assert.strictEqual(DNAStrand('AAAA'), 'TTTT', 'String AAAA is');
 assert.strictEqual(DNAStrand('ATTGC'), 'TAACG', 'String ATTGC is');
 assert.strictEqual(DNAStrand('GTAT'), 'CATA', 'String GTAT is');
 
+//? --------------------------------------------------
 /*
 Дезоксирибонуклеиновая кислота, ДНК является основной молекулой хранения информации в биологических системах. 
 Он состоит из четырех оснований нуклеиновых кислот гуанина («G»), цитозина («C»), аденина («A») и тимина («T»).
