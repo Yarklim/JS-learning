@@ -498,6 +498,69 @@ IP_ADDRESS_REQUIRED - no ip address was supplied
 // ? ----------------------------------------
 
 /*
+Выполни рефакторинг методов объекта atTheOldToad так, чтобы они работали не с массивом строк, а с массивом объектов.
+
+getPotions() - метод для получения всех зелий. Возвращает значение свойства potions.
+addPotion(newPotion) - добавляет зелье newPotion (уже объект) в массив в свойстве potions, но только если такого зелья еще нет в инвентаре. В противном случае возвращается строка.
+removePotion(potionName) - удаляет объект зелья с именем potionName из массива в свойстве potions.
+updatePotionName(oldName, newName) - обновляет свойство name объекта-зелья с названием oldName на newName в массиве potions.
+*/
+const atTheOldToad = {
+  potions: [
+    { name: 'Speed potion', price: 460 },
+    { name: 'Dragon breath', price: 780 },
+    { name: 'Stone skin', price: 520 },
+  ],
+  // Change code below this line
+  getPotions() {
+    return this.potions;
+  },
+  addPotion(newPotion) {
+    const { potions } = this;
+
+    for (const potion of potions) {
+      if (potion.name === newPotion.name) {
+        return `Error! Potion ${newPotion.name} is already in your inventory!`;
+      }
+    }
+    return potions.push(newPotion);
+  },
+  removePotion(potionName) {
+    const { potions } = this;
+    for (let i = 0; i < potions.length; i += 1) {
+      const { name } = potions[i];
+
+      if (potionName === name) {
+        return potions.splice(i, 1);
+      }
+    }
+
+    return `Potion ${potionName} is not in inventory!`;
+  },
+  updatePotionName(oldName, newName) {
+    const { potions } = this;
+
+    for (const potion of potions) {
+      if (oldName === potion.name) {
+        return (potion.name = newName);
+      }
+    }
+
+    return `Potion ${oldName} is not in inventory!`;
+  },
+  // Change code above this line
+};
+console.log(atTheOldToad.addPotion({ name: 'Stone skin', price: 240 }));
+console.log(atTheOldToad.addPotion({ name: 'Invisibility', price: 620 })); //в массиве potions последним элементом будет этот объект
+console.log(atTheOldToad.addPotion({ name: 'Dragon breath', price: 700 })); // "Error! Potion Dragon breath is already in your inventory!"
+console.log(atTheOldToad.removePotion('Dragon breath'));
+console.log(
+  atTheOldToad.updatePotionName('Stone skin', 'Invulnerability potion')
+); // в свойстве potions будет массив [{ name: "Speed potion", price: 460 }, { name: "Dragon breath", price: 780 }, { name: "Invulnerability potion", price: 520 } ]
+console.log(atTheOldToad.getPotions());
+//? -----------------------------------------------------
+
+/*
 Дезоксирибонуклеиновая кислота (ДНК) представляет собой химическое вещество, находящееся в ядре клеток и несущее «инструкции» по развитию и функционированию живых организмов.
 
 Если вы хотите узнать больше: http://en.wikipedia.org/wiki/DNA
@@ -512,13 +575,34 @@ IP_ADDRESS_REQUIRED - no ip address was supplied
 "ATTGC" --> "TAACG"
 "GTAT" --> "CATA"
 */
-function DNAStrand(dna) {
-  //your code here
-}
+// function DNAStrand(dna) {
+//   let newDna = '';
 
-assert.strictEqual(DNAStrand('AAAA'), 'TTTT', 'String AAAA is');
-assert.strictEqual(DNAStrand('ATTGC'), 'TAACG', 'String ATTGC is');
-assert.strictEqual(DNAStrand('GTAT'), 'CATA', 'String GTAT is');
+//   for (const element of dna) {
+//     switch (element) {
+//       case 'A':
+//         newDna += 'T';
+//         break;
+
+//       case 'T':
+//         newDna += 'A';
+//         break;
+
+//       case 'G':
+//         newDna += 'C';
+//         break;
+
+//       case 'C':
+//         newDna += 'G';
+//         break;
+//     }
+//   }
+//   return newDna;
+// }
+
+// console.log(DNAStrand('AAAA')); // 'TTTT', 'String AAAA is');
+// console.log(DNAStrand('ATTGC')); // 'TAACG', 'String ATTGC is');
+// console.log(DNAStrand('GTAT')); // 'CATA', 'String GTAT is');
 
 //? --------------------------------------------------
 /*
@@ -552,10 +636,10 @@ assert.strictEqual(DNAStrand('GTAT'), 'CATA', 'String GTAT is');
 
 //? ------------------------------------------
 /*
-Даны два целых числа aи b, которые могут быть положительными или отрицательными, найдите сумму всех целых чисел между ними и включая их и верните ее. 
-Если два числа равны, верните aили b.
+Даны два целых числа a и b, которые могут быть положительными или отрицательными, найдите сумму всех целых чисел между ними и включая их и верните ее. 
+Если два числа равны, верните a или b.
 
-Примечание: a и bне заказываются!
+Примечание: a и b не заказываются!
 
 Примеры (а, б) --> вывод (пояснение)
 (1, 0) --> 1 (1 + 0 = 1)
@@ -565,15 +649,41 @@ assert.strictEqual(DNAStrand('GTAT'), 'CATA', 'String GTAT is');
 (-1, 0) --> -1 (-1 + 0 = -1)
 (-1, 2) --> 2 (-1 + 0 + 1 + 2 = 2)
 */
-function getSum(a, b) {
-  //Good luck!
-}
-console.log(getSum(0, -1)); // -1
-console.log(getSum(0, 1)); // 1
+// function getSum(a, b) {
+//   let sum = 0;
+
+//   if (a < b) {
+//     for (let i = a; i <= b; i += 1) {
+//       sum += i;
+//     }
+//   }
+//   if (b < a) {
+//     for (let i = b; i <= a; i += 1) {
+//       sum += i;
+//     }
+//   }
+//   if (a === b) {
+//     sum = a;
+//   }
+//   return sum;
+// }
+
+// ---------- refactoring ---------
+// const getSum = (a, b) => {
+//   let min = Math.min(a, b),
+//     max = Math.max(a, b);
+//   return ((max - min + 1) * (min + max)) / 2;
+// };
+
+// console.log(getSum(0, -1)); // -1
+// console.log(getSum(-1, 2)); // 2
+// console.log(getSum(1, 5)); // 15
+// console.log(getSum(2, 2)); // 2
+// console.log(getSum(5, 1)); // 15
 
 //? -----------------------------------------
 /*
-Ваша задача состоит в том, чтобы сделать две функции ( maxи min, или maximumи и minimumт. д., в зависимости от языка), 
+Ваша задача состоит в том, чтобы сделать две функции ( max и min, или maximum и minimum т. д., в зависимости от языка), 
 которые получают на вход список целых чисел и возвращают наибольшее и наименьшее число в этом списке соответственно.
 
 Примеры (ввод -> вывод)
@@ -584,16 +694,16 @@ console.log(getSum(0, 1)); // 1
 Заметки
 Вы можете считать, что пустых массивов/векторов не будет.
 */
-var min = function (list) {
-  return list[0];
-};
+// var min = function (list) {
+//   return Math.min(...list);
+// };
 
-var max = function (list) {
-  return list[0];
-};
-console.log(min([-52, 56, 30, 29, -54, 0, -110])); // -110
-console.log(min([42, 54, 65, 87, 0])); // 0
-console.log(min([5])); // 5
+// var max = function (list) {
+//   return Math.max(...list);
+// };
+// console.log(min([-52, 56, 30, 29, -54, 0, -110])); // -110
+// console.log(min([42, 54, 65, 87, 0])); // 0
+// console.log(min([5])); // 5
 
 //? ------------------------------------------
 /*
@@ -602,11 +712,11 @@ console.log(min([5])); // 5
 "Robin Singh" ==> ["Robin", "Singh"]
 "I love arrays they are my favorite" ==> ["I", "love", "arrays", "they", "are", "my", "favorite"]
 */
-function stringToArray(string) {
-  // code code code
-}
-console.log(stringToArray('Robin Singh')); // ["Robin", "Singh"]
-console.log(stringToArray('I love arrays they are my favorite')); // ["I", "love", "arrays", "they", "are", "my", "favorite"]
+// function stringToArray(string) {
+//   return string.split(' ');
+// }
+// console.log(stringToArray('Robin Singh')); // ["Robin", "Singh"]
+// console.log(stringToArray('I love arrays they are my favorite')); // ["I", "love", "arrays", "they", "are", "my", "favorite"]
 
 //? ------------------------------------------
 /*
