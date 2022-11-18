@@ -759,7 +759,7 @@ function descendingOrder(n) {
   const strN = n + '';
   const arrN = strN.split('');
   const numbersArr = [];
-  const finalArr = numbersArr.reverseOrder();
+  const finalArr = [];
 
   for (const el of arrN) {
     numbersArr.push(Math.abs(el));
