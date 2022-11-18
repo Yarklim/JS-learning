@@ -729,18 +729,18 @@ updatePotionName(oldName, newName) - обновляет свойство name о
 1601 --> 17
 2000 --> 20
 */
-function century(year) {
-  let century = 0;
+// function century(year) {
+//   let century = 0;
 
-  year % 100 === 0 ? (century = year / 100) : (century = Math.ceil(year / 100));
+//   year % 100 === 0 ? (century = year / 100) : (century = Math.ceil(year / 100));
 
-  return century;
-}
-console.log(century(1705)); // 18
-console.log(century(1900)); // 19
-console.log(century(1601)); // 17
-console.log(century(2000)); // 20
-console.log(century(89)); // 1
+//   return century;
+// }
+// console.log(century(1705)); // 18
+// console.log(century(1900)); // 19
+// console.log(century(1601)); // 17
+// console.log(century(2000)); // 20
+// console.log(century(89)); // 1
 
 //? -----------------------------------------
 /*
