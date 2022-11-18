@@ -5,7 +5,7 @@ const firstName = 'Chelsy';
 const lastName = 'Emerald';
 
 console.log(firstName + ' ' + lastName); // Chelsy Emerald
-console.log(5 + '5'); /* выведет строку 55 */
+console.log(5 + '5'); /* выведет строку '55' */
 
 //? Шаблонные строки
 const guestFirstName = 'Yar';
