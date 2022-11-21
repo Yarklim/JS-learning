@@ -421,12 +421,21 @@ countBy(2,5) === [2,4,6,8,10]
 Пример:
 Not Jaden-Cased: "How can mirrors be real if our eyes aren't real"
 Jaden-Cased:     "How Can Mirrors Be Real If Our Eyes Aren't Real"
+String.prototype.toJadenCase = 
 */
-// String.prototype.toJadenCase = function () {
-//   return this.charAt(0).toUpperCase() + this.slice(1);
-// };
+function fn() {
+  const strArr = arguments;
+  //   const wordArr = strArr.split(' ');
+  const newArr = [];
+  console.log(strArr);
+  for (const word of wordArr) {
+    newArr.push(word.charAt(0).toUpperCase() + word.slice(1));
+    console.log(word);
+  }
+  return newArr;
+}
 
-// console.log(str.toJadenCase("How can mirrors be real if our eyes aren't real"));
+console.log(fn("How can mirrors be real if our eyes aren't real"));
 
 /*
 ? Вы уже реализовали класс Cube , но теперь нам снова нужна ваша помощь! 
@@ -489,7 +498,36 @@ IP_ADDRESS_INVALID - not a valid ipv4 or ipv6 ip address
 IP_ADDRESS_NOT_FOUND - ip address not in the database
 IP_ADDRESS_REQUIRED - no ip address was supplied
 */
-// function greet(language) {}
+// const langsData = {
+//   english: 'Welcome',
+//   czech: 'Vitejte',
+//   danish: 'Velkomst',
+//   dutch: 'Welkom',
+//   estonian: 'Tere tulemast',
+//   finnish: 'Tervetuloa',
+//   flemish: 'Welgekomen',
+//   french: 'Bienvenue',
+//   german: 'Willkommen',
+//   irish: 'Failte',
+//   italian: 'Benvenuto',
+//   latvian: 'Gaidits',
+//   lithuanian: 'Laukiamas',
+//   polish: 'Witamy',
+//   spanish: 'Bienvenido',
+//   swedish: 'Valkommen',
+//   welsh: 'Croeso',
+// };
+
+// const langsKeys = Object.keys(langsData);
+
+// function greet(language) {
+//   for (const key of langsKeys) {
+//     if (language === key) {
+//       return langsData[key];
+//     }
+//   }
+//   return 'Welcome';
+// }
 
 // console.log(greet('english')); // 'Welcome'
 // console.log(greet('dutch')); // 'Welkome'
@@ -755,55 +793,46 @@ updatePotionName(oldName, newName) - обновляет свойство name о
 
 Вход: 123456789 Выход:987654321
 */
-function descendingOrder(n) {
-  const strN = n + '';
-  const arrN = strN.split('');
-  const numbersArr = [];
-  const finalArr = [];
+// function descendingOrder(n) {
+//   return parseInt(String(n).split('').sort().reverse().join(''));
 
-  for (const el of arrN) {
-    numbersArr.push(Math.abs(el));
-  }
-  console.log(numbersArr);
-  console.log(finalArr);
+//   const arrN = String(n).split('');
 
-  //   for (const el of numbersArr) {
-  //     finalArr.push(Math.max(numbersArr));
-  //   }
-  //   return finalArr;
-}
-console.log(descendingOrder(0)); // 0
-console.log(descendingOrder(1)); // 1
-console.log(descendingOrder(111)); // 111
-console.log(descendingOrder(15)); // 51
-console.log(descendingOrder(1021)); // 2110
+//   //   return arrN.sort().reverse().join('') / 1;
+// }
+// console.log(descendingOrder(0)); // 0
+// console.log(descendingOrder(1)); // 1
+// console.log(descendingOrder(111)); // 111
+// console.log(descendingOrder(15)); // 51
+// console.log(descendingOrder(1021)); // 2110
+// console.log(descendingOrder(83957262311)); // 9876533211
 
 //? ------------------------------------------
 /*
 Напиши функцию calculateTotalPrice(productName) которая принимает один параметр productName - название товара. 
 Функция должна вернуть общую стоимость (цена * количество) товара с таким именем из массива products.
 */
-const products = [
-  { name: 'Radar', price: 1300, quantity: 4 },
-  { name: 'Scanner', price: 2700, quantity: 3 },
-  { name: 'Droid', price: 400, quantity: 7 },
-  { name: 'Grip', price: 1200, quantity: 9 },
-];
+// const products = [
+//   { name: 'Radar', price: 1300, quantity: 4 },
+//   { name: 'Scanner', price: 2700, quantity: 3 },
+//   { name: 'Droid', price: 400, quantity: 7 },
+//   { name: 'Grip', price: 1200, quantity: 9 },
+// ];
 
-let sum = 0;
-function calculateTotalPrice(productName) {
-  for (const { name, price, quantity } of products) {
-    if (productName === name) {
-      sum = price * quantity;
-    }
-  }
-  return sum;
-}
+// let sum = 0;
+// function calculateTotalPrice(productName) {
+//   for (const { name, price, quantity } of products) {
+//     if (productName === name) {
+//       sum = price * quantity;
+//     }
+//   }
+//   return sum;
+// }
 
-console.log(calculateTotalPrice('Blaster')); // 0
-console.log(calculateTotalPrice('Radar')); // 5200
-console.log(calculateTotalPrice('Droid')); // 2800
-console.log(calculateTotalPrice('Grip')); // 10800
-console.log(calculateTotalPrice('Scanner')); // 8100
+// console.log(calculateTotalPrice('Blaster')); // 0
+// console.log(calculateTotalPrice('Radar')); // 5200
+// console.log(calculateTotalPrice('Droid')); // 2800
+// console.log(calculateTotalPrice('Grip')); // 10800
+// console.log(calculateTotalPrice('Scanner')); // 8100
 
 //? ---------------------------------------------

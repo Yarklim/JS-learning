@@ -39,3 +39,15 @@
 // console.log(pizzaPalace.order('Vienna', makePizza, onOrderError));
 
 //? -------------------------------------------------------
+
+// function changeEven(numbers, value) {
+//   const newArray = [];
+//   numbers.forEach((element) => {
+//     element % 2 === 0 ? newArray.push(element + value) : newArray.push(element);
+//   });
+//   return newArray;
+// }
+
+// console.log(changeEven([1, 2, 3, 4, 5], 10));
+
+//? -------------------------------------------------------
