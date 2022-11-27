@@ -414,54 +414,6 @@ countBy(2,5) === [2,4,6,8,10]
 // console.log(getAllPropValues('quantity'));
 // console.log(getAllPropValues('online'));
 
-//? ------------------------------------
-/*
-? Ваша задача состоит в том, чтобы преобразовать строки в то, как они были бы написаны Джейденом Смитом. 
-Строки являются настоящими цитатами Джейдена Смита, но они не написаны с заглавной буквы так, как он их изначально напечатал.
-Пример:
-Not Jaden-Cased: "How can mirrors be real if our eyes aren't real"
-Jaden-Cased:     "How Can Mirrors Be Real If Our Eyes Aren't Real"
-String.prototype.toJadenCase = 
-*/
-function fn(str) {
-  const strArr = str.split(' ');
-  const result = strArr.map((word) => word[0].toUpperCase() + word.slice(1));
-
-  return result.join(' ');
-}
-
-console.log(fn("How can mirrors be real if our eyes aren't real"));
-
-/*
-? Вы уже реализовали класс Cube , но теперь нам снова нужна ваша помощь! 
-Я говорю о конструкторах. У нас его нет. 
-Давайте закодируем два: один принимает целое число, а другой не обрабатывает заданные аргументы!
-Также у нас возникла проблема с отрицательными значениями. 
-Исправьте код, чтобы отрицательные значения были заменены на положительные!
-Конструктор, не принимающий аргументов, должен присвоить 0 свойству Cube Side.
-*/
-// This Cube class needs help
-// Implement the constructor so that it can take an integer for the side or no args
-// class Cube {
-//   getSide() {
-//     return this.side;
-//   }
-//   setSide(n) {
-//     this.side = Math.abs(n);
-//   }
-// }
-
-// const expect = require('chai').expect;
-
-// describe('Cube', () => {
-//   it('constructs a cube with side s if positive s is passed', () => {
-//     let cube = new Cube(12);
-//     expect(cube.getSide()).to.equal(12);
-//     cube.setSide(42);
-//     expect(cube.getSide()).to.equal(42);
-//   });
-// });
-
 //? ---------------------------------------------
 /*
 ? Задание
