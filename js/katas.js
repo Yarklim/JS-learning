@@ -783,3 +783,200 @@ updatePotionName(oldName, newName) - обновляет свойство name о
 // console.log(calculateTotalPrice('Scanner')); // 8100
 
 //? ---------------------------------------------
+//?------------------------------------------------------
+/*
+Задача с собеседования на стажировку в Яндекс:
+Даны две строки, состоящие из строчных латинских букв. 
+Требуется определить, являются ли эти строки анаграммами, 
+т. е. отличаются ли они только порядком следования символов.
+
+Примеры:
+checkAnagram('qwerty', 'ytqwre') // true
+checkAnagram('qwerty', 'aqwert') // false
+checkAnagram('qwerty', 'qywteu') // false
+*/
+// const checkStr = (str1, str2) => {
+//   const strArr1 = str1.split('').sort();
+//   const strArr2 = str2.split('').sort();
+
+//   for (let i = 0; i < strArr1.length; i++) {
+//     return strArr1[i] === strArr2[i];
+//   }
+// };
+
+// console.log(checkStr('qwerty', 'ytqwre'));
+
+//?-----------------------------------------------------------
+/*
+Подсчитайте количество делителей натурального числа n.
+
+Случайные тесты доходят до n = 500000.
+
+Примеры (ввод --> вывод)
+4 --> 3 (1, 2, 4)
+5 --> 2 (1, 5)
+12 --> 6 (1, 2, 3, 4, 6, 12)
+30 --> 8 (1, 2, 3, 5, 6, 10, 15, 30)
+Обратите внимание, что вы должны возвращать только число, количество делителей. 
+Числа в скобках показаны только для того, чтобы вы могли видеть, какие числа учитываются в каждом случае.
+*/
+// function getDivisorsCnt(n) {
+//   const resultArr = [];
+
+//   for (let i = 1; i <= n; i++) {
+//     if (n % [i] === 0) resultArr.push([i]);
+//   }
+//   return resultArr.length;
+// }
+
+// console.log(getDivisorsCnt(1)); // 1
+// console.log(getDivisorsCnt(10)); // 4
+// console.log(getDivisorsCnt(11)); // 2
+// console.log(getDivisorsCnt(54)); // 8
+
+//?-------------------------------------------------
+/*
+На заводе принтер печатает этикетки для коробок. 
+Для одного вида коробок принтер должен использовать цвета, которые для простоты названы буквами из a to m.
+
+Цвета, используемые принтером, записываются в управляющую строку. 
+Например, "хорошая" управляющая строка будет aaabbbbhaijjjm означать, что принтер использовал три раза цвет a, четыре раза цвет b, один раз цвет h, а затем один раз цвет a...
+
+Иногда возникают проблемы: отсутствие цветов, технический сбой и выдается "плохая" управляющая строка, например, aaaxbbbbyyhwawiwjjjwwmс буквами не из a to m.
+
+Вы должны написать функцию, printer_error которая по заданной строке будет возвращать частоту ошибок принтера в виде строки , 
+представляющей рациональное число, числитель которого — количество ошибок, а знаменатель — длину контрольной строки. 
+Не уменьшайте эту дробь до более простого выражения.
+
+Строка имеет длину больше или равную единице и содержит только буквы от aдо z.
+
+Примеры:
+s="aaabbbbhaijjjm"
+printer_error(s) => "0/14"
+
+s="aaaxbbbbyyhwawiwjjjwwm"
+printer_error(s) => "8/22"
+*/
+// function printerError(s) {
+//   const letterRight = [
+//     'a',
+//     'b',
+//     'c',
+//     'd',
+//     'e',
+//     'f',
+//     'g',
+//     'j',
+//     'h',
+//     'i',
+//     'k',
+//     'l',
+//     'm',
+//   ];
+//   let errors = 0;
+
+//   for (let i = 0; i < s.length; i++) {
+//     if (!letterRight.includes(s[i])) {
+//       errors += 1;
+//     }
+//   }
+//   return `${errors}/${s.length}`;
+// }
+
+// console.log(printerError('aaabbbbhaijjjm')); // '0/14'
+// console.log(printerError('aaaxbbbbyyhwawiwjjjwwm')); // '8/22'
+// console.log(
+//   printerError('aaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbmmmmmmmmmmmmmmmmmmmxyz')
+// ); // '3/56'
+
+//?---------------------------------------------------------
+/*
+Вы получаете массив чисел, возвращаете сумму всех положительных.
+
+Пример [1,-4,7,12]=>1 + 7 + 12 = 20
+
+Примечание: если суммировать нечего, сумма по умолчанию равна 0.
+*/
+// function positiveSum(arr) {
+//   let sum = 0;
+//   for (const num of arr) {
+//     if (num >= 0) sum += num;
+//   }
+//   return sum;
+// }
+
+// console.log(positiveSum([1, 2, 3, 4, 5])); // 15
+// console.log(positiveSum([1, -2, 3, 4, 5])); // 13
+// console.log(positiveSum([])); // 0
+// console.log(positiveSum([-1, -2, -3, -4, -5])); // 0
+// console.log(positiveSum([-1, 2, 3, 4, -5])); // 9
+
+//?--------------------------------------------------------
+/*
+Таракан – одно из самых быстрых насекомых. 
+Напишите функцию, которая получает скорость в км/ч и возвращает ее в см/с с округлением в меньшую сторону до целого числа (= с точностью до пола).
+
+Например:
+
+1.08 --> 30
+Примечание! Ввод представляет собой вещественное число (фактический тип зависит от языка) и >= 0. Результат должен быть целым числом.
+*/
+// function cockroachSpeed(s) {
+//   return Math.floor((s * 100000) / 3600);
+// }
+
+// console.log(cockroachSpeed(1.08)); // 30
+// console.log(cockroachSpeed(1.09)); // 30
+// console.log(cockroachSpeed(0)); // 0
+
+//? ---------------------------------------------------
+
+/*
+Возьмите 2 строки s1 и s2 включите только буквы от a до z. 
+Возвращает новую отсортированную строку, максимально длинную, 
+содержащую различные буквы (каждая из которых взята только один раз) из s1 или s2.
+
+Примеры:
+a = "xyaabbbccccdefww"
+b = "xxxxyyyyabklmopq"
+longest(a, b) -> "abcdefklmopqwxy"
+
+a = "abcdefghijklmnopqrstuvwxyz"
+longest(a, a) -> "abcdefghijklmnopqrstuvwxyz"
+*/
+
+// function longest(s1, s2) {
+//   return s1
+//     .split('')
+//     .concat(s2.split(''))
+//     .filter((el, index, array) => array.indexOf(el) === index)
+//     .sort()
+//     .join('');
+// }
+
+// console.log(longest('aretheyhere', 'yestheyarehere')); // 'aehrsty'
+// console.log(longest('loopingisfunbutdangerous', 'lessdangerousthancoding')); // 'abcdefghilnoprstu'
+// console.log(longest('inmanylanguages', 'theresapairoffunctions')); // 'acefghilmnoprstuy'
+
+//? ---------------------------------------------------
+/*
+Напишите функцию, которая принимает целое число n и строку s в качестве параметров 
+и возвращает строку, sповторяющуюся ровно столько n раз.
+
+Примеры (ввод -> вывод)
+6, "I"     -> "IIIIII"
+5, "Hello" -> "HelloHelloHelloHelloHello"
+*/
+
+// function repeatStr(n, s) {
+// //   let str = '';
+// //   for (let i = 1; i <= n; i++) {
+// //     str += s;
+// //   }
+// //   return str;
+// 	return s.repeat(n);
+// }
+
+// console.log(repeatStr(3, 's'));
+
+//? --------------------------------
