@@ -1180,3 +1180,83 @@ cap = 100, on = 60, wait = 50 --> 10 # He can't fit 10 of the 50 waiting
 // console.log(enough(120, 50, 105)); // 35
 
 //?---------------------------------------------------------------
+/*
+Подсчитайте количество дубликатов
+Напишите функцию, которая будет возвращать 
+количество различных буквенных символов и цифр, не зависящих от регистра, 
+которые встречаются во входной строке более одного раза. 
+Можно предположить, что входная строка содержит только буквы 
+(как прописные, так и строчные) и числовые цифры.
+
+Пример
+"abcde" -> 0 # no characters repeats more than once
+"aabbcde" -> 2 # 'a' and 'b'
+"aabBcde" -> 2 # 'a' occurs twice and 'b' twice (`b` and `B`)
+"indivisibility" -> 1 # 'i' occurs six times
+"Indivisibilities" -> 2 # 'i' occurs seven times and 's' occurs twice
+"aA11" -> 2 # 'a' and '1'
+"ABBA" -> 2 # 'A' and 'B' each occur twice
+*/
+
+function duplicateCount(text) {
+  return text
+    .toLowerCase()
+    .split('')
+    .filter((el, index, arr) => arr.indexOf(el) !== index)
+    .filter((el, index, arr) => arr.indexOf(el) === index).length;
+}
+
+// console.log(duplicateCount('')); // 0
+// console.log(duplicateCount('aabbcde')); // 2
+// console.log(duplicateCount('aaboBcdoe')); // 3
+// console.log(duplicateCount('Indivisibilities')); // 2
+
+//? --------------------------------------------
+/*
+Квадрат из квадратов
+Вам нравятся строительные блоки. 
+Вам особенно нравятся квадратные строительные блоки. 
+А что вам еще больше нравится, так это собирать их в квадрат 
+из квадратных строительных блоков!
+
+Однако иногда вы не можете расположить их в квадрат. 
+Вместо этого у вас получится обычный прямоугольник! 
+Эти проклятые вещи! Если бы у вас был способ узнать, 
+не зря ли вы сейчас работаете… Подождите! Вот и все! 
+Вам просто нужно проверить, является ли количество 
+строительных блоков идеальным квадратом .
+
+Задача
+Учитывая целое число, определите, является ли оно квадратным числом :
+
+В математике квадратное число или идеальный квадрат — 
+это целое число, являющееся квадратом целого числа; 
+другими словами, это произведение некоторого целого числа на самого себя.
+
+В тестах всегда будет использоваться некоторое целое число, 
+так что не беспокойтесь об этом в языках с динамической типизацией.
+
+Примеры
+-1  =>  false
+ 0  =>  true
+ 3  =>  false
+ 4  =>  true
+25  =>  true
+26  =>  false
+isSquare (-1) // => false
+isSquare   3  // => false
+isSquare   4  // => true
+isSquare  25  // => true
+isSquare  26  // => false
+*/
+
+var isSquare = function (n) {
+  return Number.isInteger(Math.sqrt(n)) ? true : false;
+};
+
+// console.log(isSquare(-1)); // false
+// console.log(isSquare(0)); // true
+// console.log(isSquare(25)); // true
+// console.log(isSquare(26)); // false
+
+//? ----------------------------------------
