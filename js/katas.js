@@ -1291,3 +1291,196 @@ function disemvowel(str) {
 // console.log(disemvowel('What are you, a communist?')); // "Wht r y,  cmmnst?"
 
 //? ----------------------------------------------
+/*
+? Ваша задача состоит в том, чтобы преобразовать строки в то, как они были бы написаны Джейденом Смитом. 
+Строки являются настоящими цитатами Джейдена Смита, но они не написаны с заглавной буквы так, как он их изначально напечатал.
+Пример:
+Not Jaden-Cased: "How can mirrors be real if our eyes aren't real"
+Jaden-Cased:     "How Can Mirrors Be Real If Our Eyes Aren't Real" 
+*/
+String.prototype.toJadenCase = function () {
+  return this.split(' ')
+    .map(function (word) {
+      return word.charAt(0).toUpperCase() + word.slice(1);
+    })
+    .join(' ');
+};
+
+// console.log(fn("How can mirrors be real if our eyes aren't real"));
+// var str = "How can mirrors be real if our eyes aren't real";
+// Test.assertEquals(
+//   str.toJadenCase(),
+//   "How Can Mirrors Be Real If Our Eyes Aren't Real"
+// );
+
+//?-------------------------------------------------------
+/*
+Определите String.prototype.toAlternatingCase(или аналогичную функцию/метод, 
+например, to_alternating_case / toAlternatingCase/ ToAlternatingCase​​на 
+выбранном вами языке; подробности см. в исходном решении ), 
+чтобы каждая строчная буква становилась прописной, 
+а каждая прописная буква — строчной. Например:
+
+"hello world".toAlternatingCase() === "HELLO WORLD"
+"HELLO WORLD".toAlternatingCase() === "hello world"
+"hello WORLD".toAlternatingCase() === "HELLO world"
+"HeLLo WoRLD".toAlternatingCase() === "hEllO wOrld"
+"12345".toAlternatingCase()       === "12345"                   // Non-alphabetical characters are unaffected
+"1a2b3c4d5e".toAlternatingCase()  === "1A2B3C4D5E"
+"String.prototype.toAlternatingCase".toAlternatingCase() === "sTRING.PROTOTYPE.TOaLTERNATINGcASE"
+Как обычно, ваша функция/метод должна быть чистой, т.е. она не должна изменять исходную строку.
+*/
+String.prototype.toAlternatingCase = function () {
+  return this.split('')
+    .map((el) =>
+      el === el.toUpperCase() ? el.toLowerCase() : el.toUpperCase()
+    )
+    .join('');
+};
+
+// console.log('HELLO WORLD'.toAlternatingCase()); // 'HELLO WORLD'
+// console.log('hello world'.toAlternatingCase()); // 'hello world'
+// console.log('HeLLo WoRLD'.toAlternatingCase()); // 'HELLO world'
+// console.log('hello WORLD'.toAlternatingCase()); // 'hEllO wOrld'
+// console.log('12345'.toAlternatingCase()); // '12345'
+// console.log('1a2b3c4d5e'.toAlternatingCase()); // '1A2B3C4D5E'
+// console.log('String.prototype.toAlternatingCase'.toAlternatingCase()); // 'sTRING.PROTOTYPE.TOaLTERNATINGcASE'
+
+// console.log('Hello World'.toAlternatingCase().toAlternatingCase()); // 'Hello World'
+
+//?------------------------------------------------------------
+/*
+Завершите решение, чтобы функция разбивала верблюжий регистр, используя пробелы между словами.
+
+Пример
+"camelCasing"  =>  "camel Casing"
+"identifier"   =>  "identifier"
+""             =>  ""
+*/
+function solution(string) {
+  //   const strArr1 = [];
+
+  //   for (let i = 0; i < string.length; i++) {
+  //     if (string[i] === string[i].toUpperCase()) {
+  //       strArr1.push(` `);
+  //     }
+  //     strArr1.push(string[i]);
+  //   }
+  //   return strArr1.join(' ');
+  return string
+    .split('')
+    .map((el) => (el === el.toUpperCase() ? ` ${el}` : el))
+    .join('');
+}
+
+// console.log(solution('camelCasing')); // 'camel Casing'
+// console.log(solution('camelCasingTest')); // 'camel Casing Test'
+
+//? --------------------------------------------
+/*
+В этой простой ката ваша задача — создать функцию, 
+которая превращает строку в мексиканскую волну. 
+Вам будет передана строка, и вы должны вернуть эту строку в виде массива, 
+где заглавная буква означает стоящего человека. 
+Правила
+1. Строка ввода всегда будет строчной, но может быть и пустой.
+
+ 2. Если символ в строке является пробелом, пропустите его, 
+ как если бы это было пустое место.
+Пример
+wave("hello") => ["Hello", "hEllo", "heLlo", "helLo", "hellO"]
+*/
+function wave(str) {
+  const strArr = [];
+
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] === ' ') {
+      continue;
+    }
+    strArr.push(str.slice(0, i) + str[i].toUpperCase() + str.slice(i + 1));
+  }
+  return strArr;
+}
+
+// console.log(wave('codewars')); // ["Codewars", "cOdewars", "coDewars", "codEwars", "codeWars", "codewArs", "codewaRs", "codewarS"]
+// console.log(wave('two words')); // ["Two words", "tWo words", "twO words", "two Words", "two wOrds", "two woRds", "two worDs", "two wordS"]
+// console.log(wave(' gap ')); // [" Gap ", " gAp ", " gaP "]
+
+//? ---------------------------------------------
+function pinCode(pin) {
+  //   const n = pin.length;
+  //   if (n != 4 && n != 6) return false;
+  //   for (const i in pin) if (pin[i] > '9' || pin[i] < '0') return false;
+
+  //   return true;
+
+  let num = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+  let count = 0;
+  let pinArr = pin.split('');
+  for (let i of pinArr) {
+    if (num.includes(i)) {
+      count += 1;
+    } else {
+      return false;
+    }
+  }
+  return count == 4 || count == 6;
+
+  //   return /^(\d{4}|\d{6})$/.test(pin);
+}
+
+// console.log(pinCode('123\n')); // false
+// console.log(pinCode('4E73')); // false
+// console.log(pinCode('1e23')); // false
+// console.log(pinCode('123456')); // true
+// console.log(pinCode('-1.234')); // false
+// console.log(pinCode('.234')); // false
+// console.log(pinCode('0000')); // true
+
+//? ---------------------------------------
+/*
+Построить башню
+Постройте башню в форме пирамиды как массив/список строк, учитывая положительное целое число number of floors. Башенный блок представлен с "*"характером.
+
+Например, башня с 3этажами выглядит так:
+
+[
+  "  *  ",
+  " *** ", 
+  "*****"
+]
+А башня с 6 этажами выглядит так:
+
+[
+  "     *     ", 
+  "    ***    ", 
+  "   *****   ", 
+  "  *******  ", 
+  " ********* ", 
+  "***********"
+]
+
+*/
+function towerBuilder(nFloors) {
+  //   const arr = [];
+
+  //   for (let i = 0; i < nFloors; i++) {
+  //     arr.push(
+  //       ' '.repeat(nFloors - i - 1) +
+  //         '*'.repeat(i + i + 1) +
+  //         ' '.repeat(nFloors - i - 1)
+  //     );
+  //   }
+  //   return arr;
+  return [...Array(n)].map(
+    (_, i) =>
+      ' '.repeat(n - 1 - i) + '*'.repeat(i * 2 + 1) + ' '.repeat(n - 1 - i)
+  );
+}
+
+// console.log(towerBuilder(1)); // ["*"]
+// console.log(towerBuilder(2)); // [" * ","***"]
+// console.log(towerBuilder(3)); // ["  *  "," *** ","*****"]
+// console.log(towerBuilder(0));
+
+//? -------------------------------------------------------
