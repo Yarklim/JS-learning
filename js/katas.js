@@ -1484,3 +1484,128 @@ function towerBuilder(nFloors) {
 // console.log(towerBuilder(0));
 
 //? -------------------------------------------------------
+/*
+Convert a Boolean to a String
+Реализуйте функцию, которая преобразует данное логическое значение в его строковое представление.
+
+Примечание. Будут даны только действительные входные данные.
+*/
+function booleanToString(b) {
+  //   return b ? 'true' : 'false';
+  return b.toString();
+}
+
+// console.log(booleanToString(true)); // "true"
+// console.log(booleanToString(false)); // "false"
+//? -----------------------------------------------
+/*
+Square(n) Sum
+Завершите функцию квадратной суммы, чтобы она возводила в квадрат каждое переданное ей число, 
+а затем суммировала результаты.
+
+Например, for [1, 2, 2]это должно возвращаться , 9потому что 1^2 + 2^2 + 2^2 = 9.
+*/
+function squareSum(numbers) {
+  return numbers.reduce((sum, num) => sum + num * num, 0);
+}
+
+// console.log(squareSum([1, 2])); // 5
+// console.log(squareSum([0, 3, 4, 5])); // 50
+// console.log(squareSum([])); // 0
+//? -----------------------------------------------
+/*
+Fake Binary
+
+Учитывая строку цифр, вы должны заменить любую цифру ниже 5 на «0», а любую цифру 5 и выше на «1». 
+Верните полученную строку.
+
+Примечание: ввод никогда не будет пустой строкой
+*/
+function fakeBin(x) {
+  return x
+    .split('')
+    .map((el) => (el < 5 ? 0 : 1))
+    .join('');
+}
+
+// console.log(fakeBin('45385593107843568')); // '01011110001100111'
+// console.log(fakeBin('509321967506747')); // '101000111101101'
+// console.log(fakeBin('366058562030849490134388085')); // '011011110000101010000011011'
+//? -----------------------------------------------
+/*
+Abbreviate a Two Word Name
+
+Напишите функцию для преобразования имени в инициалы. 
+Это ката строго состоит из двух слов с одним пробелом между ними.
+
+На выходе должны быть две заглавные буквы с точкой, разделяющей их.
+
+Это должно выглядеть так:
+
+Sam Harris=>S.H
+
+patrick feeney=>P.F
+*/
+function abbrevName(name) {
+  //   const arr = name.split(' ');
+  //   const result = [];
+
+  //   for (const el of arr) {
+  //     result.push(el[0]);
+  //   }
+  //   return result.join('.');
+
+  return name
+    .split(' ')
+    .map((i) => i[0].toUpperCase())
+    .join('.');
+}
+
+// console.log(abbrevName('Sam Harris')); // "S.H"
+// console.log(abbrevName('Patrick Feenan')); // "P.F"
+// console.log(abbrevName('Evan Cole')); // "E.C"
+// console.log(abbrevName('P Favuzzi')); // "P.F"
+// console.log(abbrevName('David Mendieta')); //  "D.M"
+//? -----------------------------------------------
+/*
+Пример 1:
+
+Ввод: nums = [1,1,2]
+ Вывод: 2, nums = [1,2,_]
+ Объяснение: Ваша функция должна возвращать k = 2, 
+ причем первые два элемента nums равны 1 и 2 соответственно.
+Неважно, что вы оставляете за возвращенным k 
+(следовательно, это символы подчеркивания).
+Пример 2:
+
+Ввод: числа = [0,0,1,1,1,2,2,3,3,4]
+ Выход: 5, числа = [0,1,2,3,4,_,_,_,_, _]
+ Объяснение: Ваша функция должна возвращать k = 5, 
+ причем первые пять элементов nums равны 0, 1, 2, 3 и 4 соответственно.
+Неважно, что вы оставляете за возвращенным k 
+(следовательно, это символы подчеркивания).
+
+Ограничения:
+
+1 <= nums.length <= 3 * 104
+-100 <= nums[i] <= 100
+numsсортируется в порядке неубывания .
+*/
+var removeDuplicates = function (nums) {
+  //   return nums.filter((num, index, array) => array.indexOf(num) === index);
+
+  if (!nums.length) return 0;
+
+  let i = 0;
+  for (let j = 1; j < nums.length; j++) {
+    if (nums[i] !== nums[j]) {
+      i++;
+      nums[i] = nums[j];
+    }
+  }
+  return i + 1;
+};
+
+// console.log(removeDuplicates([1, 1, 2]));
+// console.log(removeDuplicates([0, 0, 1, 1, 1, 2, 2, 3, 3, 4]));
+//? ---------------------------------------------------------
