@@ -2005,3 +2005,95 @@ function longestConsec(strarr, k) {
 // console.log(longestConsec(['it', 'wkppv', 'ixoyx', '3452', 'zzzzzzzzzzzz'], 0)); // ''
 
 //? -----------------------------------------------
+/*
+Remove the minimum
+
+Музей невероятно скучных вещей хочет избавиться от некоторых выставок. 
+Мириам, архитектор интерьеров, придумывает план убрать 
+самые скучные выставки. Она дает им рейтинг, а затем удаляет тот, 
+у которого самый низкий рейтинг.
+
+Однако, как только она закончила оценивать все выставки, 
+она отправилась на важную ярмарку, поэтому она попросила вас 
+написать программу, которая сообщает ей оценки предметов после того,
+ как один из них удалил самый низкий. Справедливо.
+
+Задача
+Учитывая массив целых чисел, удалите наименьшее значение. 
+Не изменяйте исходный массив/список. Если есть несколько элементов с 
+одинаковым значением, удалите элемент с более низким индексом.
+Если вы получили пустой массив/список, верните пустой массив/список.
+
+Не меняйте порядок оставшихся элементов.
+
+Примеры
+* Input: [1,2,3,4,5], output = [2,3,4,5]
+* Input: [5,3,2,1,4], output = [5,3,2,4]
+* Input: [2,2,1,2,1], output = [2,2,2,1]
+*/
+function removeSmallest(numbers) {
+  //   if (numbers.length < 1) return [];
+
+  //   const indexMinNum = numbers.findIndex(
+  //     (element, index, array) => element === Math.min(...array)
+  //   );
+
+  //   const newArr = [];
+
+  //   for (let i = 0; i < numbers.length; i++) {
+  //     if (i !== indexMinNum) {
+  //       newArr.push(numbers[i]);
+  //     }
+  //   }
+
+  //   return newArr;
+
+  let indexOfMin = numbers.indexOf(Math.min(...numbers));
+  return [...numbers.slice(0, indexOfMin), ...numbers.slice(indexOfMin + 1)];
+}
+
+console.log(removeSmallest([1, 2, 3, 4, 5])); // [2, 3, 4, 5]
+console.log(removeSmallest([5, 3, 2, 1, 4])); // [5, 3, 2, 4]
+console.log(removeSmallest([2, 2, 1, 2, 1])); // [2, 2, 2, 1]
+console.log(removeSmallest([])); // []
+
+//?--------------------------------------------------------
+/*
+Find the stray number
+
+Вам дан массив целых чисел нечетной длины , в котором все они одинаковы, 
+кроме одного единственного числа.
+
+Завершите метод, который принимает такой массив и возвращает 
+это единственное другое число.
+
+Входной массив всегда будет действительным! (нечетная длина >= 3)
+
+Примеры
+[1, 1, 2] ==> 2
+[17, 17, 3, 17, 17, 17, 17] ==> 3
+*/
+function stray(numbers) {
+  //   const arr1 = [numbers[0]];
+  //   const arr2 = [];
+
+  //   for (let i = 1; i < numbers.length; i++) {
+  //     if (arr1.includes(numbers[i])) {
+  //       arr1.push(numbers[i]);
+  //     } else {
+  //       arr2.push(numbers[i]);
+  //     }
+  //   }
+
+  //   return arr1.length < arr2.length
+  //     ? Number(arr1.join(''))
+  //     : Number(arr2.join(''));
+
+  return numbers.reduce((a, b) => a ^ b);
+}
+
+// console.log(stray([1, 1, 2])); // 2
+// console.log(stray([1, 2, 1])); // 2
+// console.log(stray([2, 1, 1])); // 2
+
+//?--------------------------------------------------------
