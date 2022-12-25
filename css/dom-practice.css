@@ -1,0 +1,40 @@
+* {
+	box-sizing: border-box;
+}
+
+input {
+	display: block;
+	margin-bottom: 10px;
+}
+button {
+	display: inline-block;
+	margin-bottom: 10px;
+}
+
+.magic__btn > .icon {
+	display: inline-block;
+	margin-left: 10px;
+	font-size: 20px;
+}
+
+.site-nav__link {
+	color: currentColor;
+	text-decoration: none;
+}
+
+.site-nav__link:hover {
+	text-decoration: underline;
+}
+
+.site-nav__link--current {
+	color: tomato;
+}
+
+.color-picker {
+	width: 30px;
+	height: 30px;
+	margin: 4px;
+	border: none;
+	outline: none;
+	cursor: pointer;
+}
