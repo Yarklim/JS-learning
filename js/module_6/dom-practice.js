@@ -86,13 +86,70 @@ const colorPickerOptions = [
 
 const colorPickerContainerEl = document.querySelector('.js-color-picker');
 
-const elements = colorPickerOptions.map((option) => {
-  const buttonEl = document.createElement('button');
-  buttonEl.type = 'button';
-  buttonEl.textContent = option.label;
-  buttonEl.style.backgroundColor = option.color;
+// const elements = colorPickerOptions.map((option) => {
+//   const buttonEl = document.createElement('button');
+//   buttonEl.type = 'button';
+//   buttonEl.classList.add('color-picker__option');
+//   buttonEl.textContent = option.label;
+//   buttonEl.style.backgroundColor = option.color;
 
-  return buttonEl;
-});
+//   return buttonEl;
+// });
 
+// colorPickerContainerEl.append(...elements);
+
+//? Функция для создания разметки колорпикера
+
+const makeColorPickerOptions = (options) => {
+  return options.map((option) => {
+    const buttonEl = document.createElement('button');
+    buttonEl.type = 'button';
+    buttonEl.classList.add('color-picker__option');
+    buttonEl.textContent = option.label;
+    buttonEl.style.backgroundColor = option.color;
+
+    return buttonEl;
+  });
+};
+
+const elements = makeColorPickerOptions(colorPickerOptions);
 colorPickerContainerEl.append(...elements);
+
+// Сделать нижеприведенную разметку.
+/*
+<article class='product'>
+	<h2 class='product__name'>Name</h2>
+	<p class='product__descr'>Description</p>
+	<p class='product__price'>Price: </p>
+</article>
+*/
+
+// Приходит с сервера:
+const product = {
+  name: 'Servoprivod',
+  description: 'Lorem, ipsum dolor sit amet',
+  price: 2000,
+  available: true,
+  onSale: true,
+};
+
+// Создание элемента в памяти:
+const productEl = document.createElement('article');
+productEl.classList.add('product');
+
+const nameEl = document.createElement('h2');
+nameEl.classList.add('product__name');
+nameEl.textContent = product.name;
+
+const descrEl = document.createElement('p');
+descrEl.classList.add('product__descr');
+descrEl.textContent = product.description;
+
+const priceEl = document.createElement('p');
+priceEl.classList.add('product__price');
+priceEl.textContent = `Price: $${product.price}`;
+
+// Создание грозди из элементов
+productEl.append(nameEl, descrEl, priceEl);
+
+console.log(productEl);

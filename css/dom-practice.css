@@ -30,9 +30,9 @@ button {
 	color: tomato;
 }
 
-.color-picker {
-	width: 30px;
-	height: 30px;
+.color-picker__option {
+	width: 60px;
+	height: 60px;
 	margin: 4px;
 	border: none;
 	outline: none;
