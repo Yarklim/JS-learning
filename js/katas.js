@@ -2122,3 +2122,154 @@ var number = function (array) {
 // console.log(number(['a', 'b', 'c'])); // ["1: a", "2: b", "3: c"]
 
 //? ------------------------------------------------
+/*
+Persistent Bugger.
+
+Напишите функцию , persistence которая принимает положительный параметр 
+num и возвращает его мультипликативную постоянство, 
+то есть количество раз, которое вы должны умножить на цифры num, 
+пока не получите одну цифру.
+
+Например (Ввод --> Вывод) :
+
+39 --> 3 (because 3*9 = 27, 2*7 = 14, 1*4 = 4 and 4 has only one digit)
+999 --> 4 (because 9*9*9 = 729, 7*2*9 = 126, 1*2*6 = 12, and finally 1*2 = 2)
+4 --> 0 (because 4 is already a one-digit number)
+*/
+function persistence(num) {
+  let counter = 0;
+  let arrStr = num.toString().split('');
+
+  if (arrStr.length === 1) return 0;
+
+  while (arrStr.length > 1) {
+    arrStr = arrStr
+      .reduce((total, item) => total * item, 1)
+      .toString()
+      .split('');
+
+    counter += 1;
+  }
+
+  return counter;
+}
+
+// console.log(persistence(39)); // 3
+// console.log(persistence(4)); // 0
+// console.log(persistence(25)); // 2
+// console.log(persistence(999)); // 4
+//? -----------------------------------------------
+/*
+Money, Money, Money
+
+У мистера Скруджа есть сумма денег «P», которую он хочет инвестировать. 
+Прежде чем он это сделает, он хочет знать, сколько лет «Y» 
+эта сумма «P» должна храниться в банке, чтобы она составила 
+желаемую сумму денег «D».
+
+Сумма хранится в течение Y лет в банке, где проценты I выплачиваются 
+ежегодно. После уплаты налогов «Т» за год новая сумма реинвестируется.
+
+Примечание к налогам: налогом облагается не инвестированная основная 
+сумма, а только начисленные проценты за год.
+
+Пример:
+
+  Let P be the Principal = 1000.00      
+  Let I be the Interest Rate = 0.05      
+  Let T be the Tax Rate = 0.18      
+  Let D be the Desired Sum = 1100.00
+
+
+After 1st Year -->
+  P = 1041.00
+After 2nd Year -->
+  P = 1083.86
+After 3rd Year -->
+  P = 1128.30
+Таким образом, г-н Скрудж должен ждать 3 года, чтобы первоначальный 
+основной капитал составил желаемую сумму.
+
+Ваша задача — завершить предоставленный метод и вернуть количество лет
+ «Y» в целом, чтобы мистер Скрудж получил желаемую сумму.
+
+Предположение: предположим, что желаемый принципал «D» всегда больше, 
+чем первоначальный принципал. Однако лучше принять во внимание, 
+что если желаемый основной «D» равен основному «P», 
+это должно вернуть 0 лет.
+*/
+function calculateYears(principal, interest, tax, desired) {
+  if (desired <= principal) return 0;
+
+  let totalSum = principal;
+  let yearsCount = 0;
+
+  while (totalSum < desired) {
+    totalSum = totalSum + (totalSum * interest - totalSum * interest * tax);
+    yearsCount += 1;
+  }
+
+  return yearsCount;
+}
+
+// console.log(calculateYears(1000, 0.05, 0.18, 1100)); // 3
+// console.log(calculateYears(1000, 0.01625, 0.18, 1200)); // 14
+// console.log(calculateYears(1000, 0.05, 0.18, 1000)); // 0
+//? ------------------------------------------------
+/*
+Growth of a Population
+
+В маленьком городке население p0 = 1000 на начало года. 
+Население регулярно увеличивается на 2 percent 1 год, и, кроме того , 
+50 каждый год в город приезжают новые жители. Сколько лет нужно городу, 
+чтобы его население было больше или равно количеству p = 1200 жителей?
+
+At the end of the first year there will be: 
+1000 + 1000 * 0.02 + 50 => 1070 inhabitants
+
+At the end of the 2nd year there will be: 
+1070 + 1070 * 0.02 + 50 => 1141 inhabitants (** number of inhabitants is an integer **)
+
+At the end of the 3rd year there will be:
+1141 + 1141 * 0.02 + 50 => 1213
+
+It will need 3 entire years.
+Более общие параметры:
+
+p0, percent, aug (inhabitants coming or leaving each year), 
+p (population to equal or surpass)
+
+функция nb_year должна возвращать n количество полных лет, 
+необходимых для получения населения, большего или равного p.
+
+aug — целое число, процент — положительное или нулевое плавающее число, 
+p0 и p — положительные целые числа (> 0)
+
+Examples:
+nb_year(1500, 5, 100, 5000) -> 15
+nb_year(1500000, 2.5, 10000, 2000000) -> 10
+Примечание:
+Не забудьте преобразовать параметр процента в процент в теле 
+вашей функции: если параметр процента равен 2, 
+вы должны преобразовать его в 0,02.
+*/
+function nbYear(p0, percent, aug, p) {
+  //   let total = p0;
+  //   let countYears = 0;
+
+  //   while (total < p) {
+  //     total += Math.floor(total * (percent / 100) + aug);
+  //     countYears += 1;
+  //   }
+  //   return countYears;
+
+  for (var years = 0; p0 < p; years++) {
+    p0 = Math.floor(p0 + (p0 * percent) / 100 + aug);
+  }
+  return years;
+}
+// console.log(nbYear(1000, 2, 50, 1200)); // 3
+// console.log(nbYear(1500, 5, 100, 5000)); // 15
+// console.log(nbYear(1500000, 2.5, 10000, 2000000)); // 10
+// console.log(nbYear(1500000, 0.25, 1000, 2000000)); // 94
+//?-------------------------------------------------------

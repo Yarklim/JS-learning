@@ -153,3 +153,26 @@ priceEl.textContent = `Price: $${product.price}`;
 productEl.append(nameEl, descrEl, priceEl);
 
 console.log(productEl);
+
+//? Использование innerHTML
+const titleInnerEl = document.querySelector('.title__inner');
+// titleInnerEl.innerHTML = '<a class="title__link" href="">This is Link!</a>'; // Заменяет элемент в разметке
+// titleInnerEl.innerHTML = ''; // Очищает значение елемента
+
+//? Вставка разметки с insertAdjacentHTML()
+titleInnerEl.insertAdjacentHTML(
+  'beforebegin',
+  '<a class="title__link" href="">This is Link!</a>'
+); // Добавляет перед началом элемента
+titleInnerEl.insertAdjacentHTML(
+  'afterbegin',
+  '<aclass="title__link" href="">This is Link!</a>'
+); // Добавляет внутрь элемента, в начало контента
+titleInnerEl.insertAdjacentHTML(
+  'beforeend',
+  '<aclass="title__link" href="">This is Link!</a>'
+); // Добавляет внутрь элемента, в конец контента
+titleInnerEl.insertAdjacentHTML(
+  'afterend',
+  '<aclass="title__link" href="">This is Link!</a>'
+); // Добавляет после элемента

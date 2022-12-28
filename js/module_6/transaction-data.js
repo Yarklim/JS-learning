@@ -1,0 +1,38 @@
+export default [
+  {
+    id: '12345567',
+    amount: '179.07',
+    date: '2020-02-01T22:00:00.000Z',
+    business: 'Bogan - DuBuque',
+    name: 'Auto Loan Account 7313',
+    type: 'deposit',
+    account: '19808943',
+  },
+  {
+    id: '123d455f67',
+    amount: '930.87',
+    date: '2020-02-01T22:00:00.000Z',
+    business: 'Legros, Weimann',
+    name: 'Auto Loan Account 0721',
+    type: 'invoice',
+    account: '38277848',
+  },
+  {
+    id: '12gb34556fgbf7',
+    amount: '658.17',
+    date: '2020-02-01T22:00:00.000Z',
+    business: 'Hane - Bode',
+    name: 'Personal Loan Account 2316',
+    type: 'withdrawal',
+    account: '27462350',
+  },
+  {
+    id: 'sdg123df455dsf67',
+    amount: '704.53',
+    date: '2020-02-01T22:00:00.000Z',
+    business: 'Beaty, Wisozk and Koch',
+    name: 'Savings Account 1894',
+    type: 'withdrawal',
+    account: '76727204',
+  },
+];
