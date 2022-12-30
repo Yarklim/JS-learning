@@ -7,9 +7,65 @@
     <title>Events</title>
   </head>
   <body>
+    <!-- События кнопки -->
     <button class="js-target-btn" type="button">Target Button</button>
     <button class="js-add-listener" type="button">Add</button>
     <button class="js-remove-listener" type="button">Remove</button>
+
+    <br />
+    <!-- Событие сабмита форм -->
+    <form class="js-register-form" autocomplete="off">
+      <div role="group">
+        <label>
+          Mail
+          <input type="email" name="email" />
+        </label>
+        <label>
+          Password
+          <input type="password" name="password" />
+        </label>
+      </div>
+
+      <br />
+      <div role="group">
+        <b>Subscribe</b>
+        <label>
+          <input type="radio" name="subscription" value="free" />
+          Free
+        </label>
+        <label>
+          <input type="radio" name="subscription" value="basic" />
+          Basic
+        </label>
+        <label>
+          <input type="radio" name="subscription" value="pro" />
+          Pro
+        </label>
+      </div>
+
+      <br />
+      <button type="submit">Sign In</button>
+    </form>
+
+    <!-- Паттерн "Объект ссылок" -->
+    <br />
+    <h2>Паттерн "Объект ссылок"</h2>
+
+    <label>
+      Name
+      <input type="text" class="js-input" />
+    </label>
+
+    <p>
+      <label>
+        <input type="checkbox" class="js-license" />
+        I'm sign Up
+      </label>
+    </p>
+
+    <button class="js-button" type="submit" disabled>
+      Sign Up like <span>Anonim</span>
+    </button>
 
     <script src="./events-pract.js" type="module"></script>
   </body>
