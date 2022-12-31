@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Events</title>
+    <link rel="stylesheet" href="./events.css" />
   </head>
   <body>
     <!-- События кнопки -->
@@ -66,6 +67,34 @@
     <button class="js-button" type="submit" disabled>
       Sign Up like <span>Anonim</span>
     </button>
+
+    <!-- События клавиатуры -->
+    <h3>События клавиатуры</h3>
+
+    <p class="output js-output"></p>
+    <button class="js-clear">Clear</button>
+
+    <!-- События мыши -->
+    <h3>События мыши</h3>
+
+    <div class="box js-box">
+      <div class="inner-box"></div>
+    </div>
+
+    <!-- Модальное окно -->
+    <button class="buttom" data-action="open-modal">Open Modal</button>
+    <div class="backdrop js-backdrop">
+      <div class="modal">
+        <h2>Modal window</h2>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro sed
+          maxime illo rerum ea sunt repudiandae esse. Eveniet, esse recusandae.
+        </p>
+        <button class="buttom" type="button" data-action="close-modal">
+          Close Modal
+        </button>
+      </div>
+    </div>
 
     <script src="./events-pract.js" type="module"></script>
   </body>

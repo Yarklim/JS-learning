@@ -5,7 +5,7 @@
 	- on*: onSubjectEvent
 */
 
-// События кнопки
+//? ============= События кнопки ============
 const targetBtn = document.querySelector('.js-target-btn');
 const addListenerBtn = document.querySelector('.js-add-listener');
 const removeListenerBtn = document.querySelector('.js-remove-listener');
@@ -26,7 +26,7 @@ removeListenerBtn.addEventListener('click', () => {
   targetBtn.removeEventListener('click', onTargetButtonClick);
 });
 
-// Событие сабмита форм
+//? ============ Событие сабмита форм ============
 const formEl = document.querySelector('.js-register-form');
 
 formEl.addEventListener('submit', onFormSubmit);
@@ -78,3 +78,51 @@ function onInputChange(event) {
 function onLicenseChange(event) {
   refs.btn.disabled = !event.currentTarget.checked;
 }
+
+//? ========= Сшбытия клавиатуры ===========
+const refsClearBtn = {
+  output: document.querySelector('.js-output'),
+  clearBtn: document.querySelector('.js-clear'),
+};
+
+window.addEventListener('keypress', onKeypress);
+refsClearBtn.clearBtn.addEventListener('click', onClearOutput);
+
+function onKeypress(event) {
+  refsClearBtn.output.textContent += event.key;
+}
+
+function onClearOutput() {
+  refsClearBtn.output.textContent = '';
+}
+
+//? =========== События мыши ==========
+/*
+ * - mouseenter и mouseleave (это ховер)
+ * - mouseover и mouseout
+ * - mousemove (chatty event - болтливое событие)
+ */
+
+const boxRef = document.querySelector('.js-box');
+
+boxRef.addEventListener('mouseenter', onMouseEnter);
+boxRef.addEventListener('mouseleave', onMouseLeave);
+boxRef.addEventListener('mouseover', onMouseEnter);
+boxRef.addEventListener('mouseout', onMouseLeave);
+// boxRef.addEventListener('mousemove', onMouseMove);
+
+function onMouseEnter(event) {
+  const box = event.currentTarget;
+  box.classList.add('box-active');
+}
+
+function onMouseLeave(event) {
+  const box = event.currentTarget;
+  box.classList.remove('box-active');
+}
+
+function onMouseMove(event) {
+  console.log(event);
+}
+
+//? ========== Modal Window ===========
