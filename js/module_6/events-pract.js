@@ -139,3 +139,21 @@ const refsModal = {
   closeModalBtn: document.querySelector('[data-action="close-modal"]'),
   backdrop: document.querySelector('.js-backdrop'),
 };
+
+refsModal.openModalBtn.addEventListener('click', onOpenModal);
+refsModal.closeModalBtn.addEventListener('click', onCloseModal);
+refsModal.backdrop.addEventListener('click', onBackdropClick);
+
+function onOpenModal() {
+  document.body.classList.add('show-modal');
+}
+
+function onCloseModal() {
+  document.body.classList.remove('show-modal');
+}
+
+function onBackdropClick() {
+  if (event.currentTarget === event.target) {
+    onCloseModal();
+  }
+}

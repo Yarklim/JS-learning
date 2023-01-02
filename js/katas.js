@@ -2470,3 +2470,86 @@ function alphabetPosition(text) {
 // console.log(alphabetPosition("The sunset sets at twelve o' clock.")); // "20 8 5 19 21 14 19 5 20 19 5 20 19 1 20 20 23 5 12 22 5 15 3 12 15 3 11"
 // console.log(alphabetPosition('The narwhal bacons at midnight.')); // "20 8 5 14 1 18 23 8 1 12 2 1 3 15 14 19 1 20 13 9 4 14 9 7 8 20"
 //? ------------------------------------------------
+/*
+14. Longest Common Prefix
+
+Напишите функцию, которая находит самую длинную строку общего префикса 
+среди массива строк.
+
+Если общего префикса нет, вернуть пустую строку "".
+
+Пример 1:
+
+Ввод: strs = ['flower', 'flow', 'flight']
+ Вывод: "fl"
+Пример 2:
+
+Ввод: strs = ['dog', 'racecar', 'car']
+ Вывод: ""
+ Объяснение: Среди входных строк нет общего префикса.
+ 
+
+Ограничения:
+
+1 <= strs.length <= 200
+0 <= strs[i].length <= 200
+strs[i]состоит только из строчных английских букв.
+*/
+var longestCommonPrefix = function (strs) {
+  let prefix = strs[0];
+
+  for (let i = 1; i < strs.length; i++) {
+    while (strs[i].indexOf(prefix) !== 0) {
+      prefix = prefix.substring(0, prefix.length - 1);
+    }
+  }
+  return prefix;
+};
+
+// console.log(longestCommonPrefix(['flower', 'flow', 'flight']));
+// console.log(longestCommonPrefix(['dog', 'racecar', 'car']));
+
+//? ==============================================
+/*
+Sum of the first nth term of Series
+
+Ваша задача — написать функцию, которая возвращает сумму следующих рядов 
+до n-го члена (параметра).
+
+Series: 1 + 1/4 + 1/7 + 1/10 + 1/13 + 1/16 +...
+Правила:
+Вам нужно округлить ответ до 2 знаков после запятой и вернуть его как строку.
+
+Если заданное значение равно 0, оно должно вернуть 0,00.
+
+В качестве аргументов вам будут предоставлены только натуральные числа.
+
+Примеры: (Ввод --> Вывод)
+1 --> 1 --> "1.00"
+2 --> 1 + 1/4 --> "1.25"
+5 --> 1 + 1/4 + 1/7 + 1/10 + 1/13 --> "1.57"
+*/
+function SeriesSum(n) {
+  //   if (n === 0) return '0.00';
+  //   let decimal = 4;
+  //   let result = 1;
+
+  //   for (let i = 1; i < n; i++) {
+  //     result += 1 / decimal;
+  //     decimal += 3;
+  //   }
+  //   return result.toFixed(2);
+  for (var s = 0, i = 0; i < n; i++) {
+    s += 1 / (1 + i * 3);
+  }
+
+  return s.toFixed(2);
+}
+
+// console.log(SeriesSum(1)); // "1.00"
+// console.log(SeriesSum(2)); // "1.25"
+// console.log(SeriesSum(3)); // "1.39"
+// console.log(SeriesSum(4)); // "1.49"
+// console.log(SeriesSum(5)); // "1.57"
+
+//? ------------------------------------------------
