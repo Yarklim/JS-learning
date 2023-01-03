@@ -29,9 +29,21 @@
 Ограничения:
 
 1 <= s.length <= 104
-sсостоит только из скобок '()[]{}'.
+s состоит только из скобок '()[]{}'.
 */
-var isValid = function (s) {};
+// var isValid = function (s) {
+//   const brackets = {
+//     ')': '(',
+//     ']': '[',
+//     '}': '{',
+// 	};
+
+// 	result = false;
+
+// 	for (let i = 0; i < s.length; i++) {
+// 		if (s[i] )
+// 	}
+// };
 
 // console.log(isValid('()'));
 // console.log(isValid('()[]{}'));

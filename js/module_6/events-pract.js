@@ -145,15 +145,26 @@ refsModal.closeModalBtn.addEventListener('click', onCloseModal);
 refsModal.backdrop.addEventListener('click', onBackdropClick);
 
 function onOpenModal() {
+  window.addEventListener('keydown', onEscKeyPress); // для установки регистрации закрытия по ESC
   document.body.classList.add('show-modal');
 }
 
 function onCloseModal() {
+  window.addEventListener('keydown', onEscKeyPress); // для снятия регистрации закрытия по ESC
   document.body.classList.remove('show-modal');
 }
 
+// Закрытие модалки по клику в бекдроп
 function onBackdropClick() {
   if (event.currentTarget === event.target) {
+    onCloseModal();
+  }
+}
+
+// Закрытие модалки по клику на ESC
+function onEscKeyPress() {
+  const ESC_KEY_CODE = 'Escape';
+  if (event.code === ESC_KEY_CODE) {
     onCloseModal();
   }
 }

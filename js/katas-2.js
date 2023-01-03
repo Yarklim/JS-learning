@@ -105,3 +105,4 @@ function productFib(prod) {
 // console.log(productFib(4895)); // [55, 89, true]
 // console.log(productFib(5895)); // [89, 144, false]
 // console.log(productFib(74049690)); // [6765, 10946, true]
+//? ------------------------------------------------
