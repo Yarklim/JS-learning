@@ -2610,3 +2610,328 @@ console.log(isValid('()'));
 console.log(isValid('()[]{}'));
 console.log(isValid('(]'));
 //? ==============================================
+/*
+35. Search Insert Position
+
+Учитывая отсортированный массив различных целых чисел и целевое значение, 
+вернуть индекс, если цель найдена. 
+Если нет, верните индекс туда, где он был бы, если бы он был вставлен 
+по порядку.
+
+Вы должны написать алгоритм со  O(log n) сложностью выполнения.
+
+Пример 1:
+Ввод: числа = [1,3,5,6], цель = 5
+ Вывод: 2
+
+Пример 2:
+Ввод: числа = [1,3,5,6], цель = 2
+ Вывод: 1
+
+Пример 3:
+Ввод: числа = [1,3,5,6], цель = 7
+ Вывод: 4
+
+Ограничения:
+
+1 <= nums.length <= 104
+-104 <= nums[i] <= 104
+numsсодержит различные значения, отсортированные в порядке возрастания .
+-104 <= target <= 104
+*/
+var searchInsert = function (nums, target) {
+  return [...nums, target]
+    .filter((num, index, array) => array.indexOf(num) === index)
+    .sort((a, b) => a - b)
+    .indexOf(target);
+};
+
+// console.log(searchInsert([1, 3, 5, 6], 5));
+// console.log(searchInsert([1, 3, 5, 6], 2));
+// console.log(searchInsert([1, 3, 5, 6], 7));
+//? ==============================================
+/*
+58. Length of Last Word
+
+Учитывая строку, sсостоящую из слов и пробелов, вернуть длину последнего слова в строке.
+
+Слово – это максимальное
+подстрока
+состоящая только из не пробельных символов.
+
+Пример 1:
+Ввод: s = "Hello World"
+ Вывод: 5
+ Объяснение: Последнее слово "World" имеет длину 5.
+
+Пример 2:
+Ввод: s = " лети со мной на луну "
+ Вывод: 4
+ Объяснение: Последнее слово "луна" имеет длину 4.
+
+Пример 3:
+Ввод: s = "luffy все еще джойбой"
+ Вывод: 6
+ Объяснение: Последнее слово "joyboy" имеет длину 6.
+ 
+Ограничения:
+1 <= s.length <= 104
+sсостоит только из английских букв и пробелов ' '.
+В нем будет хотя бы одно слово s.
+*/
+var lengthOfLastWord = function (s) {
+  const arrStr = s.trimEnd().split(' ');
+  const lastElement = arrStr.length - 1;
+
+  return arrStr[lastElement].length;
+};
+
+// console.log(lengthOfLastWord('Hello World'));
+// console.log(lengthOfLastWord('   fly me   to   the moon  '));
+// console.log(lengthOfLastWord('luffy is still joyboy'));
+
+//? ==============================================
+/*
+66. Plus One
+
+Вам дано большое целое число , представленное в виде массива целых чисел digits, 
+где каждое число digits[i]является цифрой целого числа. 
+Цифры упорядочены от наиболее значащего к наименее значащему в порядке слева направо. 
+Большое целое число не содержит начальных символов .ith0
+
+Увеличьте большое целое число на единицу и верните результирующий массив цифр .
+
+Пример 1:
+Ввод: цифры = [1,2,3]
+ Вывод: [1,2,4]
+ Объяснение: Массив представляет целое число 123.
+Увеличение на единицу дает 123 + 1 = 124.
+Таким образом, результат должен быть [1,2,4].
+
+Пример 2:
+Ввод: цифры = [4,3,2,1]
+ Вывод: [4,3,2,2]
+ Объяснение: Массив представляет целое число 4321.
+Увеличение на единицу дает 4321 + 1 = 4322.
+Таким образом, результат должен быть [4,3,2,2].
+
+Пример 3:
+Ввод: цифры = [9]
+ Вывод: [1,0]
+ Объяснение: Массив представляет целое число 9.
+Увеличение на единицу дает 9 + 1 = 10.
+Таким образом, результат должен быть [1,0]. 
+
+Ограничения:
+1 <= digits.length <= 100
+0 <= digits[i] <= 9
+digitsне содержит ведущих 0'.
+*/
+var plusOne = function (digits) {
+  let sum = BigInt(digits.join('')) + 1n;
+  return sum.toString().split('');
+};
+
+// console.log(plusOne([1, 2, 3]));
+// console.log(plusOne([4, 3, 2, 1]));
+// console.log(plusOne([6, 1, 4, 5, 3, 9, 0, 1, 9, 5, 1, 8, 6, 7, 0, 5, 5, 4, 3]));
+//? ==============================================
+/*
+Rot13
+
+ROT13 — это простой шифр с заменой букв, который заменяет букву буквой через 13 букв после нее в алфавите. 
+ROT13 является примером шифра Цезаря.
+
+Создайте функцию, которая принимает строку и возвращает строку, зашифрованную с помощью Rot13. 
+Если в строку включены числа или специальные символы, они должны быть возвращены как есть. 
+Сдвинуты должны быть только буквы латинского/английского алфавита, как в оригинальной "реализации" Rot13.
+*/
+function rot13(message) {
+  //   const input = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+  //   const output = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
+
+  //   return message.replace(/[a-z]/gi, (char) => output[input.indexOf(char)]);
+
+  const rot13 = (str) =>
+    str.replace(/[a-z]/gi, (letter) =>
+      String.fromCharCode(
+        letter.charCodeAt(0) + (letter.toLowerCase() <= 'm' ? 13 : -13)
+      )
+    );
+}
+// console.log(rot13('a1b3c4')); // 'n1o3p4'
+// console.log(rot13('test')); // "grfg"
+// console.log(rot13('Test')); // "Grfg"
+
+//? ------------------------------------------------
+/*
+67. Add Binary
+
+Учитывая две двоичные строки a и b, верните их сумму в виде двоичной строки .
+
+Пример 1:
+Ввод: a = "11", b = "1"
+ Выход: "100"
+
+Пример 2:
+Ввод: а = "1010", б = "1011"
+ Выход: "10101" 
+
+Ограничения:
+1 <= a.length, b.length <= 104
+a и b состоят только из '0'или '1'символов.
+Каждая строка не содержит ведущих нулей, кроме самого нуля.
+*/
+var addBinary = function (a, b) {
+  let sum = 0;
+  if (a.length < 53 && b.length < 53) {
+    sum = parseInt(a, 2) + parseInt(b, 2);
+    return sum.toString(2);
+  } else {
+    sum = BigInt('0b' + a) + BigInt('0b' + b);
+    return sum.toString(2);
+  }
+};
+
+// console.log(addBinary('11', '1'));
+// console.log(addBinary('1010', '1011'));
+//? ==============================================
+/*
+Reverse words
+
+
+*/
+function reverseWords(str) {
+  //   const arr = str.split(' ');
+  //   const reverseArr = [];
+
+  //   console.log(arr);
+
+  //   for (const el of arr) {
+  //     for (let i = el.length - 1; i >= 0; i--) {
+  //       reverseArr.push(el[i]);
+  //     }
+  //   }
+
+  //   for (let i = 0; i < str.length; i++) {
+  //     if (str[i] === ' ') {
+  //       reverseArr.splice(i, 0, ' ');
+  //     }
+  //   }
+
+  //   return reverseArr.join('');
+  return str
+    .split(' ')
+    .map((str) => str.split('').reverse().join(''))
+    .join(' ');
+}
+// console.log(reverseWords('The quick brown fox jumps over the lazy dog.')); // 'ehT kciuq nworb xof spmuj revo eht yzal .god'
+// console.log(reverseWords('a b c d')); // 'a b c d'
+// console.log(reverseWords('double  spaced  words')); // 'elbuod  decaps  sdrow'
+//! ------------------------------------------------------
+/*
+83. Remove Duplicates from Sorted List
+
+Учитывая headотсортированный связанный список, удалите все дубликаты, чтобы каждый элемент появлялся только один раз . 
+Возвращает также отсортированный связанный список .
+
+Пример 1:
+Ввод: голова = [1,1,2]
+ Вывод: [1,2]
+
+Пример 2:
+Ввод: голова = [1,1,2,3,3]
+ Вывод: [1,2,3]
+*/
+var deleteDuplicates = function (head) {
+  //   return head.filter((item, index, array) => array.indexOf(item) === index);
+
+  let cur = head;
+
+  while (cur && cur.next) {
+    if (cur.val === cur.next.val) {
+      cur.next = cur.next.next;
+    } else {
+      cur = cur.next;
+    }
+  }
+  return head;
+};
+
+// console.log(deleteDuplicates([1, 1, 2]));
+// console.log(deleteDuplicates([1, 1, 2, 3, 3]));
+
+//? ==============================================
+/*
+2309. Greatest English Letter in Upper and Lower Case
+
+Для заданной строки английских букв sвернуть наибольшую английскую букву, 
+которая встречается как в строчной, так и в прописной букве в s . 
+Возвращаемое письмо должно быть в верхнем регистре . 
+Если такой буквы не существует, вернуть пустую строку .
+
+Английская буква больше , чем другая буква , если она b стоит после в английском алфавите.ab a
+
+Пример 1:
+Ввод: s = "l Ee TcOd E "
+ Вывод: "E"
+ Объяснение: 
+Буква 'E' — единственная буква, которая встречается как в нижнем, так и в верхнем регистре.
+
+Пример 2:
+Ввод: s = "a rR AzFif"
+ Вывод: "R"
+ Объяснение: 
+Буква 'R' — это самая большая буква, встречающаяся как в нижнем, так и в верхнем регистре. 
+Обратите внимание, что «A» и «F» также появляются как в нижнем, так и в верхнем регистре, но «R» больше, чем «F» или «A».
+
+Пример 3:
+Ввод: s = "AbCdEfGhIjK"
+ Вывод: ""
+ Объяснение: 
+Нет ни одной буквы, которая бы встречалась как в нижнем, так и в верхнем регистре.
+*/
+/**
+ * @param {string} s
+ * @return {string}
+ */
+var greatestLetter = function (s) {
+  //   const letterLowerList = 'abcdefghijklmnopqrstuvwxyz';
+  //   const letterLower = [];
+  //   const letterUpper = [];
+
+  //   for (const letter of s) {
+  //     if (letterLowerList.includes(letter)) {
+  //       letterLower.push(letter.toUpperCase());
+  //     }
+  //   }
+
+  //   for (const el of s) {
+  //     if (letterLower.includes(el)) {
+  //       letterUpper.push(el);
+  //     }
+  //   }
+
+  //   if (letterUpper.length === 0) return '';
+  //   return letterUpper.sort((a, b) => b.localeCompare(a))[0];
+  let dict = new Set();
+  let setA = new Set();
+  let output = '';
+  for (let c of s) {
+    let aux = c.toUpperCase();
+    if (setA.has(aux)) continue;
+    dict.add(c);
+
+    if (dict.has(aux) && dict.has(c.toLowerCase())) {
+      setA.add(aux);
+      if (output < aux) output = aux;
+    }
+  }
+
+  return output;
+};
+// console.log(greatestLetter('lEeTcOdE')); // 'E'
+// console.log(greatestLetter('arRAzFif')); // 'R'
+// console.log(greatestLetter('AbCdEfGhIjK')); // ''
+
+//? ==============================================
