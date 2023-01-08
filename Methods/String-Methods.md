@@ -5,7 +5,7 @@
 "Hello".includes("x)			=> false
 "Hello".indexOf("l")			=> 2
 "Hello".lastIndexOf("l")		=> 3
-"Hello".match(/[A-Z]/g)			=> ['H']
+"Hello".match(/[A-Z]/g)			=> ['H'] // Метод match() возвращает получившиеся совпадения при сопоставлении строки с регулярным выражением.
 "Hello".padStart(6, "?")		=> ?Hello
 "Hello".padEnd(6, "?")			=> Hello?
 "Hello".repeat(3)				=> HelloHelloHello
