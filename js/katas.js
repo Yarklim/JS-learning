@@ -2935,3 +2935,115 @@ var greatestLetter = function (s) {
 // console.log(greatestLetter('AbCdEfGhIjK')); // ''
 
 //? ==============================================
+/*
+11. Container With Most Water
+*/
+var maxArea = function (height) {
+  let maxArea = 0;
+  let left = 0;
+  let right = height.length - 1;
+
+  while (left < right) {
+    let currentVol = Math.min(height[left], height[right]) * (right - left);
+    maxArea = Math.max(maxArea, currentVol);
+
+    if (height[left] < height[right]) {
+      left += 1;
+    } else {
+      right -= 1;
+    }
+  }
+  return maxArea;
+};
+
+// console.log(maxArea([1, 8, 6, 2, 5, 4, 8, 3, 7])); // 49
+// console.log(maxArea([1, 1])); // 1
+// console.log(maxArea([0, 0, 10])); // 0
+//? ==============================================
+/*
+Are they the "same"?
+
+Даны два массива a и b напишите функцию comp(a, b)(или compSame(a, b)), 
+которая проверяет, имеют ли два массива «одинаковые» элементы с 
+одинаковыми кратностями (кратность члена — это количество раз, когда он появляется). «То же самое» здесь означает, что элементы в bявляются элементами в aквадрате, независимо от порядка.
+
+Примеры
+Действительные массивы
+a = [121, 144, 19, 161, 19, 144, 19, 11]  
+b = [121, 14641, 20736, 361, 25921, 361, 20736, 361]
+comp(a, b)возвращает true, потому что b121 — это квадрат 11, 14641 — квадрат 121, 
+20736 — квадрат 144, 361 — квадрат 19, 25921 — квадрат 161 и так далее. 
+Это становится очевидным, если мы запишем bэлементы в терминах квадратов:
+
+a = [121, 144, 19, 161, 19, 144, 19, 11] 
+b = [11*11, 121*121, 144*144, 19*19, 161*161, 19*19, 144*144, 19*19]
+Недопустимые массивы
+Если, например, мы изменим первое число на что-то другое, compоно больше 
+не возвращает true:
+
+a = [121, 144, 19, 161, 19, 144, 19, 11]  
+b = [132, 14641, 20736, 361, 25921, 361, 20736, 361]
+comp(a,b)возвращает false, потому что b132 не является квадратом любого числа a.
+
+a = [121, 144, 19, 161, 19, 144, 19, 11]  
+b = [121, 14641, 20736, 36100, 25921, 361, 20736, 361]
+comp(a,b)возвращает false, потому что b36100 не является квадратом любого числа a.
+
+Примечания
+aили bможет быть [] or {}(все языки, кроме R, Shell).
+aили bможет быть nilили nullили Noneили nothing(кроме C++, COBOL, 
+	Crystal, D, Dart, Elixir, Fortran, F#, Haskell, Nim, OCaml, Pascal, Perl, 
+	PowerShell, Prolog, PureScript, R, Racket, Rust, Shell, Swift ).
+Если aили b( nilили nullили None, в зависимости от языка), проблема 
+не имеет смысла, поэтому верните false.
+
+*/
+function comp(array1, array2) {
+  //   if (array1 === null || array2 === null) return false;
+  //   if (array1.length === 0 && array2.length === 0) return true;
+
+  //   const arrSort1 = array1.map((item) => item * item).sort((a, b) => a - b);
+  //   const arrSort2 = array2.sort((a, b) => a - b);
+  //   let result;
+
+  //   for (let i = 0; i < arrSort1.length; i++) {
+  //     if (arrSort1[i] !== arrSort2[i]) {
+  //       result = false;
+  //       break;
+  //     } else {
+  //       result = true;
+  //     }
+  //   }
+  //   return result;
+  //   if (array1 == null || array2 == null) return false;
+  //   array1.sort((a, b) => a - b);
+  //   array2.sort((a, b) => a - b);
+  //   return array1.map((v) => v * v).every((v, i) => v == array2[i]);
+  return (
+    !!a &&
+    !!b &&
+    a
+      .map((x) => x * x)
+      .sort()
+      .join() == b.sort().join()
+  );
+}
+
+let a1 = [2, 2, 3];
+let a2 = [9, 4, 4];
+
+// console.log(comp(a1, a2));
+//? ------------------------------------------------
+function isIsogram(str) {
+  //   return (
+  //     str.length ===
+  //     str
+  //       .toLowerCase()
+  //       .split('')
+  //       .filter((item, index, array) => array.indexOf(item) === index).length
+  //   );
+  return !/(\w).*\1/i.test(str);
+}
+// console.log(isIsogram('Dermatoglyphics')); // true
+// console.log(isIsogram('moOse')); // false
+//? ------------------------------------------------
