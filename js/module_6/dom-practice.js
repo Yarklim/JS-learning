@@ -39,7 +39,7 @@ console.log(firstNavItemEl);
 console.log(lastNavItemEl);
 console.log(childrenNavEl);
 
-// Создание элементов (заголовок и картнка - соседи)
+// Создание элементов (заголовок и картинка - соседи)
 const miamiEl = document.querySelector('.miami-section');
 const miamiBtnEl = document.querySelector('.miami-btn');
 

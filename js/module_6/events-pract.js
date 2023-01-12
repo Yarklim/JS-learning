@@ -79,7 +79,20 @@ function onLicenseChange(event) {
   refs.btn.disabled = !event.currentTarget.checked;
 }
 
-//? ========= Сшбытия клавиатуры ===========
+//? ------ Сброс формы ---------
+/*
+HTMLFormElement.reset()
+Метод HTMLFormElement.reset() восстанавливает стандартные значения всем элементам формы. Данный метод выполняет действие идентичное нажатию кнопки имеющей тип reset.
+
+Если элемент управления формы (такой как кнопка типа reset) имеет имя или идентификатор reset, это маскирует метод HTMLFormElement.reset(). Это не сбрасывает другие атрибуты, такие как disabled.
+
+Синтаксис
+HTMLFormElement.reset()
+Пример
+document.getElementById('myform').reset();
+*/
+
+//? ========= Сoбытия клавиатуры ===========
 const refsClearBtn = {
   output: document.querySelector('.js-output'),
   clearBtn: document.querySelector('.js-clear'),

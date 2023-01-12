@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./module-7.css" />
+  </head>
+  <body>
+    <!-- Всплытие события -->
+    <div id="parent" class="parent">
+      PARENT
+      <div id="child" class="child">
+        CHILD
+        <div id="inner-child" class="inner-child">INNER-CHILD</div>
+      </div>
+    </div>
+
+    <!-- Делегирование событий -->
+    <button class="js-add-btn">Add Button</button>
+    <hr />
+    <div class="container js-container">
+      <button type="button">Button 1</button>
+      <button type="button">Button 2</button>
+      <button type="button">Button 3</button>
+      <button type="button">Button 4</button>
+      <button type="button">Button 5</button>
+    </div>
+
+    <hr />
+    <!-- Практика -->
+    <ul class="tags js-tags">
+      <li class="tags__item">
+        <button class="tags__btn" data-value="html">#html</button>
+      </li>
+      <li class="tags__item">
+        <button class="tags__btn" data-value="css">#css</button>
+      </li>
+      <li class="tags__item">
+        <button class="tags__btn" data-value="javascript">#javascript</button>
+      </li>
+      <li class="tags__item">
+        <button class="tags__btn" data-value="npm">#npm</button>
+      </li>
+      <li class="tags__item">
+        <button class="tags__btn" data-value="webpack">#webpack</button>
+      </li>
+      <li class="tags__item">
+        <button class="tags__btn" data-value="react">#react</button>
+      </li>
+      <li class="tags__item">
+        <button class="tags__btn" data-value="redux">#redux</button>
+      </li>
+      <li class="tags__item">
+        <button class="tags__btn" data-value="nodejs">#nodejs</button>
+      </li>
+    </ul>
+
+    <script src="./delegation-events.js" type="module"></script>
+  </body>
+</html>
