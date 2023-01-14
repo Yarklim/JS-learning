@@ -44,56 +44,7 @@ var maxDistToClosest = function (seats) {
 // console.log(maxDistToClosest([0, 0, 0, 0, 1, 0, 0, 0, 1])); // 4
 
 //? ==============================================
-/*
-3. Longest Substring Without Repeating Characters
 
-Дана строка s, найдите длину самой длинной 
-подстрока
-без повторяющихся символов.
-
-Пример 1:
-Ввод: s = "abcabcbb"
- Вывод: 3
- Объяснение: Ответ "abc", длина 3.
-
-Пример 2:
-Вход: s = "bbbb"
- Выход: 1
- Объяснение: Ответ "b" с длиной 1.
-
-Пример 3:
-Ввод: s = "pwwkew"
- Вывод: 3
- Объяснение: Ответ "wke", длина 3. 
-Обратите внимание, что ответ должен быть подстрокой, 
-"pwke" — это подпоследовательность, а не подстрока.
- 
-Ограничения:
-
-0 <= s.length <= 5 * 104
-sсостоит из английских букв, цифр, символов и пробелов.
-*/
-/**
- * @param {string} s
- * @return {number}
- */
-var lengthOfLongestSubstring = function (s) {
-  const repeatCharts = [];
-  const noRepeatCharts = [];
-
-  for (const el of s) {
-    if (repeatCharts.includes(el)) {
-      noRepeatCharts.push(el);
-    } else {
-      repeatCharts.push(el);
-    }
-  }
-  return repeatCharts;
-};
-// console.log(lengthOfLongestSubstring('abcabcbb'));
-// console.log(lengthOfLongestSubstring('bbbbb'));
-// console.log(lengthOfLongestSubstring('pwwkew'));
-//? ==============================================
 /*
 12. Integer to Roman
 
@@ -141,28 +92,39 @@ Cможно поставить перед D(500) и M(1000), чтобы полу
  * @return {string}
  */
 var intToRoman = function (num) {
-  const romeDig = {
-    M: 1000,
-    D: 500,
-    C: 100,
-    L: 50,
-    X: 10,
-    V: 5,
-    I: 1,
-  };
+  // const romeDig = {
+  //   M: 1000,
+  //   D: 500,
+  //   C: 100,
+  //   L: 50,
+  //   X: 10,
+  //   V: 5,
+  //   I: 1,
+  // };
 
-  let result = 0;
+  //   let result = '';
 
-  num.split('').forEach((el, i) => {
-    if (romeDig[el] < romeDig[num[i + 1]]) result -= romeDig[el];
-    else result += romeDig[el];
-  });
+  //   //   num.split('').forEach((el, i) => {
+  //   //     if (romeDig[el] < romeDig[num[i + 1]]) result -= romeDig[el];
+  //   //     else result += romeDig[el];
+  //   //   });
 
+  //   return romeDig[key];
+  const keys = ['M', 'D', 'C', 'L', 'X', 'V', 'I'];
+  const values = [1000, 500, 100, 50, 10, 5, 1];
+  let result = '';
+
+  for (let i = 0; i < values.length; i++) {
+    while (num >= values[i]) {
+      num -= values[i];
+      result += keys[i];
+    }
+  }
   return result;
 };
-// console.log(intToRoman(3));
-// console.log(intToRoman(58));
-// console.log(intToRoman(1994));
+// console.log(intToRoman(3)); // "III"
+// console.log(intToRoman(58)); // "LVIII"
+// console.log(intToRoman(1994)); // "MCMXCIV"
 //? ==============================================
 /*
 8. String to Integer (atoi)

@@ -3294,3 +3294,85 @@ var maxProfit = function (prices) {
 // console.log(maxProfit([2, 4, 1])); // 2
 
 //? ==============================================
+/*
+3. Longest Substring Without Repeating Characters
+
+Дана строка s, найдите длину самой длинной 
+подстрока
+без повторяющихся символов.
+
+Пример 1:
+Ввод: s = "abcabcbb"
+ Вывод: 3
+ Объяснение: Ответ "abc", длина 3.
+
+Пример 2:
+Вход: s = "bbbb"
+ Выход: 1
+ Объяснение: Ответ "b" с длиной 1.
+
+Пример 3:
+Ввод: s = "pwwkew"
+ Вывод: 3
+ Объяснение: Ответ "wke", длина 3. 
+Обратите внимание, что ответ должен быть подстрокой, 
+"pwke" — это подпоследовательность, а не подстрока.
+ 
+Ограничения:
+
+0 <= s.length <= 5 * 104
+sсостоит из английских букв, цифр, символов и пробелов.
+*/
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var lengthOfLongestSubstring = function (s) {
+  //? Var 1
+  //   if (s === '') return 0;
+  //   const lettersMap = {};
+  //   let maxLen = 0;
+  //   let start = 0;
+
+  //   for (let i = 0; i < s.length; i++) {
+  //     let lastChar = s[i];
+  //     if (lettersMap[lastChar] === undefined) {
+  //       lettersMap[lastChar] = 0;
+  //     }
+  //     lettersMap[lastChar] += 1;
+  //     while (lettersMap[lastChar] > 1) {
+  //       let firstChar = s[start];
+  //       lettersMap[firstChar] -= 1;
+  //       start += 1;
+  //     }
+  //     maxLen = Math.max(maxLen, i - start + 1);
+  //   }
+  //   return maxLen;
+
+  //? Var 2
+  let max = 0;
+  let windowStart = 0;
+  const soFar = {};
+
+  for (let windowEnd = 0; windowEnd < s.length; windowEnd++) {
+    let rightChar = s[windowEnd];
+    soFar[rightChar] = soFar[rightChar] + 1 || 1;
+
+    while (soFar[rightChar] > 1) {
+      let leftChar = s[windowStart];
+
+      if (soFar[leftChar] > 1) {
+        soFar[leftChar]--;
+      } else {
+        delete soFar[leftChar];
+      }
+      windowStart++;
+    }
+    max = Math.max(max, windowEnd - windowStart + 1);
+  }
+  return max;
+};
+// console.log(lengthOfLongestSubstring('abcabcbb')); // 3
+// console.log(lengthOfLongestSubstring('dvdf')); // 3
+// console.log(lengthOfLongestSubstring('pwwkew')); // 3
+//? ==============================================

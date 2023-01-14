@@ -73,7 +73,39 @@
  * - один из многих
  * - несколько из многих и Set
  */
+
+//? Ыфбор только одной кнопки - одна из многих
+
+// const tagsContainer = document.querySelector('.js-tags');
+// let selectedTag = null;
+
+// tagsContainer.addEventListener('click', onTagsContainerClick);
+
+// function onTagsContainerClick(e) {
+//   if (e.target.nodeName !== 'BUTTON') {
+//     return;
+//   }
+
+//   const currentActiveBtn = document.querySelector('.tags__btn--active');
+
+//   //   if (currentActiveBtn) {
+//   //     currentActiveBtn.classList.remove('tags__btn--active');
+//   //   }
+
+//   // (?) - это заменяет if. Это только при доступе к свойству!
+//   currentActiveBtn?.classList.remove('tags__btn--active');
+
+//   const nextActiveBtn = e.target;
+//   nextActiveBtn.classList.add('tags__btn--active');
+//   selectedTag = nextActiveBtn.dataset.value;
+
+//   console.log(selectedTag);
+// }
+
+//? Выбор нескольких кнопок - несколько из многих
+
 const tagsContainer = document.querySelector('.js-tags');
+const selectedTags = new Set(); // Set для хранения выделенных тегов
 
 tagsContainer.addEventListener('click', onTagsContainerClick);
 
@@ -82,12 +114,18 @@ function onTagsContainerClick(e) {
     return;
   }
 
-  const currentActiveBtn = document.querySelector('.tags__btn--active');
+  // Определяем есть ли класс у тега
+  const tag = e.target.dataset.value;
+  const isActive = e.target.classList.contains('tags__btn--active');
 
-  if (currentActiveBtn) {
-    currentActiveBtn.classList.remove('tags__btn--active');
+  // Если класс есть - удаляем тег из Set, если класса нет - добавляем в Set
+  if (isActive) {
+    selectedTags.delete(tag);
+  } else {
+    selectedTags.add(tag);
   }
 
-  const nextActiveBtn = e.target;
-  nextActiveBtn.classList.add('tags__btn--active');
+  e.target.classList.toggle('tags__btn--active');
+
+  console.log(selectedTags);
 }
