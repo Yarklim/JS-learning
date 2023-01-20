@@ -3376,3 +3376,294 @@ var lengthOfLongestSubstring = function (s) {
 // console.log(lengthOfLongestSubstring('dvdf')); // 3
 // console.log(lengthOfLongestSubstring('pwwkew')); // 3
 //? ==============================================
+/*
+12. Integer to Roman
+
+Римские цифры представлены семью различными символами  : I, V, X, L, Cи D.M
+
+Символ        Значение
+я 1
+В 5
+Х 10
+л 50
+С 100
+Д 500
+М 1000
+Например,  2пишется как II римская цифра, просто две единицы сложены. 12пишется как  XII, 
+что просто X + II. Число 27записывается как XXVII, то есть XX + V + II.
+
+Римские цифры обычно пишутся слева направо от большего к меньшему. Однако цифра «четыре» — не IIII. 
+Вместо этого цифра четыре записывается как IV.
+Так как единица предшествует пятерке, мы вычитаем ее и получаем четыре. 
+Тот же принцип применим к числу девять, которое записывается как IX. 
+Есть шесть случаев, когда используется вычитание:
+
+Iможно поставить перед V(5) и X(10), чтобы получилось 4 и 9. 
+Xможно поставить перед L(50) и C(100), чтобы получилось 40 и 90. 
+Cможно поставить перед D(500) и M(1000), чтобы получить 400 и 900.
+Дано целое число, преобразовать его в римскую цифру.
+
+Пример 1:
+Ввод: число = 3
+ Вывод: "III"
+ Объяснение: 3 представляется как 3 единицы.
+
+Пример 2:
+Ввод: число = 58
+ Вывод: "LVIII"
+ Объяснение: L = 50, V = 5, III = 3.
+
+Пример 3:
+Ввод: num = 1994
+ Вывод: "MCMXCIV"
+ Объяснение: M = 1000, CM = 900, XC = 90 и IV = 4.
+*/
+/**
+ * @param {number} num
+ * @return {string}
+ */
+var intToRoman = function (num) {
+  //   const keys = ['M', 'D', 'C', 'L', 'X', 'V', 'I'];
+  //   const values = [1000, 500, 100, 50, 10, 5, 1];
+  //   let result = '';
+
+  //   for (let i = 0; i < values.length; i++) {
+  //     if (num >= 900 && num < 1000) {
+  //       num -= 900;
+  //       result += 'CM';
+  //     }
+  //     if (num >= 90 && num < 100) {
+  //       num -= 90;
+  //       result += 'XC';
+  //     }
+  //     if (num === 9) {
+  //       num -= 9;
+  //       result += 'IX';
+  //     }
+  //     if (num >= 400 && num < 500) {
+  //       num -= 400;
+  //       result += 'CD';
+  //     }
+  //     if (num >= 40 && num < 50) {
+  //       num -= 40;
+  //       result += 'XL';
+  //     }
+  //     if (num === 4) {
+  //       num -= 4;
+  //       result += 'IV';
+  //     } else {
+  //       while (num >= values[i]) {
+  //         num -= values[i];
+  //         result += keys[i];
+  //       }
+  //     }
+  //   }
+  //   return result;
+
+  const lookup = {
+    1: 'I',
+    4: 'IV',
+    5: 'V',
+    9: 'IX',
+    10: 'X',
+    40: 'XL',
+    50: 'L',
+    90: 'XC',
+    100: 'C',
+    400: 'CD',
+    500: 'D',
+    900: 'CM',
+    1000: 'M',
+  };
+  let roman = '';
+  let i = 1;
+  while (num > 0) {
+    let digit = num % 10;
+    if (digit > 0) {
+      if (lookup[digit * i]) {
+        roman = lookup[digit * i] + roman;
+      } else {
+        let str = '';
+        if (digit >= 5) {
+          str += lookup[5 * i];
+          digit -= 5;
+        }
+        for (let j = 0; j < digit; j++) {
+          str += lookup[i];
+        }
+        roman = str + roman;
+      }
+    }
+    i *= 10;
+    num = Math.floor(num / 10);
+  }
+  return roman;
+};
+// console.log(intToRoman(41));
+// console.log(intToRoman(58)); // "LVIII"
+// console.log(intToRoman(1994)); // "MCMXCIV"
+//? ==============================================
+/*
+Перед вами масив об'єктів. Кожен об'єкт – це співробітник у компанії. Кожен об'єкт має властивість
+`sallary` - його зарплата на місяць, та `department` - відділ, в якому він працює.
+Знайдіть та виведіть у консоль назву відділу з найбільшою середньою зарплатою.
+*/
+const employees = [
+  {
+    name: 'Андрей',
+    sallary: 22000,
+    department: 'sale',
+  },
+  {
+    name: 'Святослав',
+    sallary: 33000,
+    department: 'lawyer',
+  },
+  {
+    name: 'Мария',
+    sallary: 44000,
+    department: 'IT',
+  },
+  {
+    name: 'Иван',
+    sallary: 55000,
+    department: 'IT',
+  },
+  {
+    name: 'Юрий',
+    sallary: 28000,
+    department: 'lawyer',
+  },
+  {
+    name: 'Алина',
+    sallary: 78000,
+    department: 'sale',
+  },
+  {
+    name: 'Алекс',
+    sallary: 105000,
+    department: 'IT',
+  },
+];
+const departments = employees.reduce((acc, { sallary, department }) => {
+  const departmentObj = acc.find((item) => item.name === department);
+  if (!departmentObj) {
+    const newDepartment = {
+      name: department,
+      sallaries: [sallary],
+    };
+    return [...acc, newDepartment];
+  }
+  departmentObj.sallaries.push(sallary);
+  return acc;
+}, []);
+
+const departmentList = departments.map(({ name, sallaries }) => {
+  const sallariesSum = sallaries.reduce((total, item) => total + item, 0);
+  const averageSallary = sallariesSum / sallaries.length;
+
+  return { name, averageSallary };
+});
+
+const reachesDepartment = departmentList.reduce(
+  (acc, { name, averageSallary }) => {
+    if (averageSallary > acc.averageSallary) {
+      return { name, averageSallary };
+    }
+    return acc;
+  },
+  departmentList[0]
+);
+// console.log(reachesDepartment.name);
+//? ==============================================
+/*
+Bouncing Balls
+
+Ребенок играет с мячом на n-м этаже высотного здания. Высота этого этажа над уровнем земли h известна.
+
+Он бросает мяч из окна. Мяч отскакивает (например) на две трети своей высоты (отскок 0,66).
+
+Его мать смотрит из окна в 1,5 метрах от земли.
+
+Сколько раз мать увидит, как мяч проходит перед ее окном (в том числе когда он падает и подпрыгивает?
+
+Для достоверности эксперимента должны быть соблюдены три условия:
+Плавающий параметр "h" в метрах должен быть больше 0
+Плавающий параметр "bounce" должен быть больше 0 и меньше 1
+Плавающий параметр "окно" должен быть меньше h.
+Если все три условия выше выполнены, вернуть положительное целое число, иначе вернуть -1.
+
+Примечание:
+Мяч можно увидеть только в том случае, если высота отскакивающего мяча строго больше параметра окна.
+
+Примеры:
+- h = 3, bounce = 0.66, window = 1.5, result is 3
+
+- h = 3, bounce = 1, window = 1.5, result is -1 
+
+(Condition 2) not fulfilled).
+*/
+function bouncingBall(h, bounce, window) {
+  if (h > 0 && bounce > 0 && bounce < 1 && window < h) {
+    let bounceValue = h;
+    let counter = -1;
+
+    while (bounceValue > window) {
+      bounceValue = bounceValue * bounce;
+      counter += 2;
+    }
+    return counter;
+  }
+  return -1;
+}
+
+// console.log(bouncingBall(3.0, 0.66, 1.5)); // 3
+// console.log(bouncingBall(30.0, 0.66, 1.5)); // 15
+// console.log(bouncingBall(3.0, 1.0, 1.5)); // -1
+//? ------------------------------------------------------
+/*
+849. Maximize Distance to Closest Person
+Вам дан массив, представляющий строку seatsгде seats[i] = 1представляет человека, 
+сидящего на сиденье, и представляет, что место пусто (индексировано 0) .ithseats[i] = 0ith
+
+Есть по крайней мере одно свободное место и по крайней мере один сидящий человек.
+
+Алекс хочет сесть на сиденье так, чтобы расстояние между ним и ближайшим к нему человеком было максимальным. 
+
+Верните это максимальное расстояние ближайшему человеку .
+*/
+var maxDistToClosest = function (seats) {
+  let max = 0;
+  let count = 0;
+  let i = 0;
+
+  if (seats[i] === 0) {
+    while (seats[i] === 0) {
+      i++;
+      count += 1;
+    }
+    max = count;
+    count = 0;
+  }
+
+  for (; i < seats.length; i++) {
+    if (i === seats.length - 1 && seats[i] === 0) {
+      count += 1;
+      max = Math.max(max, count);
+      break;
+    }
+    if (seats[i] === 1) {
+      count = 0;
+    } else {
+      count += 1;
+      max = Math.max(max, Math.ceil(count / 2));
+    }
+  }
+  return max;
+};
+// console.log(maxDistToClosest([1, 0, 0, 0, 1, 0, 1])); // 2
+// console.log(maxDistToClosest([1, 0, 0, 0])); // 3
+// console.log(maxDistToClosest([0, 1])); // 1
+// console.log(maxDistToClosest([0, 0, 0, 0, 1, 0, 0, 0, 1])); // 4
+
+//? ==============================================

@@ -7,78 +7,78 @@
 */
 
 // Колбэк-функция
-function greet(name) {
-  console.log(`Добро пожаловать ${name}.`);
-}
+// function greet(name) {
+//   console.log(`Добро пожаловать ${name}.`);
+// }
 
-// Функция высшего порядка
-function registerGuest(name, callback) {
-  console.log(`Регистрируем гостя ${name}.`);
-  callback(name);
-}
+// // Функция высшего порядка
+// function registerGuest(name, callback) {
+//   console.log(`Регистрируем гостя ${name}.`);
+//   callback(name);
+// }
 
-registerGuest('Манго', greet);
+// registerGuest('Манго', greet);
 
-// Мы передали ссылку на функцию greet как аргумент, поэтому она будет присвоена в параметр callback и вызвана внури функции registerGuest через круглые скобки.
-// Имя параметра для колбэка может быть произвольным, главное помнить, что значением будет функция.
+// // Мы передали ссылку на функцию greet как аргумент, поэтому она будет присвоена в параметр callback и вызвана внури функции registerGuest через круглые скобки.
+// // Имя параметра для колбэка может быть произвольным, главное помнить, что значением будет функция.
 
-/* 
-? Инлайн колбэки
-Если колбэк - функция маленькая и нужна только для передачи аргументом, её можно объявить прямо при вызове функции в которую передаём колбэк. 
-Такая функция будет доступна только как значение параметра и больше нигде в коде.
-*/
+// /*
+// ? Инлайн колбэки
+// Если колбэк - функция маленькая и нужна только для передачи аргументом, её можно объявить прямо при вызове функции в которую передаём колбэк.
+// Такая функция будет доступна только как значение параметра и больше нигде в коде.
+// */
 
-function registerGuest(name, callback) {
-  console.log(`Регистрируем гостя ${name}.`);
-  callback(name);
-}
+// function registerGuest(name, callback) {
+//   console.log(`Регистрируем гостя ${name}.`);
+//   callback(name);
+// }
 
-// Передаём инлайн функцию greet как колбэк
-registerGuest('Манго', function greet(name) {
-  console.log(`Добро пожаловать ${name}.`);
-});
+// // Передаём инлайн функцию greet как колбэк
+// registerGuest('Манго', function greet(name) {
+//   console.log(`Добро пожаловать ${name}.`);
+// });
 
-// Передаём инлайн функцию notify как колбэк
-registerGuest('Поли', function notify(name) {
-  console.log(`Уважаемый(ая) ${name}, ваш номер будет готов через 30 минут.`);
-});
+// // Передаём инлайн функцию notify как колбэк
+// registerGuest('Поли', function notify(name) {
+//   console.log(`Уважаемый(ая) ${name}, ваш номер будет готов через 30 минут.`);
+// });
 
-/*
-? Несколько колбэков
-Функция может принимать произвольное количество колбэков.
-Колбэки применяются для обработки действий пользователя на странице, при обработке запросов на сервер, выполнения заранее неизвестных функций и т. п. 
-В этом и заключается их суть - это функции предназначенные для отложенного выполнения.
-*/
+// /*
+// ? Несколько колбэков
+// Функция может принимать произвольное количество колбэков.
+// Колбэки применяются для обработки действий пользователя на странице, при обработке запросов на сервер, выполнения заранее неизвестных функций и т. п.
+// В этом и заключается их суть - это функции предназначенные для отложенного выполнения.
+// */
 
-function processCall(recipient, onAvailable, onNotAvailable) {
-  // Имитируем доступность абонента случайным числом
-  const isRecipientAvailable = Math.random() > 0.5;
+// function processCall(recipient, onAvailable, onNotAvailable) {
+//   // Имитируем доступность абонента случайным числом
+//   const isRecipientAvailable = Math.random() > 0.5;
 
-  if (!isRecipientAvailable) {
-    onNotAvailable(recipient);
-    return;
-  }
+//   if (!isRecipientAvailable) {
+//     onNotAvailable(recipient);
+//     return;
+//   }
 
-  onAvailable(recipient);
-}
+//   onAvailable(recipient);
+// }
 
-function takeCall(name) {
-  console.log(`Соединяем с ${name}, ожидайте...`);
-  // Логика принятия звонка
-}
+// function takeCall(name) {
+//   console.log(`Соединяем с ${name}, ожидайте...`);
+//   // Логика принятия звонка
+// }
 
-function activateAnsweringMachine(name) {
-  console.log(`Абонент ${name} недоступен, оставьте сообщение.`);
-  // Логика активации автоответчика
-}
+// function activateAnsweringMachine(name) {
+//   console.log(`Абонент ${name} недоступен, оставьте сообщение.`);
+//   // Логика активации автоответчика
+// }
 
-function leaveHoloMessage(name) {
-  console.log(`Абонент ${name} недоступен, записываем голограмму.`);
-  // Логика записи голограммы
-}
+// function leaveHoloMessage(name) {
+//   console.log(`Абонент ${name} недоступен, записываем голограмму.`);
+//   // Логика записи голограммы
+// }
 
-processCall('Манго', takeCall, activateAnsweringMachine);
-processCall('Поли', takeCall, leaveHoloMessage);
+// processCall('Манго', takeCall, activateAnsweringMachine);
+// processCall('Поли', takeCall, leaveHoloMessage);
 
 /*
 ? Абстрагирование повторения

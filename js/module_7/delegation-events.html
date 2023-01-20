@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -57,6 +57,45 @@
       </li>
     </ul>
 
+    <!-- Colorpicker -->
+    <div class="palette js-palette">
+      <div class="color-card">
+        <div
+          class="color-swatch"
+          data-hex="#955014"
+          data-rgb="149,80,20"
+          style="background-color: #955014"
+        ></div>
+        <div class="color-meta">
+          <p>HEX: #955014</p>
+          <p>RGB: 149,80,20</p>
+        </div>
+      </div>
+    </div>
+
+    <br />
+    <hr />
+
+    <!-- Событие mousemove -->
+    <p class="js-coords">Кол-во вызовов onMouseMove: 0</p>
+
+    <hr />
+
+    <!-- Событие input -->
+    <input type="text" class="js-input" />
+    <p class="js-output">Кол-во вызовов onInputChange: 0</p>
+
+    <hr />
+
+    <!-- Search -->
+    <label>
+      Что ищем?
+      <input type="text" id="filter" />
+    </label>
+
+    <ul class="js-list"></ul>
+
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
     <script src="./delegation-events.js" type="module"></script>
   </body>
 </html>
