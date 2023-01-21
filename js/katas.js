@@ -3667,3 +3667,90 @@ var maxDistToClosest = function (seats) {
 // console.log(maxDistToClosest([0, 0, 0, 0, 1, 0, 0, 0, 1])); // 4
 
 //? ==============================================
+/*
+136. Single Number
+
+Учитывая непустой  массив целых чисел nums, каждый элемент встречается дважды , кроме одного. Найди ту единственную.
+Вы должны реализовать решение с линейной сложностью времени выполнения и использовать только постоянное дополнительное пространство.
+
+Пример 1:
+Ввод: числа = [2,2,1]
+ Вывод: 1
+
+Пример 2:
+Ввод: числа = [4,1,2,1,2]
+ Вывод: 4
+
+Пример 3:
+Ввод: число = [1]
+ Вывод: 1
+*/
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var singleNumber = function (nums) {
+  const obj = {};
+
+  nums.forEach((item) => {
+    obj[item] = obj[item] + 1 || 1;
+
+    if (obj[item] > 1) {
+      delete obj[item];
+    }
+  });
+  return Number(Object.keys(obj).join(''));
+};
+// console.log(singleNumber([2, 2, 1])); // 1
+// console.log(singleNumber([4, 1, 2, 1, 2])); // 4
+// console.log(singleNumber([1])); // 1
+//? ==============================================
+/*
+169. Majority Element
+
+Учитывая массив numssize n, вернуть элемент большинства .
+
+Элемент большинства — это элемент, который встречается более одного ⌊n / 2⌋раза. 
+Вы можете предположить, что в массиве всегда существует мажоритарный элемент.
+
+Пример 1:
+Ввод: числа = [3,2,3]
+ Вывод: 3
+
+Пример 2:
+Ввод: числа = [2,2,1,1,1,2,2]
+ Вывод: 2 
+
+Ограничения:
+n == nums.length
+1 <= n <= 5 * 104
+-109 <= nums[i] <= 109
+ 
+Дополнение: Могли бы вы решить задачу в линейном времени и в O(1)пространстве?
+*/
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var majorityElement = function (nums) {
+  // Var 1
+  //   const obj = {};
+
+  //   nums.forEach((item) => {
+  //     obj[item] = obj[item] + 1 || 1;
+  //   });
+
+  //   for (const key in obj) {
+  //     if (obj[key] > Math.floor(nums.length / 2)) {
+  //       return Number(key);
+  //     }
+  //   }
+
+  // Var 2
+  nums.sort();
+  return nums[Math.floor(nums.length / 2)];
+};
+// console.log(majorityElement([3, 2, 3])); // 3
+// console.log(majorityElement([2, 2, 1, 1, 1, 2, 2])); // 2
+
+//? ==============================================

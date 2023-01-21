@@ -276,3 +276,47 @@ const productArr = ['apple', 'banana', 'mango'];
 Добавь классу статическое свойство Priopity, в котором будет храниться объект с приоритетами. 
 Добавь методы addNote(note), removeNote(text) updatePriority(text, newPriority)
 */
+
+//? Сложная задача!!!
+/*
+Перед вами масив об'єктів. Кожен об'єкт – це співробітник у компанії. Кожен об'єкт має властивість
+`sallary` - його зарплата на місяць, та `department` - відділ, в якому він працює.
+Знайдіть та виведіть у консоль назву відділу з найбільшою середньою зарплатою.
+*/
+const employees = [
+  {
+    name: 'Андрей',
+    sallary: 22000,
+    department: 'sale',
+  },
+  {
+    name: 'Святослав',
+    sallary: 33000,
+    department: 'lawyer',
+  },
+  {
+    name: 'Мария',
+    sallary: 44000,
+    department: 'IT',
+  },
+  {
+    name: 'Иван',
+    sallary: 55000,
+    department: 'IT',
+  },
+  {
+    name: 'Юрий',
+    sallary: 28000,
+    department: 'lawyer',
+  },
+  {
+    name: 'Алина',
+    sallary: 78000,
+    department: 'sale',
+  },
+  {
+    name: 'Алекс',
+    sallary: 105000,
+    department: 'IT',
+  },
+];
