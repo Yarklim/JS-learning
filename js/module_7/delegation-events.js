@@ -238,6 +238,24 @@ function onInputChange(e) {
 `;
 }
 
+//? ========= Function Debounce ============
+// function debounce(func, timeout = 300) {
+//   let timer;
+//   return (...args) => {
+//     clearTimeout(timer);
+//     timer = setTimeout(() => {
+//       func.apply(this, args);
+//     }, timeout);
+//   };
+// }
+
+// function saveInput() {
+//   console.log('Saving data');
+// }
+
+// const processChanges = debounce(() => saveInput());
+//? ========================================
+
 // Search
 /*
  * Рендерим разметку элементов списка
@@ -287,3 +305,37 @@ function populateList(markup) {
 }
 
 //? 'Пушистый' поиск - Fuse.js
+
+//? ================ Lazy-loading =====================
+//? =========== Animation on load img =================
+// const lazyImages = document.querySelectorAll('img[data-src]');
+
+// lazyImages.forEach((image) => {
+//   image.addEventListener('load', onImageLoaded, { once: true });
+// });
+
+// function onImageLoaded(event) {
+//   console.log('Img loaded');
+//   event.target.classList.add('appear');
+// }
+
+//? Чтобы работало в Сафари - нужна библиотека Lazysizes
+//? Проверка на поддержку ленивой загрузки, если не поддерживается выполняется else!
+
+if ('loading' in HTMLImageElement.prototype) {
+  const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+
+  lazyImages.forEach((img) => {
+    img.src = img.dataset.src;
+  });
+} else {
+  const script = document.querySelector('script');
+  script.src =
+    'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js';
+  script.integrity =
+    'sha512-q583ppKrCRc7N5O0n2nzUiJ+suUv7Et1JGels4bXOaMFQcamPk9HjdUknZuuFjBNs7tsMuadge5k9RzdmO+1GQ==';
+  script.crossorigin = 'anonymous';
+  script.referrerpolicy = 'no-referrer';
+
+  document.body.appendChild(script);
+}

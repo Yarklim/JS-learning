@@ -1,51 +1,75 @@
 //?-------------------------------------------------------
 /*
-Take a Number And Sum Its Digits Raised To The Consecutive 
-Powers And ....¡Eureka!!
 
-Номер 898989 является первым целым числом с более чем одной цифрой, 
-которое выполняет свойство, частично представленное в названии этого ката. 
-Что толку говорить "Эврика"? Потому что эта сумма дает одно и то же число:
-89 равно 8^1 + 9^2 равно 89
-1
- +9 
-2
- 
-
-Следующее число в наличии этого свойства 135135135:
-
-Посмотрите это свойство еще раз: 135 равно 1^1 + 3^2 + 5^3 равно 135 
-
-Задача
-Нам нужна функция для сбора этих чисел, которая может получить два целых числа, a и б, 
-который определяет диапазон [а, б] (включительно) и выводит список 
-отсортированных чисел в диапазоне, удовлетворяющем описанному выше свойству.
-
-Примеры
-Давайте посмотрим на некоторые случаи (ввод -> вывод):
-
-1, 10  --> [1, 2, 3, 4, 5, 6, 7, 8, 9]
-1, 100 --> [1, 2, 3, 4, 5, 6, 7, 8, 9, 89]
-Если в диапазоне нет таких чисел[а,б][а, б][ а ,б ]функция должна вывести пустой 
-список.
-
-90, 100 --> []
 */
-function sumDigPow(a, b) {
-  // Your code here
+
+//?-------------------------------------------------------
+/*
+Give me a Diamond
+
+ *
+***
+ *
+ 
+  *
+ ***
+*****
+ ***
+  *
+
+*/
+function diamond(n) {
+  if (n === 1) return '*\n';
+
+  const str = [];
+
+  for (let i = 0; i < n; i += 1) {
+    str.push(' '.repeat(n - i - 1) + '*'.repeat(i * 2 + 1) + '\n');
+  }
+
+  const strReverse = [...str].reverse().slice(1);
+
+  return [...str, ...strReverse].join('');
 }
-// console.log(sumDigPow(1, 10)); // [1, 2, 3, 4, 5, 6, 7, 8, 9]
-// console.log(sumDigPow(1, 100)); // [1, 2, 3, 4, 5, 6, 7, 8, 89]
-// console.log(sumDigPow(10, 100)); // [89]
-// console.log(sumDigPow(50, 100)); // []
-// console.log(sumDigPow(50, 150)); // [[89, 135]
+// console.log(diamond(1)); // "*\n"
+// console.log(diamond(3)); // " *\n***\n *\n"
+// console.log(diamond(5)); // "  *\n ***\n*****\n ***\n  *\n"
+// console.log(diamond(7));
+//?-------------------------------------------------------
+/*
+Decipher this!
 
-//? ------------------------------------------------------
+Вам дается секретное сообщение, которое необходимо расшифровать. 
+Вот что вам нужно знать, чтобы расшифровать его:
 
+Для каждого слова:
+вторая и последняя буквы меняются местами (например, Hello становится Holle)
+первая буква заменяется кодом символа (например, H становится 72)
+Примечание: специальные символы не используются, только буквы и пробелы.
+*/
+function decipherThis(str) {
+  const strArr = str.split(' ');
+  const finalArr = [];
+  let charNum = str.charCodeAt(parseInt(str));
+
+  //   for (let i = 0; i < strArr.length; i++) {
+  //     charNum = strArr[i].charAt(parseInt(strArr[i]));
+  //     finalArr.push(charNum);
+  //   }
+
+  return charNum;
+}
+
+// console.log(
+//   decipherThis('72eva 97 103o 97t 116sih 97dn 115ee 104wo 121uo 100o')
+// ); // 'Have a go at this and see how you do'
+// console.log(decipherThis('72olle 103doo 100ya')); // 'Hello good day'
+// console.log(decipherThis('82yade 115te 103o')); // 'Ready set go'
+//?-------------------------------------------------------
 /*
 Build a pile of Cubes
 
-Ваша задача построить здание, которое будет состоять из n кубиков. Куб внизу будет иметь объемн3п^3н 
+Ваша задача построить здание, которое будет состоять из n кубиков. Куб внизу будет иметь объемн 3п^3н 
 3
  , куб выше будет иметь объем(н−1)3(п-1)^3( н−1 ) 
 3
@@ -66,9 +90,9 @@ Build a pile of Cubes
  знак равном если такое существует или -1, если такого n нет.
 
 Примеры:
-найтиNb(1071225) --> 45
+найти Nb(1071225) --> 45
 
-найтиNb(91716553919377) --> -1
+найти Nb(91716553919377) --> -1
 */
 function findNb(m) {
   // your code
@@ -148,12 +172,41 @@ encrypt("01234", 3)  =>  "13024"  ->  "32104"  ->  "20314"
 Если строка S является пустым значением или целое число N не является 
 положительным, вернуть первый аргумент без изменений.
 */
-function encrypt(text, n) {}
+function encrypt(text, n) {
+  const cryptStr1 = [];
+  const cryptStr2 = [];
+
+  if (text === '' || n <= 0) {
+    return text;
+  }
+
+  for (let i = 0; i < text.length; i++) {
+    if (i % 2 === 0) {
+      cryptStr2[i] = text[i];
+    } else {
+      cryptStr1[i] = text[i];
+    }
+  }
+  let newStr = cryptStr1.join('') + cryptStr2.join('');
+  let count = 0;
+
+  while (count <= n) {
+    for (let j = 0; j < newStr.length; j++) {
+      if (j % 2 === 0) {
+        cryptStr2[j] = newStr[j];
+      } else {
+        cryptStr1[j] = newStr[j];
+      }
+    }
+    count += 1;
+  }
+
+  return newStr;
+}
 
 function decrypt(encryptedText, n) {}
 
 // console.log(encrypt('012345', 2)); // "135024"  ->  "304152"
-// console.log(encrypt('This is a test!', 0)); // "This is a test!"
 // console.log(encrypt('This is a test!', 1)); // "hsi  etTi sats!"
 // console.log(encrypt('This is a test!', 2)); // "s eT ashi tist!"
 // console.log(encrypt("This kata is very interesting!", 1)); // "hskt svr neetn!Ti aai eyitrsig"

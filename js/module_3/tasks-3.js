@@ -331,7 +331,7 @@ function getBasicInfo({ name, img, price }) {
   };
 }
 
-// console.log(getBasicInfo(product1));
+console.log(getBasicInfo(product1));
 /*
 Завдання 4
 Напишіть функцію getMinPrice, яка отримує масив об'єктів та повертає найнижчу ціну. 
