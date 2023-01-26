@@ -1,8 +1,35 @@
 //?-------------------------------------------------------
 /*
+6 kyu
+Count the smiley faces!
 
+Учитывая массив (arr) в качестве аргумента, завершите функцию countSmileys, 
+которая должна вернуть общее количество улыбающихся лиц.
+
+Правила улыбающегося лица:
+
+Каждый смайлик должен содержать допустимую пару глаз. Глаза могут быть отмечены как :или;
+У смайлика может быть нос, но не обязательно. Допустимые символы для носа -или~
+Каждое улыбающееся лицо должно иметь улыбающийся рот, который должен быть отмечен либо значком, )либоD
+Не допускается использование дополнительных символов, кроме упомянутых.
+
+Примеры допустимых смайликов: :) :D ;-D :~)
+Недопустимые смайлики: ;( :> :} :]
+
+Пример
+countSmileys([':)', ';(', ';}', ':-D']);       // should return 2;
+countSmileys([';D', ':-(', ':-)', ';~)']);     // should return 3;
+countSmileys([';]', ':[', ';*', ':$', ';-D']); // should return 1;
+Примечание
+В случае пустого массива верните 0. Вы не будете тестироваться с недопустимым вводом (ввод всегда будет массивом). 
+Порядок элементов лица (глаза, нос, рот) всегда будет одинаковым.
 */
+function countSmileys(arr) {}
 
+// console.log(countSmileys([])); // 0
+// console.log(countSmileys([':D', ':~)', ';~D', ':)'])); // 4
+// console.log(countSmileys([':)', ':(', ':D', ':O', ':;'])); // 2
+// console.log(countSmileys([';]', ':[', ';*', ':$', ';-D'])); // 1
 //?-------------------------------------------------------
 /*
 Give me a Diamond
@@ -23,10 +50,14 @@ function diamond(n) {
 
   const str = [];
 
-  for (let i = 0; i < n; i += 1) {
-    str.push(' '.repeat(n - i - 1) + '*'.repeat(i * 2 + 1) + '\n');
+  for (let i = 1; i <= n; i += 2) {
+    if (i !== n) {
+      str.push(' '.repeat(n - i - 1) + '*'.repeat(i) + '\n');
+    } else {
+      str.push('*'.repeat(i) + '\n');
+    }
   }
-
+  //! Разобраться с пробелами
   const strReverse = [...str].reverse().slice(1);
 
   return [...str, ...strReverse].join('');
@@ -50,14 +81,19 @@ Decipher this!
 function decipherThis(str) {
   const strArr = str.split(' ');
   const finalArr = [];
-  let charNum = str.charCodeAt(parseInt(str));
+  let charNum = '';
 
-  //   for (let i = 0; i < strArr.length; i++) {
-  //     charNum = strArr[i].charAt(parseInt(strArr[i]));
-  //     finalArr.push(charNum);
-  //   }
+  for (let i = 0; i < strArr.length; i++) {
+    let tempStr = '';
 
-  return charNum;
+    charNum = String.fromCodePoint(parseInt(strArr[i]));
+    tempStr = strArr[i].match(/[\D]\w*/g);
+    finalArr.push(charNum + tempStr);
+  }
+
+  //! Разобраться с регулярными выражениями
+
+  return finalArr;
 }
 
 // console.log(
@@ -132,7 +168,7 @@ parts_sums(ls) -> [10037855, 9293730, 9292795, 9292388, 9291934, 9291504, 929141
 */
 function partsSums(ls) {
   const result = [];
-
+  //! Уменьшить сложность алгоритма
   while (ls.length > 0) {
     let arraySum = 0;
     for (const el of ls) {
@@ -190,16 +226,17 @@ function encrypt(text, n) {
   let newStr = cryptStr1.join('') + cryptStr2.join('');
   let count = 0;
 
-  while (count <= n) {
-    for (let j = 0; j < newStr.length; j++) {
-      if (j % 2 === 0) {
-        cryptStr2[j] = newStr[j];
-      } else {
-        cryptStr1[j] = newStr[j];
-      }
-    }
-    count += 1;
-  }
+  //! Рекурсия?
+  //   while (count <= n) {
+  //     for (let j = 0; j < newStr.length; j++) {
+  //       if (j % 2 === 0) {
+  //         cryptStr2[j] = newStr[j];
+  //       } else {
+  //         cryptStr1[j] = newStr[j];
+  //       }
+  //     }
+  //     count += 1;
+  //   }
 
   return newStr;
 }
