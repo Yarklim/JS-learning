@@ -4066,3 +4066,166 @@ var threeSum = function (nums) {
 // console.log(threeSum([0, 1, 1])); // []
 // console.log(threeSum([-1, 0, 1, 0])); // [[-1,0,1]]
 //? ==============================================
+/*
+7. Reverse Integer
+
+Получив 32-битное целое число со знаком x, верните x его цифры в обратном порядке . 
+Если реверсирование x приводит к тому, что значение выходит за пределы 
+диапазона 32-разрядных целых чисел со знаком , то возвращается значение .[-231, 231 - 1]0
+
+Предположим, что среда не позволяет хранить 64-битные целые числа (со знаком или без знака).
+
+Пример 1:
+Вход: х = 123
+ Выход: 321
+
+Пример 2:
+Вход: х = -123
+ Выход: -321
+
+Пример 3:
+Вход: х = 120
+ Выход: 21
+*/
+/**
+ * @param {number} x
+ * @return {number}
+ * 
+ 
+var reverseX = parseInt(x.toString().split('').reverse().join(''));
+    if (reverseX < (Math.pow(2, 31) * -1) || reverseX > Math.pow(2, 31) - 1) return 0;
+    return reverseX* Math.sign(x);
+-----------------------------------
+	rev_string = x.toString()
+    strArray = rev_string.split("")
+    revArray = strArray.reverse()
+    new_str =  revArray.join("")
+
+    if (parseInt(new_str) < (Math.pow(2, 31) * -1) || parseInt(new_str) > Math.pow(2,31) - 1) {
+         new_str = 0;
+    }
+    if (Math.sign(x) === -1) {
+    
+       new_str = parseInt(new_str) * Math.sign(x);
+    }
+  return new_str;
+
+  -------------------------------
+  let reversed = parseInt(Array.from(`${Math.sign(x) * x}`).reverse().join(''));
+     return Math.sign(x)*(reversed > 0x7FFFFFFF?0:reversed);
+
+---------------------------------
+
+const reverse = (x) => {
+    if (x < 10 && x > -10) {
+        return x
+    }
+    if (x >= 0) {
+        const rev = +([...`${x}`].reverse().join(''))
+        return rev > 0x7FFFFFFF ? 0 : rev
+    }
+    const rev = +([...`${-x}`].reverse().join(''))
+    return rev > 0x7FFFFFFF ? 0 : -rev
+};
+ */
+var reverse = function (x) {
+  let reverseNum = parseInt(x.toString().split('').reverse().join(''));
+
+  return reverseNum > 2 ** 31 ? 0 : reverseNum * Math.sign(x);
+};
+console.log(reverse(123)); // 321
+console.log(reverse(-123)); // -321
+console.log(reverse(120)); // 21
+//? ==============================================
+/*
+Give me a Diamond
+
+ *
+***
+ *
+ 
+  *
+ ***
+*****
+ ***
+  *
+
+*/
+function diamond(n) {
+  //   const str = [];
+  //   let countSpaces = 0;
+
+  //   for (let i = n; i > 0; i -= 2) {
+  //     str.push(' '.repeat(countSpaces) + '*'.repeat(i) + '\n');
+  //     countSpaces += 1;
+  //   }
+
+  //   const strReverse = [...str].reverse().slice(0, str.length - 1);
+
+  //   return [...strReverse, ...str].join('');
+
+  str = '';
+  for (let i = 0; i < n; i++) {
+    let len = Math.abs((n - 2 * i - 1) / 2);
+    str += ' '.repeat(len);
+    str += '*'.repeat(n - 2 * len);
+    str += '\n';
+  }
+  return str;
+}
+// console.log(diamond(1)); // "*\n"
+// console.log(diamond(3)); // " *\n***\n *\n"
+// console.log(diamond(5)); // "  *\n ***\n*****\n ***\n  *\n"
+// console.log(diamond(7));
+//?-------------------------------------------------------
+/*
+7 kyu
+Maximum Length Difference
+
+Вам даны два массива a1 и a2 строки. Каждая строка состоит из букв от aдо z. 
+Пусть x будет любая строка в первом массиве и y будет любой строкой во втором массиве.
+
+Find max(abs(length(x) − length(y)))
+
+Если a1 и/или a2 пусты, верните -1
+
+Пример:
+a1 = ["hoqq", "bbllkw", "oox", "ejjuyyy", "plmiis", "xxxzgpsssa", "xxwwkktt", "znnnnfqknaz", "qqquuhii", "dvvvwz"]
+a2 = ["cccooommaaqqoxii", "gggqaffhhh", "tttoowwwmmww"]
+mxdiflg(a1, a2) --> 13
+Примечание Баша:
+ввод: 2 строки с подстроками, разделенными,
+вывод: число в виде строки
+*/
+
+function mxdiflg(a1, a2) {
+  return a1.reduce(
+    (acc, item) =>
+      Math.max(
+        acc,
+        a2.reduce(
+          (acc2, item2) => Math.max(acc2, Math.abs(item.length - item2.length)),
+          -1
+        )
+      ),
+    -1
+  );
+}
+// console.log(
+//   mxdiflg(
+//     [
+//       'hoqq',
+//       'bbllkw',
+//       'oox',
+//       'ejjuyyy',
+//       'plmiis',
+//       'xxxzgpsssa',
+//       'xxwwkktt',
+//       'znnnnfqknaz',
+//       'qqquuhii',
+//       'dvvvwz',
+//     ],
+//     ['cccooommaaqqoxii', 'gggqaffhhh', 'tttoowwwmmww']
+//   )
+// ); // 13
+//?-------------------------------------------------------

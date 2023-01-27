@@ -1,5 +1,12 @@
 //?-------------------------------------------------------
 /*
+
+
+*/
+
+//?-------------------------------------------------------
+
+/*
 6 kyu
 Count the smiley faces!
 
@@ -24,49 +31,40 @@ countSmileys([';]', ':[', ';*', ':$', ';-D']); // should return 1;
 В случае пустого массива верните 0. Вы не будете тестироваться с недопустимым вводом (ввод всегда будет массивом). 
 Порядок элементов лица (глаза, нос, рот) всегда будет одинаковым.
 */
-function countSmileys(arr) {}
+function countSmileys(arr) {
+  const trueSmiles = [':)', ':D', ';-D', ';~D', ':~)'];
+  let count = 0;
+
+  for (const el of arr) {
+    if (trueSmiles.includes(el)) count += 1;
+  }
+
+  return count;
+}
 
 // console.log(countSmileys([])); // 0
 // console.log(countSmileys([':D', ':~)', ';~D', ':)'])); // 4
-// console.log(countSmileys([':)', ':(', ':D', ':O', ':;'])); // 2
-// console.log(countSmileys([';]', ':[', ';*', ':$', ';-D'])); // 1
+// console.log(countSmileys([':~>', ';)', ';>', ';-(', ':>', ';D', ':>'])); // 2
+// console.log(countSmileys([':---)', '))', ';~~D', ';D'])); // 1
 //?-------------------------------------------------------
 /*
-Give me a Diamond
+5 kyu
+Primes in numbers
 
- *
-***
- *
- 
-  *
- ***
-*****
- ***
-  *
+Для положительного числа n > 1 найдите разложение n на простые множители.
+ Результатом будет строка следующего вида:
 
+ "(p1**n1)(p2**n2)...(pk**nk)"
+с p (i) в порядке возрастания и n (i) пустым, если n (i) равно 1.
+
+Example: n = 86240 should return "(2**5)(5)(7**2)(11)"
 */
-function diamond(n) {
-  if (n === 1) return '*\n';
-
-  const str = [];
-
-  for (let i = 1; i <= n; i += 2) {
-    if (i !== n) {
-      str.push(' '.repeat(n - i - 1) + '*'.repeat(i) + '\n');
-    } else {
-      str.push('*'.repeat(i) + '\n');
-    }
-  }
-  //! Разобраться с пробелами
-  const strReverse = [...str].reverse().slice(1);
-
-  return [...str, ...strReverse].join('');
+function primeFactors(n) {
+  //your code here
 }
-// console.log(diamond(1)); // "*\n"
-// console.log(diamond(3)); // " *\n***\n *\n"
-// console.log(diamond(5)); // "  *\n ***\n*****\n ***\n  *\n"
-// console.log(diamond(7));
+// console.log(primeFactors(7775460)); // "(2**2)(3**3)(5)(7)(11**2)(17)"
 //?-------------------------------------------------------
+
 /*
 Decipher this!
 
@@ -80,20 +78,35 @@ Decipher this!
 */
 function decipherThis(str) {
   const strArr = str.split(' ');
-  const finalArr = [];
+  const tempStrArr = [];
   let charNum = '';
+  const finalArr = [];
 
   for (let i = 0; i < strArr.length; i++) {
     let tempStr = '';
 
     charNum = String.fromCodePoint(parseInt(strArr[i]));
-    tempStr = strArr[i].match(/[\D]\w*/g);
-    finalArr.push(charNum + tempStr);
+    if (strArr[i].match(/[\D]\w*/g) == null) {
+      tempStr = '';
+    } else tempStr = strArr[i].match(/[\D]\w*/g);
+    tempStrArr.push(charNum + '' + tempStr);
   }
 
-  //! Разобраться с регулярными выражениями
+  for (let el of tempStrArr) {
+    if (el.length < 2) {
+      finalArr.push(el);
+    } else {
+      let tempChar = el[el.length - 1];
 
-  return finalArr;
+      el = el.replace(el[el.length - 1], el[1]);
+
+      el = el.replace(el[1], tempChar);
+
+      finalArr.push(el);
+    }
+  }
+
+  return tempStrArr;
 }
 
 // console.log(
@@ -101,6 +114,13 @@ function decipherThis(str) {
 // ); // 'Have a go at this and see how you do'
 // console.log(decipherThis('72olle 103doo 100ya')); // 'Hello good day'
 // console.log(decipherThis('82yade 115te 103o')); // 'Ready set go'
+
+// const str = ['eva', 'dima'];
+// for (let el of str) {
+//   el = el.replace(el[0], el[el.length - 1]);
+// }
+
+// console.log(str);
 //?-------------------------------------------------------
 /*
 Build a pile of Cubes
@@ -168,14 +188,9 @@ parts_sums(ls) -> [10037855, 9293730, 9292795, 9292388, 9291934, 9291504, 929141
 */
 function partsSums(ls) {
   const result = [];
-  //! Уменьшить сложность алгоритма
-  while (ls.length > 0) {
-    let arraySum = 0;
-    for (const el of ls) {
-      arraySum += el;
-    }
-    result.push(arraySum);
-    ls.shift();
+
+  for (let i = 0; i < ls.length; i++) {
+    result.push(ls.slice(i).reduce((acc, item) => acc + item, 0));
   }
 
   result.push(0);
@@ -256,7 +271,7 @@ function decrypt(encryptedText, n) {}
 //? ------------------------------------------------
 
 /*
-Product of consecutive Fib numbers
+5 Product of consecutive Fib numbers
 
 Числа Фибоначчи — это числа в следующей целочисленной последовательности (Fn):
 
