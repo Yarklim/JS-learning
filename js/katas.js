@@ -4229,3 +4229,113 @@ function mxdiflg(a1, a2) {
 //   )
 // ); // 13
 //?-------------------------------------------------------
+
+/*
+Decipher this!
+
+Вам дается секретное сообщение, которое необходимо расшифровать. 
+Вот что вам нужно знать, чтобы расшифровать его:
+
+Для каждого слова:
+вторая и последняя буквы меняются местами (например, Hello становится Holle)
+первая буква заменяется кодом символа (например, H становится 72)
+Примечание: специальные символы не используются, только буквы и пробелы.
+*/
+function decipherThis(str) {
+  //   const strArr = str.split(' ');
+  //   const tempStrArr = [];
+  //   let charNum = '';
+  //   const finalArr = [];
+
+  //   for (let i = 0; i < strArr.length; i++) {
+  //     let tempStr = '';
+
+  //     charNum = String.fromCodePoint(parseInt(strArr[i]));
+  //     if (strArr[i].match(/[\D]\w*/g) == null) {
+  //       tempStr = '';
+  //     } else tempStr = strArr[i].match(/[\D]\w*/g);
+  //     tempStrArr.push(charNum + '' + tempStr);
+  //   }
+
+  //   for (let el of tempStrArr) {
+  //     if (el.length < 2) {
+  //       finalArr.push(el);
+  //     } else {
+  //       const changeChar = el.split('');
+  //       let tempChar = changeChar[changeChar.length - 1];
+  //       changeChar[changeChar.length - 1] = changeChar[1];
+  //       changeChar[1] = tempChar;
+
+  //       finalArr.push(changeChar.join(''));
+  //     }
+  //   }
+
+  //   return finalArr.join(' ');
+  return str
+    .split(' ')
+    .map((w) =>
+      w
+        .replace(/^\d+/, (c) => String.fromCharCode(c))
+        .replace(/^(.)(.)(.*)(.)$/, '$1$4$3$2')
+    )
+    .join(' ');
+}
+
+console.log(
+  decipherThis('72eva 97 103o 97t 116sih 97dn 115ee 104wo 121uo 100o')
+); // 'Have a go at this and see how you do'
+console.log(decipherThis('72olle 103doo 100ya')); // 'Hello good day'
+console.log(decipherThis('82yade 115te 103o')); // 'Ready set go'
+
+//?-------------------------------------------------------
+function getCount(str) {
+  const strMatch = str.match(/[aeiou]/gi);
+
+  return strMatch ? strMatch.length : 0;
+}
+// console.log(getCount('o a kak ushakov lil vo kashu kakao')); // 13
+//?-------------------------------------------------------
+/*
+Sums of Parts
+
+Рассмотрим этот пример (массив, записанный в общем формате):
+ls = [0, 1, 3, 6, 10]
+
+Следующие его части:
+ls = [0, 1, 3, 6, 10]
+ls = [1, 3, 6, 10]
+ls = [3, 6, 10]
+ls = [6, 10]
+ls = [10]
+ls = []
+Соответствующие суммы (составлены в виде списка): [20, 20, 19, 16, 10, 0]
+
+Функция parts_sums(или ее варианты на других языках) будет принимать в качестве параметра список ls и возвращать список сумм его частей, как определено выше.
+
+Другие примеры:
+ls = [1, 2, 3, 4, 5, 6] 
+parts_sums(ls) -> [21, 20, 18, 15, 11, 6, 0]
+
+ls = [744125, 935, 407, 454, 430, 90, 144, 6710213, 889, 810, 2579358]
+parts_sums(ls) -> [10037855, 9293730, 9292795, 9292388, 9291934, 9291504, 9291414, 9291270, 2581057, 2580168, 2579358, 0]
+Ноты
+Взгляните на производительность: некоторые списки содержат тысячи элементов.
+*/
+function partsSums(ls) {
+  const result = [];
+
+  let firstSum = ls.reduce((acc, num) => acc + num, 0);
+
+  result.push(firstSum);
+
+  for (let i = 0; i < ls.length; i++) {
+    const lastEl = result[result.length - 1];
+    result.push(lastEl - ls[i]);
+  }
+
+  return result;
+}
+
+// console.log(partsSums([0, 1, 3, 6, 10])); // [20, 20, 19, 16, 10, 0]
+// console.log(partsSums([1, 2, 3, 4, 5, 6])); // [21, 20, 18, 15, 11, 6, 0]
+//? ------------------------------------------------------
