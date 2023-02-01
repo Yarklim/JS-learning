@@ -43,11 +43,14 @@ PS Ситуацию в этом ката можно сравнить с идее
 в отношении одновременного запуска нескольких процессов: https://en.wikipedia.org/wiki/Thread_pool
 */
 function queueTime(customers, n) {
-  //TODO
+  if (customers.length === 0) return 0;
+  if (n >= customers.length) return Math.max(...customers);
+  if (n === 1) return customers.reduce((acc, item) => acc + item, 0);
 }
 // console.log(queueTime([], 1)); // 0
 // console.log(queueTime([1, 2, 3, 4, 5], 100)); // 5
 // console.log(queueTime([10, 2, 3, 3], 2)); // 10
+// console.log(queueTime([10, 9, 3, 3, 8, 4], 3)); // 13
 // console.log(queueTime([5, 3, 4], 1)); // 12
 //?-------------------------------------------------------
 
@@ -60,9 +63,10 @@ Count the smiley faces!
 
 Правила улыбающегося лица:
 
-Каждый смайлик должен содержать допустимую пару глаз. Глаза могут быть отмечены как :или;
-У смайлика может быть нос, но не обязательно. Допустимые символы для носа -или~
-Каждое улыбающееся лицо должно иметь улыбающийся рот, который должен быть отмечен либо значком, )либоD
+Каждый смайлик должен содержать допустимую пару глаз. Глаза могут быть отмечены как : или ;
+У смайлика может быть нос, но не обязательно. Допустимые символы для носа - или ~
+Каждое улыбающееся лицо должно иметь улыбающийся рот, 
+который должен быть отмечен либо значком, ) либо D
 Не допускается использование дополнительных символов, кроме упомянутых.
 
 Примеры допустимых смайликов: :) :D ;-D :~)
@@ -73,24 +77,26 @@ countSmileys([':)', ';(', ';}', ':-D']);       // should return 2;
 countSmileys([';D', ':-(', ':-)', ';~)']);     // should return 3;
 countSmileys([';]', ':[', ';*', ':$', ';-D']); // should return 1;
 Примечание
-В случае пустого массива верните 0. Вы не будете тестироваться с недопустимым вводом (ввод всегда будет массивом). 
+В случае пустого массива верните 0. Вы не будете тестироваться с недопустимым вводом 
+(ввод всегда будет массивом). 
 Порядок элементов лица (глаза, нос, рот) всегда будет одинаковым.
 */
 function countSmileys(arr) {
-  const trueSmiles = [':)', ':D', ';-D', ';~D', ':~)'];
-  let count = 0;
+  const rightSymbols = [':', ';', '-', '~', ')', 'D'];
 
-  for (const el of arr) {
-    if (trueSmiles.includes(el)) count += 1;
-  }
+  const result = arr.reduce(
+    (acc, item) =>
+      acc + Number(item.split('').every((el) => rightSymbols.includes(el))),
+    0
+  );
 
-  return count;
+  return result;
 }
 
-// console.log(countSmileys([])); // 0
+// console.log(countSmileys([';D', ':-(', ':-)', ';~)'])); // 3
 // console.log(countSmileys([':D', ':~)', ';~D', ':)'])); // 4
-// console.log(countSmileys([':~>', ';)', ';>', ';-(', ':>', ';D', ':>'])); // 2
-// console.log(countSmileys([':---)', '))', ';~~D', ';D'])); // 1
+// console.log(countSmileys([':)', ':(', ':D', ':O', ':;'])); // 2!!!
+// console.log(countSmileys([';]', ':[', ';*', ':$', ';-D'])); // 1
 
 //?-------------------------------------------------------
 /*
@@ -189,20 +195,8 @@ function encrypt(text, n) {
       cryptStr1[i] = text[i];
     }
   }
-  let newStr = cryptStr1.join('') + cryptStr2.join('');
-  let count = 0;
 
-  //! Рекурсия?
-  //   while (count <= n) {
-  //     for (let j = 0; j < newStr.length; j++) {
-  //       if (j % 2 === 0) {
-  //         cryptStr2[j] = newStr[j];
-  //       } else {
-  //         cryptStr1[j] = newStr[j];
-  //       }
-  //     }
-  //     count += 1;
-  //   }
+  let newStr = cryptStr1.join('') + cryptStr2.join('');
 
   return newStr;
 }
@@ -274,7 +268,46 @@ function productFib(prod) {
 // console.log(productFib(74049690)); // [6765, 10946, true]
 //? ------------------------------------------------
 /*
+5 kyu
+Sum of Pairs
 
+Учитывая список целых чисел и одно значение суммы, верните первые два значения 
+(анализируйте слева) в порядке появления, которые в сумме образуют сумму.
+
+Если имеется две или более пар с требуемой суммой, то решением является пара, 
+второй элемент которой имеет наименьший индекс.
+
+sum_pairs([11, 3, 7, 5],         10)
+#              ^--^      3 + 7 = 10
+== [3, 7]
+
+sum_pairs([4, 3, 2, 3, 4],         6)
+#          ^-----^         4 + 2 = 6, indices: 0, 2 *
+#             ^-----^      3 + 3 = 6, indices: 1, 3
+#                ^-----^   2 + 4 = 6, indices: 2, 4
+#  * the correct answer is the pair whose second value has the smallest index
+== [4, 2]
+
+sum_pairs([0, 0, -2, 3], 2)
+#  there are no pairs of values that can be added to produce 2.
+== None/nil/undefined (Based on the language)
+
+sum_pairs([10, 5, 2, 3, 7, 5],         10)
+#              ^-----------^   5 + 5 = 10, indices: 1, 5
+#                    ^--^      3 + 7 = 10, indices: 3, 4 *
+#  * the correct answer is the pair whose second value has the smallest index
+== [3, 7]
+Отрицательные числа и повторяющиеся числа могут и будут появляться.
+
+ПРИМЕЧАНИЕ. Также будут тестироваться списки длиной более 10 000 000 элементов. 
+Убедитесь, что ваш код не истекает по тайм-ауту.
 */
-
+function sumPairs(ints, s) {
+  return [0, 0] || undefined;
+}
+// console.log(sumPairs([1, 4, 8, 7, 3, 15], 8)); // [1, 7]
+// console.log(sumPairs([1, -2, 3, 0, -6, 1], -6)); // [0, -6]
+// console.log(sumPairs([20, -13, 40], -7)); // undefined
+// console.log(sumPairs([5, 9, 13, -3], 10)); // [13, -3]
+// console.log(sumPairs([4, -2, 3, 3, 4], 8)); // [4, 4]
 //? ------------------------------------------------

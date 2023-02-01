@@ -3035,13 +3035,6 @@ let a2 = [9, 4, 4];
 // console.log(comp(a1, a2));
 //? ------------------------------------------------
 function isIsogram(str) {
-  //   return (
-  //     str.length ===
-  //     str
-  //       .toLowerCase()
-  //       .split('')
-  //       .filter((item, index, array) => array.indexOf(item) === index).length
-  //   );
   return !/(\w).*\1/i.test(str);
 }
 // console.log(isIsogram('Dermatoglyphics')); // true
@@ -4339,3 +4332,207 @@ function partsSums(ls) {
 // console.log(partsSums([0, 1, 3, 6, 10])); // [20, 20, 19, 16, 10, 0]
 // console.log(partsSums([1, 2, 3, 4, 5, 6])); // [21, 20, 18, 15, 11, 6, 0]
 //? ------------------------------------------------------
+
+/*
+34. Find First and Last Position of Element in Sorted Array
+
+Дан массив целых чисел, nums отсортированных в неубывающем порядке, 
+найти начальную и конечную позицию заданного target значения.
+
+Если target не найдено в массиве, вернуть [-1, -1].
+
+Вы должны написать алгоритм со  O(log n) сложностью выполнения.
+
+Пример 1:
+Ввод: числа = [5,7,7,8,8,10], цель = 8
+ Вывод: [3,4]
+
+Пример 2:
+Ввод: числа = [5,7,7,8,8,10], цель = 6
+ Вывод: [-1,-1]
+
+Пример 3:
+Ввод: nums = [], цель = 0
+ Вывод: [-1,-1]
+ 
+Ограничения:
+0 <= nums.length <= 105
+-109 <= nums[i] <= 109
+numsпредставляет собой неубывающий массив.
+-109 <= target <= 109
+*/
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+var searchRange = function (nums, target) {
+  return [nums.indexOf(target), nums.lastIndexOf(target)];
+};
+
+console.log(searchRange([3, 3, 3], 3)); // [0, 2]
+console.log(searchRange([5, 7, 7, 8, 8, 10], 8)); // [3, 4]
+console.log(searchRange([1], 1)); // [0, 0]
+console.log(searchRange([1, 2, 3], 8)); // [-1, -1]
+//? ==============================================
+function solve(s) {
+  const upperLetter = (s.match(/[A-Z]/g) || []).length;
+  const lowerLetter = (s.match(/[a-z]/g) || []).length;
+
+  return upperLetter > lowerLetter
+    ? s.toUpperCase()
+    : upperLetter < lowerLetter
+    ? s.toLowerCase()
+    : s.toLowerCase();
+}
+
+console.log(solve('code')); // "code"
+console.log(solve('CODe')); // "CODE"
+console.log(solve('COde')); // "code"
+console.log(solve('Code')); // "code"
+//? ------------------------------------------------
+/*
+29. Divide Two Integers
+
+Даны два целых числа dividend и divisor, разделите два целых числа без использования 
+умножения, деления и оператора mod.
+
+Целочисленное деление должно усекаться до нуля, что означает потерю дробной части. 
+Например, 8.345будет усечено до 8, и -2.7335будет усечено до -2.
+
+Верните частное после деления на dividend.divisor
+
+Примечание. Предположим, что мы имеем дело со средой, которая может хранить целые 
+числа только в диапазоне 32-битных целых чисел со знаком: . 
+Для этой задачи, если частное строго больше , то вернуть , 
+а если частное строго меньше , то вернуть .[−231, 231 − 1] 231 - 1231 - 1 -231-231
+
+Пример 1:
+Вход: делимое = 10, делитель = 3
+ Выход: 3
+ Объяснение: 10/3 = 3,33333.., которое усекается до 3.
+
+Пример 2:
+Вход: делимое = 7, делитель = -3
+ Выход: -2
+ Объяснение: 7/-3 = -2,33333.., которое усекается до -2.
+ 
+Ограничения:
+-231 <= dividend, divisor <= 231 - 1
+divisor != 0
+*/
+/**
+ * @param {number} dividend
+ * @param {number} divisor
+ * @return {number}
+ */
+var divide = function (dividend, divisor) {
+  //   let count = 0;
+
+  //   let num1 = Math.abs(dividend);
+  //   let num2 = Math.abs(divisor);
+  //   const isNegativeNum = Math.sign(dividend) !== Math.sign(divisor);
+
+  //   while (num2 <= num1) {
+  //     let multiCounter = 1;
+  //     let multiNum2 = num2;
+  //     while (true) {
+  //       const multiNum2X2 = multiNum2 + multiNum2;
+  //       if (multiNum2X2 < num1) {
+  //         multiCounter += multiCounter;
+  //         multiNum2 = multiNum2X2;
+  //       } else break;
+  //     }
+  //     num1 -= multiNum2;
+  //     count += multiCounter;
+  //   }
+
+  //   const limit = 2 ** 31 - 1;
+  //   if (count > limit) count = isNegativeNum ? limit + 1 : limit;
+  //   return isNegativeNum ? -count : count;
+
+  let dividendPositive = dividend > 0;
+  let divisorPositive = divisor > 0;
+  let count = 0;
+  if (dividend === 0) {
+    return 0;
+  } else if (divisor === 1) {
+    return dividend;
+  }
+  let max = Math.pow(2, 31);
+
+  if (dividendPositive && divisorPositive) {
+    while (dividend >= 0) {
+      count++;
+      dividend -= divisor;
+      // if(count >= max){
+      //     return max-1;
+      // }
+    }
+    count--;
+  } else if (!dividendPositive && !divisorPositive) {
+    while (dividend <= 0) {
+      count++;
+      dividend -= divisor;
+      // if(count >= max){
+      //     return max-1;
+      // }
+    }
+    count--;
+  } else if (!dividendPositive && divisorPositive) {
+    while (dividend <= 0) {
+      count--;
+      dividend += divisor;
+      // if(count <= -1-max){
+      //     return 0-max;
+      // }
+    }
+    count++;
+  } else if (dividendPositive && !divisorPositive) {
+    while (dividend >= 0) {
+      count--;
+      dividend += divisor;
+      // if(count <= -1-max){
+      //     return 0-max;
+      // }
+    }
+    count++;
+  }
+  if (count > max - 1) {
+    return max - 1;
+  }
+
+  return count;
+};
+
+// console.log(divide(10, 3)); // 3
+// console.log(divide(7, -3)); // -2
+// console.log(divide(0, 1)); // 0
+// console.log(divide(-1, -1)); // 1
+// console.log(divide(-2147483648, -1)); // 2147483647
+//? ==============================================
+/*
+22. Generate Parentheses
+
+Имея nпары скобок, напишите функцию для генерации всех комбинаций правильно 
+сформированных скобок .
+*/
+/**
+ * @param {number} n
+ * @return {string[]}
+ */
+var generateParenthesis = function (n) {
+  const result = [];
+  const createParenthesis = (str, openP, closedP) => {
+    if (str.length === n * 2) result.push(str);
+    if (openP < n) createParenthesis(`${str}(`, openP + 1, closedP);
+    if (closedP < openP) createParenthesis(`${str})`, openP, closedP + 1);
+  };
+  createParenthesis('', 0, 0);
+
+  return result;
+};
+// console.log(generateParenthesis(3)); // ["((()))","(()())","(())()","()(())","()()()"]
+// console.log(generateParenthesis(1)); // ["()"]
+// console.log(generateParenthesis(2));
+//? ==============================================
