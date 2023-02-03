@@ -4536,3 +4536,27 @@ var generateParenthesis = function (n) {
 // console.log(generateParenthesis(1)); // ["()"]
 // console.log(generateParenthesis(2));
 //? ==============================================
+function order(words) {
+  //   const map = new Map();
+
+  //   words.split(' ').forEach((el) => map.set(Number(el.match(/\d/gm)), el));
+
+  //   const mapSort = [...map].sort();
+
+  //   let str = [];
+
+  //   for (let [key, value] of mapSort) {
+  //     str.push(value);
+  //   }
+
+  //   return str.join(' ');
+  return words
+    .split(' ')
+    .sort((a, b) => {
+      return a.match(/\d/) - b.match(/\d/);
+    })
+    .join(' ');
+}
+
+console.log(order('4of Fo1r pe6ople g3ood th5e the2')); // "Fo1r the2 g3ood 4of th5e pe6ople"
+//? ==============================================

@@ -139,7 +139,11 @@ countAndSay(5) = сказать 1211 = одна 1 + одна 2 + две 1 = 1112
  * @param {number} n
  * @return {string}
  */
-var countAndSay = function (n) {};
+var countAndSay = function (n) {
+  let str = '';
+
+  for (let i = 1; i <= n; i++) {}
+};
 
 // console.log(countAndSay(4)); // 1211
 // console.log(countAndSay(5)); // 111221
@@ -221,8 +225,8 @@ var rotate = function (matrix) {
 Пример 2:
 Ввод: strs = [""]
  Вывод: [[""]]
-Пример 3:
 
+Пример 3:
 Ввод: strs = ["a"]
  Вывод: [["a"]]
  
@@ -238,38 +242,8 @@ strs[i]состоит из строчных английских букв.
  * @return {string[][]}
  */
 var groupAnagrams = function (strs) {};
-//? ==============================================
-/*
-50. Pow(x, n)
 
-Реализуйте pow(x, n) , который вычисляет xв степени n(т.е. ).xn
-
-Пример 1:
-Ввод: x = 2,00000, n = 10
- Выход: 1024,00000
-
-Пример 2:
-Вход: x = 2,10000, n = 3
- Выход: 9,26100
-
-Пример 3:
-Ввод: x = 2,00000, n = -2
- Выход: 0,25000
- Объяснение: 2 -2 = 1/2 2 = 1/4 = 0,25
- 
-Ограничения:
-
--100.0 < x < 100.0
--231 <= n <= 231-1
-nявляется целым числом.
--104 <= xn <= 104
-*/
-/**
- * @param {number} x
- * @param {number} n
- * @return {number}
- */
-var myPow = function (x, n) {};
+// console.log(groupAnagrams(['eat', 'tea', 'tan', 'ate', 'nat', 'bat']));
 //? ==============================================
 /*
 53. Maximum Subarray
