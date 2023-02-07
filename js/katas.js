@@ -4537,19 +4537,6 @@ var generateParenthesis = function (n) {
 // console.log(generateParenthesis(2));
 //? ==============================================
 function order(words) {
-  //   const map = new Map();
-
-  //   words.split(' ').forEach((el) => map.set(Number(el.match(/\d/gm)), el));
-
-  //   const mapSort = [...map].sort();
-
-  //   let str = [];
-
-  //   for (let [key, value] of mapSort) {
-  //     str.push(value);
-  //   }
-
-  //   return str.join(' ');
   return words
     .split(' ')
     .sort((a, b) => {
@@ -4560,3 +4547,60 @@ function order(words) {
 
 console.log(order('4of Fo1r pe6ople g3ood th5e the2')); // "Fo1r the2 g3ood 4of th5e pe6ople"
 //? ==============================================
+/*
+7 kyu
+Number Of Occurrences
+
+Напишите функцию, которая возвращает количество вхождений элемента в массив.
+
+Эта функция будет определена как свойство массива с помощью метода Object.defineProperty,
+который позволяет определить новый метод непосредственно на объекте (подробнее об этом вы можете найти на MDN ).
+
+Примеры
+var arr = [0, 1, 2, 2, 3];
+arr.numberOfOccurrences(0) === 1;
+arr.numberOfOccurrences(4) === 0;
+arr.numberOfOccurrences(2) === 2;
+arr.numberOfOccurrences(3) === 1;
+*/
+
+Object.defineProperty(Array.prototype, 'numberOfOccurrences', {
+  value: function numberOfOccurrences(val) {
+    return this.reduce((acc, item) => {
+      return val === item ? acc + 1 : acc;
+    }, 0);
+  },
+});
+
+//? ------------------------------------------------
+
+/*
+6 kyu
+Multiplication table
+
+Ваша задача — создать таблицу умножения N×N размера, указанного в параметре.
+
+Например, когда дано size3:
+
+1 2 3
+2 4 6
+3 6 9
+Для данного примера возвращаемое значение должно быть:
+
+[[1,2,3],[2,4,6],[3,6,9]]
+*/
+const multiplicationTable = (size) => {
+  const table = [];
+
+  for (let i = 1; i <= size; i++) {
+    let nums = Array(size)
+      .fill(1)
+      .map((item, index) => (item + index) * i);
+    table.push(nums);
+  }
+  return table;
+};
+
+// console.log(multiplicationTable(3)); // [[1, 2, 3], [2, 4, 6], [3, 6, 9]]
+
+//? ------------------------------------------------

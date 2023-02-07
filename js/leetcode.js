@@ -241,7 +241,21 @@ strs[i]состоит из строчных английских букв.
  * @param {string[]} strs
  * @return {string[][]}
  */
-var groupAnagrams = function (strs) {};
+var groupAnagrams = function (strs) {
+  const arr = [];
+
+  for (let i = 0; i < strs.length; i++) {
+    for (let j = i + 1; j < strs.length; j++) {
+      if (
+        strs[i].split('').sort().join('') === strs[j].split('').sort().join('')
+      ) {
+        arr.push([strs[i], strs[j]]);
+      }
+    }
+  }
+
+  return arr;
+};
 
 // console.log(groupAnagrams(['eat', 'tea', 'tan', 'ate', 'nat', 'bat']));
 //? ==============================================

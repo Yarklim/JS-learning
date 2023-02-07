@@ -171,58 +171,6 @@ function decrypt(encryptedText, n) {}
 //? ------------------------------------------------
 
 /*
-5 Product of consecutive Fib numbers
-
-Числа Фибоначчи — это числа в следующей целочисленной последовательности (Fn):
-
-0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, ...
-
-такие как
-
-F(n) = F(n-1) + F(n-2), где F(0) = 0 и F(1) = 1.
-
-Имея число, скажем, prod (для произведения), мы ищем два числа Фибоначчи F(n) и F(n+1), проверяя
-
-F(n) * F(n+1) = произв.
-
-Ваша функция productFib принимает целое число (prod) и возвращает массив:
-
-[F(n), F(n+1), true] or {F(n), F(n+1), 1} or (F(n), F(n+1), True)
-в зависимости от языка, если F(n) * F(n+1) = prod.
-
-Если вы не найдете два последовательных подтверждения F (n) F(n) * F(n+1) = prod, вы вернетесь
-
-[F(n), F(n+1), false] or {F(n), F(n+1), 0} or (F(n), F(n+1), False)
-F(n) является наименьшим из таких, как F(n) * F(n+1) > prod.
-
-Некоторые примеры возврата:
-(зависит от языка)
-
-productFib(714) # should return (21, 34, true), 
-                # since F(8) = 21, F(9) = 34 and 714 = 21 * 34
-
-productFib(800) # should return (34, 55, false), 
-                # since F(8) = 21, F(9) = 34, F(10) = 55 and 21 * 34 < 800 < 34 * 55
------
-productFib(714) # should return [21, 34, true], 
-productFib(800) # should return [34, 55, false], 
------
-productFib(714) # should return {21, 34, 1}, 
-productFib(800) # should return {34, 55, 0},        
------
-productFib(714) # should return {21, 34, true}, 
-productFib(800) # should return {34, 55, false}, 
-Примечание:
-Вы можете увидеть примеры для вашего языка в разделе "Образцы тестов".
-*/
-function productFib(prod) {
-  // ...
-}
-// console.log(productFib(4895)); // [55, 89, true]
-// console.log(productFib(5895)); // [89, 144, false]
-// console.log(productFib(74049690)); // [6765, 10946, true]
-//? ------------------------------------------------
-/*
 5 kyu
 Sum of Pairs
 
@@ -269,12 +217,25 @@ function sumPairs(ints, s) {
       }
     }
   }
+
+  if (arr.length === 0) return undefined;
   return arr;
 }
 // console.log(sumPairs([1, 4, 8, 7, 3, 15], 8)); // [1, 7]
 // console.log(sumPairs([1, -2, 3, 0, -6, 1], -6)); // [0, -6]
 // console.log(sumPairs([20, -13, 40], -7)); // undefined
-// console.log(sumPairs([10, 5, 2, 3, 7, 5], 10)); // [3, 7]
+// console.log(sumPairs([1, 2, 3, 4, 1, 0], 2)); // [1, 1] !!!
 // console.log(sumPairs([4, -2, 3, 3, 4], 8)); // [4, 4]
 
 //? ------------------------------------------------
+let count = 0;
+
+function id() {
+  return count++;
+}
+
+console.log(id());
+console.log(id());
+console.log(id());
+console.log(id());
+console.log(id());
