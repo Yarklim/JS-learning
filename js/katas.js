@@ -4604,3 +4604,109 @@ const multiplicationTable = (size) => {
 // console.log(multiplicationTable(3)); // [[1, 2, 3], [2, 4, 6], [3, 6, 9]]
 
 //? ------------------------------------------------
+
+/*
+6
+Build a pile of Cubes
+
+Ваша задача построить здание, которое будет состоять из n кубиков. Куб внизу будет иметь объемн 3п^3н 
+3
+ , куб выше будет иметь объем(н−1)3(п-1)^3( н−1 ) 
+3
+ и так до вершины, которая будет иметь объем 131^31 
+3
+ .
+
+Вам дан общий объем m здания. Получив m, сможете ли вы найти количество n кубиков, которое вам нужно построить?
+
+Параметром функции findNb (find_nb, find-nb, findNb, ...)будет целое число m, и вы должны вернуть целое число n, напримерн3+(н−1)3+(н−2)3+...+13знак равномп ^ 3 + (п-1) ^ 3 + (п-2) ^ 3 + ... + 1 ^ 3 = мн 
+3
+ +( н−1 ) 
+3
+ +( н−2 ) 
+3
+ +...+1 
+3
+ знак равном если такое существует или -1, если такого n нет.
+
+Примеры:
+найти Nb(1071225) --> 45
+
+найти Nb(91716553919377) --> -1
+*/
+function findNb(m) {
+  let total = 0;
+  let n = 0;
+
+  while (total < m) {
+    n += 1;
+    total += n ** 3;
+  }
+
+  return total === m ? n : -1;
+}
+
+// console.log(findNb(4183059834009)); // 2022
+// console.log(findNb(24723578342962)); // -1
+// console.log(findNb(135440716410000)); // 4824
+// console.log(findNb(40539911473216)); // 3568
+//? ------------------------------------------------------
+function duplicateEncode(word) {
+  //   let str = word.toLowerCase();
+  //   const obj = {};
+
+  //   for (let i = 0; i < str.length; i++) {
+  //     if (obj[str[i]]) {
+  //       obj[str[i]] = ')';
+  //     } else {
+  //       obj[str[i]] = '(';
+  //     }
+  //   }
+
+  //   let newStr = '';
+  //   for (let i = 0; i < str.length; i++) {
+  //     for (let el in obj) {
+  //       if (str[i] === el) {
+  //         newStr += obj[el];
+  //       }
+  //     }
+  //   }
+  //   return newStr;
+  return word
+    .toLowerCase()
+    .split('')
+    .map((item, i, array) => {
+      return array.indexOf(item) === array.lastIndexOf(item) ? '(' : ')';
+    })
+    .join('');
+}
+// console.log(duplicateEncode('din'));
+// console.log(duplicateEncode('Success')); //")())())"
+// console.log(duplicateEncode('(( @')); // "))(("
+
+//? ------------------------------------------------------
+/*
+6 kyu
+Write Number in Expanded Form
+*/
+function expandedForm(num) {
+  const arr = num.toString().split('');
+  let str = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    if (Number(arr[i]) === 0) continue;
+    if (Number(arr[i]) > 0 && i !== arr.length - 1) {
+      str.push(arr[i] + '0'.repeat(arr.length - 1 - i));
+    } else {
+      str.push(arr[i]);
+    }
+  }
+
+  return str.join(' + ');
+}
+
+// console.log(expandedForm(12));
+// console.log(expandedForm(42));
+// console.log(expandedForm(86921720)); // '80000000 + 6000000 + 900000 + 20000 + 1000 + 700 +20'
+// console.log(expandedForm(9000000)); // 9000000
+//? ------------------------------------------------

@@ -46,6 +46,30 @@ function queueTime(customers, n) {
   if (customers.length === 0) return 0;
   if (n >= customers.length) return Math.max(...customers);
   if (n === 1) return customers.reduce((acc, item) => acc + item, 0);
+
+  const cashierQueues = new Set();
+
+  for (let i = 0; i < n; i++) {
+    cashierQueues.add(i);
+  }
+
+  for (let i = 0; i < customers.length; i++) {
+    cashierQueues.add(
+      cashierQueues.indexOf(Math.min(cashierQueues)),
+      Math.min(cashierQueues) + customers[i]
+    );
+  }
+
+  return Math.max(cashierQueues);
+
+  //   const cashierQueues = [0] * n;
+
+  //   for (let i = 0; i < customers.length; i++) {
+  //     cashierQueues.sort();
+  //     cashierQueues[0] += i;
+  //   }
+
+  //   return Math.max(cashierQueues);
 }
 // console.log(queueTime([], 1)); // 0
 // console.log(queueTime([1, 2, 3, 4, 5], 100)); // 5
@@ -71,46 +95,6 @@ function primeFactors(n) {
 }
 // console.log(primeFactors(7775460)); // "(2**2)(3**3)(5)(7)(11**2)(17)"
 //?-------------------------------------------------------
-
-/*
-6
-Build a pile of Cubes
-
-Ваша задача построить здание, которое будет состоять из n кубиков. Куб внизу будет иметь объемн 3п^3н 
-3
- , куб выше будет иметь объем(н−1)3(п-1)^3( н−1 ) 
-3
- и так до вершины, которая будет иметь объем131^31 
-3
- .
-
-Вам дан общий объем m здания. Получив m, сможете ли вы найти количество n кубиков, которое вам нужно построить?
-
-Параметром функции findNb (find_nb, find-nb, findNb, ...)будет целое число m, и вы должны вернуть целое число n, напримерн3+(н−1)3+(н−2)3+...+13знак равномп ^ 3 + (п-1) ^ 3 + (п-2) ^ 3 + ... + 1 ^ 3 = мн 
-3
- +( н−1 ) 
-3
- +( н−2 ) 
-3
- +...+1 
-3
- знак равном если такое существует или -1, если такого n нет.
-
-Примеры:
-найти Nb(1071225) --> 45
-
-найти Nb(91716553919377) --> -1
-*/
-function findNb(m) {
-  // your code
-  return -1;
-}
-
-// console.log(findNb(4183059834009)); // 2022
-// console.log(findNb(24723578342962)); // -1
-// console.log(findNb(135440716410000)); // 4824
-// console.log(findNb(40539911473216)); // 3568
-//? ------------------------------------------------------
 
 /*
 6
@@ -204,38 +188,31 @@ sum_pairs([10, 5, 2, 3, 7, 5],         10)
 
 ПРИМЕЧАНИЕ. Также будут тестироваться списки длиной более 10 000 000 элементов. 
 Убедитесь, что ваш код не истекает по тайм-ауту.
+
+O(n) time | O(n) space
 */
 function sumPairs(ints, s) {
-  const arr = [];
-  for (let i = 0; i < ints.length - 1; i++) {
-    for (let j = ints.length; j > i; j--) {
-      let index2 = ints.length;
-      if (ints[i] + ints[j] === s && j < index2) {
-        index2 = j;
-        arr.push(ints[i]);
-        arr.push(ints[j]);
-      }
+  const nums = {};
+  for (const currentNum of ints) {
+    const potentialMatch = s - currentNum;
+
+    if (potentialMatch in nums) {
+      return [currentNum, potentialMatch];
+    } else {
+      nums[currentNum] = true;
     }
   }
-
-  if (arr.length === 0) return undefined;
-  return arr;
+  return [];
 }
-// console.log(sumPairs([1, 4, 8, 7, 3, 15], 8)); // [1, 7]
-// console.log(sumPairs([1, -2, 3, 0, -6, 1], -6)); // [0, -6]
-// console.log(sumPairs([20, -13, 40], -7)); // undefined
-// console.log(sumPairs([1, 2, 3, 4, 1, 0], 2)); // [1, 1] !!!
-// console.log(sumPairs([4, -2, 3, 3, 4], 8)); // [4, 4]
+console.log(sumPairs([1, 4, 8, 7, 3, 15], 8)); // [1, 7]
+console.log(sumPairs([1, -2, 3, 0, -6, 1], -6)); // [0, -6]
+console.log(sumPairs([20, -13, 40], -7)); // undefined
+console.log(sumPairs([2, 1, 3, 4, 1, 0], 2)); // [1, 1]
+console.log(sumPairs([4, -2, 3, 3, 4], 8)); // [4, 4]
 
 //? ------------------------------------------------
-let count = 0;
+/*
 
-function id() {
-  return count++;
-}
+*/
 
-console.log(id());
-console.log(id());
-console.log(id());
-console.log(id());
-console.log(id());
+//? ------------------------------------------------

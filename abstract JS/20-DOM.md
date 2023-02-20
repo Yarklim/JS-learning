@@ -97,6 +97,14 @@ element.querySelectorAll(selector);
 Возвращает псевдомассив всех элементов внутри element, удовлетворяющих CSS-селектору selector.
 Если ничего не найдено, вернет пустой массив.
 
+const listWithId = document.querySelector('#menu');
+const listWithClass = document.querySelector('.menu');
+
+const menuItemsByTagName = document.querySelectorAll("li")
+const menuItemsByClass = document.querySelectorAll(".menu-item");
+
+
+
 # Свойства и атрибуты
 Во время построения DOM-дерева, некоторые стандартные HTML-атрибуты становятся свойствами элементов. Посмотрим на несколько часто использующихся свойств.
 
@@ -105,8 +113,27 @@ checked - хранит состояние чекбокса или радиокн
 name - хранит значение, указанное в HTML-атрибуте name.
 src - путь к изображению тега <img>.
 
+//===================================================
+const message = document.querySelector("#message");
+console.log(message.value); // Default textarea message
+
+//===================================================
+const activeLink = document.querySelector(".btn.active");
+console.log(activeLink.href); // https://s.codepen.io/about
+
+//===================================================
+const image = document.querySelector(".image");
+console.log(image.src); // https://placeimg.com/640/480/animals
+image.src = 'https://placeimg.com/640/480/tech';
+
 Свойство textContent
 elem.textContent возвращает текстовый контент внутри элемента. Доступно для чтения и записи. Не зависимо что будет передано в textContent, данные всегда будут записаны как текст.
+
+const text = document.querySelector(".article-text");
+console.log(text.textContent); // text inside p.article-text
+
+const title = document.querySelector(".article-title");
+title.textContent = 'Welcome to Bahamas!';
 
 
 Свойство classList
@@ -117,6 +144,30 @@ elem.classList.add(cls) - добавляет класс cls в список кл
 elem.classList.remove(cls) - удаляет класс cls из списка классов элемента.
 elem.classList.toggle(cls) - если класса cls нет, то добавляет его, если есть, наоборот удаляет.
 elem.classList.replace(oldClass, newClass) - заменяет существующий класс oldClass на указанный newClass.
+
+const text = document.querySelector("#paragraph");
+
+console.log(text.classList); // ["text", "red", "big", value: "text red big"]
+
+console.log(text.classList.contains("red")); // true
+
+text.classList.remove("big");
+console.log(text.classList); // ["text", "red", value: "text red"]
+
+text.classList.add("new-class");
+console.log(text.classList); // ["text", "red", "new-class", value: "text red new-class"]
+
+// Can add multiple classes
+text.classList.add("a", "b", "c");
+console.log(text.classList);
+
+text.classList.toggle("is-hidden"); // will add is-hidden class
+text.classList.toggle("is-hidden"); // will remove is-hidden class
+
+// classList has a forEach method
+text.classList.forEach(cls => {
+  console.log(cls); // text, red, new-class
+});
 
 Свойство style
 Используется для чтения и изменения инлайновых стилей. Возвращает объект CSSStyleDeclaration, который содержит список всех свойств, определенных только во встроенных стилях элемента, а не весь CSS. При записи свойства записываются в camelCase, то есть background-color превращается в element.style.backgroundColor и т. д.
@@ -141,6 +192,18 @@ elem.setAttribute(name, value) - устанавливает атрибут.
 elem.removeAttribute(name) - удаляет атрибут.
 elem.attributes - свойство, возвращает объект всех атрибутов элемента.
 
+const image = document.querySelector(".image");
+
+console.log(image.attributes); // NamedNodeMap {0: class, 1: src, 2: alt, length: 3}
+
+console.log(image.hasAttribute("src")); // true
+
+console.log(image.getAttribute("alt")); // "Lake and clouds"
+
+image.setAttribute("alt", "Amazing nature");
+
+console.log(image.getAttribute("alt")); // Amazing nature
+
 data-атрибуты
 Позволяют добавить тегу произвольный атрибут и получить его значение в JavaScript. Эту возможность используют для того, чтобы упростить написание кода, например связать данные и разметку по уникальному идентификатору, указать тип действия кнопки и т. п.
 
@@ -154,6 +217,19 @@ console.log(saveBtn.dataset.action); // "save"
 
 const closeBtn = document.querySelector('button[data-action="close"]');
 console.log(closeBtn.dataset.action); // "close"
+
+========================
+const saveBtn = document.querySelector('.editor button[data-action="save"]');
+const closeBtn = document.querySelector('.editor button[data-action="close"]');
+
+console.log(saveBtn.dataset.action); //save
+console.log(closeBtn.dataset.action); //close
+
+const dishes = document.querySelectorAll(".dishes > li");
+dishes.forEach((dish) => {
+  console.log(dish.dataset.id);
+});
+
 
 # Создание и удаление элементов
 DOM API позволяет не только выбирать или изменять уже существующие, но и удалять, а так же создавать новые элементы, после чего добавлять их в документ.
@@ -183,12 +259,39 @@ element.after(el1, el2, ...) - добавляет один или несколь
 element.before(el1, el2, ...) - добавляет один или несколько элементов перед элементом element.
 Во всех этих методах, el это элементы или строки, в любом сочетании и количестве. Строки добавляются как текстовые узлы.
 
+---------------------------------
+const list = document.querySelector(".usernames");
+
+// Adds an item to the end of the list
+const lastItem = document.createElement("li");
+lastItem.textContent = "Poly";
+list.append(lastItem);
+
+// Adds an item to the beginning of the list
+const firstItem = document.createElement("li");
+firstItem.textContent = "Ajax";
+list.prepend(firstItem);
+
+// Adds a title before the list
+const title = document.createElement("h2");
+title.textContent = "USERNAMES";
+list.before(title);
+
+// Adds a paragraph after the list
+const text = document.createElement("p");
+text.textContent =
+  "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum tenetur assumenda fugiat maxime, soluta aspernatur quasi nihil in asperiores ad distinctio illo et debitis error iure voluptate numquam maiores nisi. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum tenetur assumenda fugiat maxime, soluta aspernatur quasi nihil in asperiores ad distinctio illo et debitis error iure voluptate numquam maiores nisi!";
+list.after(text);
+-----------------------------
 
 ИНТЕРЕСНО
 Если элемент для вставки уже находится в DOM, то он изымается из своего старого места и добавляется в новое. Отсюда вытекает правило - один и тот же элемент не может быть одновременно в двух местах.
 
 Удаление
 elem.remove();
+
+const text = document.querySelector('.text');
+text.remove();
 
 Для того, чтобы удалить элемент используется метод remove(). Он вызывается на самом элементе elem, который необходимо удалить
 
@@ -216,10 +319,23 @@ Reflow - происходит когда изменения затрагиваю
 Чтение
 Свойство innerHTML хранит содержимое элемента, включая теги, в виде строки. Возвращаемое значение это всегда валидный HTML-код.
 
+const article = document.querySelector(".article");
+console.log(article.innerHTML);
+
+const title = document.querySelector(".article .title");
+console.log(title.innerHTML);
+
+const text = document.querySelector(".article .text");
+console.log(text.innerHTML);
+
+const link = document.querySelector(".article .link");
+console.log(link.innerHTML);
 
 Изменение
 Свойство innerHTML доступно как для чтения, так и для записи. Если записать в него строку с HTML-тегами, то браузер во время парсинга строки превратит их в валидные элементы и добавит в DOM-дерево.
 
+const title = document.querySelector(".article .title");
+title.innerHTML = 'New and <span class="accent">improved</span> title';
 
 ИНТЕРЕСНО
 Если в свойство innerHTML записать пустую строку, то содержимое элемента будет очищено. Это простой и быстрый способ удаления всего содержимого.
@@ -228,10 +344,30 @@ Reflow - происходит когда изменения затрагиваю
 
 Однотипная (шаблонная) разметка создается из массива данных. Приём заключается в переборе этого массива и составлении одной строки с HTML тегами, которую потом записываем в innerHTML элемента.
 
+const technologies = ["HTML", "CSS", "JavaScript", "React", "Node"];
+const list = document.querySelector(".list");
+
+const markup = technologies
+  .map((technology) => `<li class="list-item">${technology}</li>`)
+  .join("");
+
+// Check the console, you'll see a single string with HTML tags
+console.log(markup);
+
+// Adding all the markup in one operation
+list.innerHTML = markup;
+
 
 Добавление
 Изменение elem.innerHTML полностью удалит и пересоздаст всех потомков элемента elem. Если элемент изначально не пустой, то будут дополнительные затраты на сериализацию уже существующей разметки, а это плохо.
 
+const article = document.querySelector(".article");
+const htmlString = `<p class="article-text">Nullam quis ante. Vestibulum dapibus nunc ac augue. In consectetuer turpis ut velit.</p>
+   <a class="link" href="#">Read more...</a>`;
+
+// Replace += with = operator. See the difference? 
+// Article title is lost because we overwrite element content.
+article.innerHTML += htmlString;
 
 ИНТЕРЕСНО
 Используйте свойство elem.innerHTML для добавления только в случае когда элемент elem пустой или если надо полностью заменить его содержимое.
@@ -248,6 +384,16 @@ inserAdjacentHTML method
 "afterbegin" - внутри elem, перед всеми детьми
 "beforeend" - внутри elem, после всех детей
 "afterend" - после elem
+
+const list = document.querySelector(".list");
+
+const newTechnologies = ["React", "TypeScript", "Node.js"];
+const markup = newTechnologies
+  .map((technology) => `<li class="list-item new">${technology}</li>`)
+  .join("");
+
+list.insertAdjacentHTML("beforeend", markup);
+list.insertAdjacentHTML("beforebegin", "<h2>Popular technologies</h2>");
 
 ИНТЕРЕСНО
 "beforebegin" и "afterend" работают только в том случае, если elem уже находится в DOM-дереве.
@@ -266,7 +412,7 @@ inserAdjacentHTML method
 
 Атрибут defer указывает браузеру загружать файл скрипта в фоновом режиме, паралельно обработке HTML-документа и построению DOM. Скрипт будет выполнен только после того как HTML-документ обработан, а DOM построен. Такие скрипты не блокируют построение DOM-дерева и гарантированно выполняются в том порядке, в котором указаны в HTML-документе.
 
-defer attribute
+s
 Атрибут async
 <script async src="path-to-script.js"></script>
 

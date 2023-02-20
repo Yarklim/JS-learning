@@ -1,13 +1,14 @@
 "Hello".charAt(4) 				=> o
 "Hello".concat("", "world") 	=> Hello world
 "Hello".startsWith("H") 		=> true
-"Hello".endsWith("o") 			=> o
+"Hello".endsWith("o") 			=> true
 "Hello".includes("x)			=> false
 "Hello".indexOf("l")			=> 2
 "Hello".lastIndexOf("l")		=> 3
 "Hello".match(/[A-Z]/g)			=> ['H'] // Метод match() возвращает получившиеся совпадения при сопоставлении строки с регулярным выражением.
 "Hello".padStart(6, "?")		=> ?Hello
 "Hello".padEnd(6, "?")			=> Hello?
+parseInt('FXX123', 16)			=> 15 (преобразование из 16-тиричной системы в 10-тиричную)... (2 - из двоичной системы и т.д.)
 "Hello".repeat(3)				=> HelloHelloHello
 "Hello".replace("llo", "y")		=> Hey
 "Hello".search("e")				=> 1
