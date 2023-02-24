@@ -120,35 +120,56 @@ encrypt("01234", 3)  =>  "13024"  ->  "32104"  ->  "20314"
 положительным, вернуть первый аргумент без изменений.
 */
 function encrypt(text, n) {
-  const cryptStr1 = [];
-  const cryptStr2 = [];
-
   if (text === '' || n <= 0) {
     return text;
   }
-
-  for (let i = 0; i < text.length; i++) {
-    if (i % 2 === 0) {
-      cryptStr2[i] = text[i];
-    } else {
-      cryptStr1[i] = text[i];
+  let result = text;
+  for (let i = 0; i < n; i++) {
+    let odd = '';
+    let even = '';
+    for (let j = 0; j < result.length; j++) {
+      if (j % 2 === 0) {
+        even += result[j];
+      } else {
+        odd += result[j];
+      }
     }
+    result = odd + even;
   }
-
-  let newStr = cryptStr1.join('') + cryptStr2.join('');
-
-  return newStr;
+  return result;
 }
 
-function decrypt(encryptedText, n) {}
+function decrypt(encryptedText, n) {
+  if (encryptedText === '' || n <= 0) {
+    return encryptedText;
+  }
+  let result = encryptedText;
+  for (let i = 0; i < n; i++) {
+    let halfLen = Math.floor(result.length / 2);
+    let odd = result.slice(0, halfLen + (result.length % 2));
+    let even = result.slice(halfLen + (result.length % 2));
+    result = '';
+    for (let j = 0; j < halfLen + (result.length % 2); j++) {
+      result += odd[j] + (even[j] || '');
+    }
+  }
+  return result;
+}
 
 // console.log(encrypt('012345', 2)); // "135024"  ->  "304152"
+// console.log(encrypt('This is a test!', 0)); // "This is a test!"
 // console.log(encrypt('This is a test!', 1)); // "hsi  etTi sats!"
 // console.log(encrypt('This is a test!', 2)); // "s eT ashi tist!"
-// console.log(encrypt("This kata is very interesting!", 1)); // "hskt svr neetn!Ti aai eyitrsig"
+// console.log(encrypt('This is a test!', 3)); // " Tah itse sits!"
+// console.log(encrypt('This is a test!', 4)); // "This is a test!"
+// console.log(encrypt('This is a test!', -1)); // "This is a test!"
+// console.log(encrypt('This kata is very interesting!', 1)); // "hskt svr neetn!Ti aai eyitrsig"
 
+// console.log(decrypt('This is a test!', 0)); // "This is a test!"
+// console.log(decrypt('hsi  etTi sats!', 1)); // "This is a test!"
+// console.log(decrypt('s eT ashi tist!', 2)); // "This is a test!"
 // console.log(decrypt(' Tah itse sits!', 3)); // "This is a test!"
-// console.log(decrypt("This is a test!", 4)); // "This is a test!"
+// console.log(decrypt('This is a test!', 4)); // "This is a test!"
 // console.log(decrypt('This is a test!', -1)); // "This is a test!"
 // console.log(decrypt('hskt svr neetn!Ti aai eyitrsig', 1)); // "This kata is very interesting!"
 
@@ -204,11 +225,11 @@ function sumPairs(ints, s) {
   }
   return [];
 }
-console.log(sumPairs([1, 4, 8, 7, 3, 15], 8)); // [1, 7]
-console.log(sumPairs([1, -2, 3, 0, -6, 1], -6)); // [0, -6]
-console.log(sumPairs([20, -13, 40], -7)); // undefined
-console.log(sumPairs([2, 1, 3, 4, 1, 0], 2)); // [1, 1]
-console.log(sumPairs([4, -2, 3, 3, 4], 8)); // [4, 4]
+// console.log(sumPairs([1, 4, 8, 7, 3, 15], 8)); // [1, 7]
+// console.log(sumPairs([1, -2, 3, 0, -6, 1], -6)); // [0, -6]
+// console.log(sumPairs([20, -13, 40], -7)); // undefined
+// console.log(sumPairs([2, 1, 3, 4, 1, 0], 2)); // [1, 1]
+// console.log(sumPairs([4, -2, 3, 3, 4], 8)); // [4, 4]
 
 //? ------------------------------------------------
 /*
