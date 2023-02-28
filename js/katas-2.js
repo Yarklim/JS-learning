@@ -127,6 +127,7 @@ function encrypt(text, n) {
   for (let i = 0; i < n; i++) {
     let odd = '';
     let even = '';
+
     for (let j = 0; j < result.length; j++) {
       if (j % 2 === 0) {
         even += result[j];
@@ -144,6 +145,7 @@ function decrypt(encryptedText, n) {
     return encryptedText;
   }
   let result = encryptedText;
+
   for (let i = 0; i < n; i++) {
     let halfLen = Math.floor(result.length / 2);
     let odd = result.slice(0, halfLen + (result.length % 2));
