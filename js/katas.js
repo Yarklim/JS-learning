@@ -4710,3 +4710,28 @@ function expandedForm(num) {
 // console.log(expandedForm(86921720)); // '80000000 + 6000000 + 900000 + 20000 + 1000 + 700 +20'
 // console.log(expandedForm(9000000)); // 9000000
 //? ------------------------------------------------
+/*
+5 kyu
+Extract the domain name from a URL
+
+Напишите функцию, которая при задании URL-адреса в виде строки анализирует только доменное имя 
+и возвращает его в виде строки. Например:
+
+* url = "http://github.com/carbonfive/raygun" -> domain name = "github"
+* url = "http://www.zombie-bites.com"         -> domain name = "zombie-bites"
+* url = "https://www.cnet.com"                -> domain name = cnet"
+*/
+function domainName(url) {
+  //   url = url.replace('https://', '');
+  //   url = url.replace('http://', '');
+  //   url = url.replace('www.', '');
+  //   return url.split('.')[0];
+
+  return url.match(/(?:http(?:s)?:\/\/)?(?:w{3}\.)?([^\.]+)/i)[1];
+}
+console.log(domainName('http://google.co.jp'));
+console.log(domainName('https://github.com/carbonfive/raygun'));
+console.log(domainName('http://www.zombie-bites.com'));
+console.log(domainName('www.xakep.ru'));
+
+//? ------------------------------------------------
