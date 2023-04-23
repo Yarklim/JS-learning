@@ -4735,3 +4735,322 @@ console.log(domainName('http://www.zombie-bites.com'));
 console.log(domainName('www.xakep.ru'));
 
 //? ------------------------------------------------
+/*
+Is the string uppercase?
+
+Создайте метод, чтобы увидеть, является ли строка ВСЕМИ ЗАГЛАВНЫМИ.
+
+Примеры (ввод -> вывод)
+"c" -> False
+"C" -> True
+"hello I AM DONALD" -> False
+"HELLO I AM DONALD" -> True
+"ACSKLDFJSgSKLDFJSKLDFJ" -> False
+"ACSKLDFJSGSKLDFJSKLDFJ" -> True
+В этом Ката говорится, что строка написана ВСЕ ЗАГЛАВНЫМИ буквами, если она не содержит строчных букв, 
+поэтому любая строка, вообще не содержащая букв, тривиально считается написанной ВСЕМИ ЗАГЛАВНЫМИ буквами.
+*/
+String.prototype.isUpperCase = function () {
+  if (this == '') return true;
+  return this == this.toUpperCase();
+};
+
+// console.log('$%&'.isUpperCase());
+//? ---------------------------------------------------
+function titleCase(title, minorWords) {
+  if (title.length === 0) return '';
+  if (title && minorWords) {
+    const minorArr = minorWords.toLowerCase().split(' ');
+    return title
+      .toLowerCase()
+      .split(' ')
+      .map((item, index, array) => {
+        if (
+          (array.indexOf(item) === 0 && array.indexOf(item)) === index ||
+          !minorArr.includes(item)
+        ) {
+          return item[0].toUpperCase() + item.slice(1);
+        } else {
+          return item;
+        }
+      })
+      .join(' ');
+  } else {
+    return title
+      .toLowerCase()
+      .split(' ')
+      .map((item, index, array) => item[0].toUpperCase() + item.slice(1))
+      .join(' ');
+  }
+}
+
+// console.log(titleCase('')); // ''
+// console.log(titleCase('a clash of KINGS', 'a an the of')); // 'A Clash of Kings'
+// console.log(titleCase('THE WIND IN THE WILLOWS', 'The In')); // 'The Wind in the Willows'
+// console.log(titleCase('the quick brown fox')); // 'The Quick Brown Fox'
+
+//? ----------------------------------------------------
+/*
+6 kyu
+The Supermarket Queue
+
+В супермаркете очередь к кассам самообслуживания. 
+Ваша задача — написать функцию для расчета общего времени, 
+необходимого всем покупателям для оформления заказа!
+
+вход
+клиенты: массив положительных целых чисел, представляющих очередь. 
+Каждое целое число представляет покупателя, а его значение — количество времени, 
+которое ему требуется для оформления заказа.
+n: положительное целое число, количество касс.
+вывод
+Функция должна возвращать целое число — общее требуемое время.
+
+Важный
+Пожалуйста, ознакомьтесь с примерами и пояснениями ниже, 
+чтобы убедиться, что вы правильно поняли задачу :)
+
+Примеры
+queueTime([5,3,4], 1)
+should return 12
+because when there is 1 till, the total time is just the sum of the times
+
+queueTime([10,2,3,3], 2)
+should return 10
+because here n=2 and the 2nd, 3rd, and 4th people in the 
+queue finish before the 1st person has finished.
+
+queueTime([2,3,10], 2)
+should return 12
+Уточнения
+Существует только ОДНА очередь, обслуживающая множество касс, и
+Порядок очереди НИКОГДА не меняется, и
+Первый человек в очереди (то есть первый элемент в массиве/списке) переходит к кассе, 
+как только она освобождается.
+NB Вы должны исходить из того, что все входные данные теста будут действительными, 
+как указано выше.
+
+PS Ситуацию в этом ката можно сравнить с идеей пула потоков, более связанной с информатикой, 
+в отношении одновременного запуска нескольких процессов: https://en.wikipedia.org/wiki/Thread_pool
+*/
+function queueTime(customers, n) {
+  if (customers.length === 0) return 0;
+  if (n >= customers.length) return Math.max(...customers);
+  if (n === 1) return customers.reduce((acc, item) => acc + item, 0);
+
+  const cashierQueues = [];
+
+  for (let i = 0; i < n; i++) {
+    cashierQueues.push(customers[i]);
+  }
+
+  for (let i = cashierQueues.length; i < customers.length; i++) {
+    cashierQueues.sort((a, b) => a - b);
+    cashierQueues[0] += customers[i];
+  }
+
+  return Math.max(...cashierQueues);
+}
+// console.log(queueTime([], 1)); // 0
+// console.log(queueTime([1, 2, 3, 4, 5], 100)); // 5
+// console.log(queueTime([2, 2, 3, 3, 4, 4], 2)); // 9
+// console.log(queueTime([10, 9, 3, 3, 8, 4], 3)); // 13
+// console.log(queueTime([2, 3, 10, 2], 2)); // 12
+//?-------------------------------------------------------
+/*
+5 kyu Best travel
+
+Джон и Мэри хотят проехать между несколькими городами A, B, C... 
+У Мэри есть на листе бумаги список расстояний между этими городами. ls = [50, 55, 57, 58, 60]. 
+Джон устал водить машину и говорит Мэри, что не хочет больше водить машину t = 174 milesи будет посещать только 3города.
+
+Какие расстояния и, следовательно, какие города они выберут, чтобы сумма расстояний была как можно больше, 
+чтобы понравиться Мэри и Джону?
+
+Пример:
+Имея список lsи 3 города для посещения, они могут сделать выбор между: 
+[50,55,57],[50,55,58],[50,55,60],[50,57,58],[50,57,60],[50,58,60],[55,57,58],[55,57,60],[55,58,60],[57,58,60].
+
+Тогда суммы расстояний равны: 162, 163, 165, 165, 167, 168, 170, 172, 173, 175.
+
+174Тогда максимально возможная сумма с учетом лимита , 173а расстояние до 3 соответствующих городов равно [55, 58, 60].
+
+Функция chooseBestSum(или choose_best_sumили ... в зависимости от языка) будет принимать в качестве параметров 
+t (максимальная сумма расстояний, целое число >= 0), k(количество городов для посещения, k >= 1) и 
+ls (список расстояний, все расстояния положительные или нулевые целые числа и этот список содержит хотя бы один элемент).
+Функция возвращает «наилучшую» сумму, т. е. максимально возможную сумму расстояний, 
+k меньшую или равную заданному пределу t, если эта сумма существует, или в противном случае null
+
+Примеры:
+ts = [50, 55, 56, 57, 58] choose_best_sum(163, 3, ts) -> 163
+
+xs = [50] choose_best_sum(163, 3, xs) -> nulll 
+
+ys = [91, 74, 73, 85, 73, 81, 87] choose_best_sum(230, 3, ys) -> 228
+
+Примечания:
+старайтесь не изменять входной список расстоянийls
+в некоторых языках этот "список" на самом деле является строкой (см. Примеры тестов).
+*/
+
+function chooseBestSum(t, k, ls) {
+  // Начинаем с проверки списка расстояний на минимально необходимое количество элементов
+  if (ls.length < k) {
+    return null;
+  }
+
+  let bestSum = null;
+
+  // Рекурсивная функция, которая перебирает все возможные комбинации городов и находит ту, которая наиболее близка к максимальному расстоянию t
+  function findBestSum(sum, count, index) {
+    // Если мы посетили необходимое количество городов (k), то проверяем сумму расстояний и обновляем наилучшую сумму, если это возможно
+    if (count === k) {
+      if (sum <= t && (bestSum === null || sum > bestSum)) {
+        bestSum = sum;
+      }
+      return;
+    }
+
+    // Если мы достигли конца списка расстояний, то возвращаем null
+    if (index === ls.length) {
+      return;
+    }
+
+    // Рекурсивно вызываем функцию с добавлением следующего расстояния и переходом к следующему городу
+    findBestSum(sum + ls[index], count + 1, index + 1);
+
+    // Рекурсивно вызываем функцию без добавления следующего расстояния и переходом к следующему городу
+    findBestSum(sum, count, index + 1);
+  }
+
+  // Вызываем рекурсивную функцию с начальными значениями
+  findBestSum(0, 0, 0);
+
+  return bestSum;
+
+  // var 1
+  //   let arr = [];
+  //   function rec(sum, ar, n) {
+  //     if (n == 0) {
+  //       arr.push(sum);
+  //     } else {
+  //       for (let i = 0; i < ar.length; i++) {
+  //         rec(sum + ar[i], ar.slice(i + 1), n - 1);
+  //       }
+  //     }
+  //   }
+
+  //   rec(0, ls, k);
+
+  //   var sol = arr.sort((a, b) => b - a).find((a) => a <= t);
+  //   return typeof sol === 'undefined' ? null : sol;
+
+  // var 2
+  // ls
+  // .reduce(
+  //   (pre, val) => [
+  //     ...pre,
+  //     ...pre.filter((val) => val.length < k).map((v) => [...v, val]),
+  //   ],
+  //   [[]]
+  // )
+  // .filter((val) => val.length === k)
+  // .map((val) => val.reduce((pre, val) => pre + val))
+  // .filter((val) => val <= t)
+  // .sort((a, b) => a - b)
+  // .pop() || null;
+}
+
+// console.log(chooseBestSum(163, 3, [50, 55, 56, 57, 58])); // 163
+// console.log(chooseBestSum(163, 3, [50])); // null
+// console.log(chooseBestSum(230, 3, [91, 74, 73, 85, 73, 81, 87])); // 228
+//? ------------------------------------------------
+/*
+5 kyu
+Primes in numbers
+
+Для положительного числа n > 1 найдите разложение n на простые множители.
+ Результатом будет строка следующего вида:
+
+ "(p1**n1)(p2**n2)...(pk**nk)"
+с p (i) в порядке возрастания и n (i) пустым, если n (i) равно 1.
+
+Example: n = 86240 should return "(2**5)(5)(7**2)(11)"
+*/
+function primeFactors(n) {
+  //   const obj = {};
+  //   let number = 0;
+
+  //   let i = 2;
+  //   while (i <= n) {
+  //     if (n % i === 0) {
+  //       obj[i] = obj[i] + 1 || 1;
+  //       n /= i;
+  //     } else {
+  //       i++;
+  //     }
+  //   }
+  //   if (n > 1) {
+  //     number = n;
+  //   }
+
+  //   const keyValue = Object.entries(obj);
+
+  //   let strResult = keyValue.map((el) => {
+  //     if (el[1] > 1) {
+  //       return `(${el[0]}**${el[1]})`;
+  //     } else {
+  //       return `(${el[0]})`;
+  //     }
+  //   });
+
+  // 	return number === 0 ? strResult.join('') : strResult.join('') + `(${number})`;
+
+  // var !
+  for (var s = '', d = 2; n > 1; d++) {
+    for (var k = 0; n % d == 0; k++, n /= d);
+    s += k ? (k == 1 ? `(${d})` : `(${d}**${k})`) : '';
+  }
+  return s;
+}
+// console.log(primeFactors(121)); // "(2**5)(5)(7**2)(11)"
+// console.log(primeFactors(7775460)); // "(2**2)(3**3)(5)(7)(11**2)(17)"
+//?-------------------------------------------------------
+function dirReduc(arr) {
+  const stack = []; // создаем пустой стек
+  const opposite = {
+    // объект для определения противоположного направления
+    NORTH: 'SOUTH',
+    EAST: 'WEST',
+    SOUTH: 'NORTH',
+    WEST: 'EAST',
+  };
+
+  for (let i = 0; i < arr.length; i++) {
+    const direction = arr[i];
+    const lastDirection = stack[stack.length - 1]; // получаем последний добавленный элемент в стек
+
+    if (opposite[direction] === lastDirection) {
+      stack.pop(); // удаляем последний элемент из стека, если он противоположен текущему направлению
+    } else {
+      stack.push(direction); // добавляем текущее направление в стек
+    }
+  }
+
+  return stack;
+}
+
+// console.log(
+//   dirReduc([
+//     'NORTH',
+//     'SOUTH',
+//     'SOUTH',
+//     'EAST',
+//     'WEST',
+//     'NORTH',
+//     'WEST',
+//     'SOUTH',
+//   ])
+// ); // [WEST, SOUTH]
+// console.log(dirReduc(['NORTH', 'WEST', 'SOUTH', 'EAST'])); // ["NORTH", "WEST", "SOUTH", "EAST"]
+// console.log(dirReduc(['NORTH', 'SOUTH', 'EAST', 'WEST', 'EAST', 'WEST'])); // []

@@ -139,11 +139,7 @@ countAndSay(5) = сказать 1211 = одна 1 + одна 2 + две 1 = 1112
  * @param {number} n
  * @return {string}
  */
-var countAndSay = function (n) {
-  let str = '';
-
-  for (let i = 1; i <= n; i++) {}
-};
+var countAndSay = function (n) {};
 
 // console.log(countAndSay(4)); // 1211
 // console.log(countAndSay(5)); // 111221
@@ -257,7 +253,8 @@ var groupAnagrams = function (strs) {
   return arr;
 };
 
-// console.log(groupAnagrams(['eat', 'tea', 'tan', 'ate', 'nat', 'bat']));
+console.log(groupAnagrams(['eat', 'tea', 'tan', 'ate', 'nat', 'bat']));
+console.log(groupAnagrams('a'));
 //? ==============================================
 /*
 53. Maximum Subarray

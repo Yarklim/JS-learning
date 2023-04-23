@@ -1,102 +1,5 @@
 //?-------------------------------------------------------
 /*
-6 kyu
-The Supermarket Queue
-
-В супермаркете очередь к кассам самообслуживания. 
-Ваша задача — написать функцию для расчета общего времени, 
-необходимого всем покупателям для оформления заказа!
-
-вход
-клиенты: массив положительных целых чисел, представляющих очередь. 
-Каждое целое число представляет покупателя, а его значение — количество времени, 
-которое ему требуется для оформления заказа.
-n: положительное целое число, количество касс.
-вывод
-Функция должна возвращать целое число — общее требуемое время.
-
-Важный
-Пожалуйста, ознакомьтесь с примерами и пояснениями ниже, 
-чтобы убедиться, что вы правильно поняли задачу :)
-
-Примеры
-queueTime([5,3,4], 1)
-should return 12
-because when there is 1 till, the total time is just the sum of the times
-
-queueTime([10,2,3,3], 2)
-should return 10
-because here n=2 and the 2nd, 3rd, and 4th people in the 
-queue finish before the 1st person has finished.
-
-queueTime([2,3,10], 2)
-should return 12
-Уточнения
-Существует только ОДНА очередь, обслуживающая множество касс, и
-Порядок очереди НИКОГДА не меняется, и
-Первый человек в очереди (то есть первый элемент в массиве/списке) переходит к кассе, 
-как только она освобождается.
-NB Вы должны исходить из того, что все входные данные теста будут действительными, 
-как указано выше.
-
-PS Ситуацию в этом ката можно сравнить с идеей пула потоков, более связанной с информатикой, 
-в отношении одновременного запуска нескольких процессов: https://en.wikipedia.org/wiki/Thread_pool
-*/
-function queueTime(customers, n) {
-  if (customers.length === 0) return 0;
-  if (n >= customers.length) return Math.max(...customers);
-  if (n === 1) return customers.reduce((acc, item) => acc + item, 0);
-
-  const cashierQueues = new Set();
-
-  for (let i = 0; i < n; i++) {
-    cashierQueues.add(i);
-  }
-
-  for (let i = 0; i < customers.length; i++) {
-    cashierQueues.add(
-      cashierQueues.indexOf(Math.min(cashierQueues)),
-      Math.min(cashierQueues) + customers[i]
-    );
-  }
-
-  return Math.max(cashierQueues);
-
-  //   const cashierQueues = [0] * n;
-
-  //   for (let i = 0; i < customers.length; i++) {
-  //     cashierQueues.sort();
-  //     cashierQueues[0] += i;
-  //   }
-
-  //   return Math.max(cashierQueues);
-}
-// console.log(queueTime([], 1)); // 0
-// console.log(queueTime([1, 2, 3, 4, 5], 100)); // 5
-// console.log(queueTime([10, 2, 3, 3], 2)); // 10
-// console.log(queueTime([10, 9, 3, 3, 8, 4], 3)); // 13
-// console.log(queueTime([5, 3, 4], 1)); // 12
-//?-------------------------------------------------------
-
-/*
-5 kyu
-Primes in numbers
-
-Для положительного числа n > 1 найдите разложение n на простые множители.
- Результатом будет строка следующего вида:
-
- "(p1**n1)(p2**n2)...(pk**nk)"
-с p (i) в порядке возрастания и n (i) пустым, если n (i) равно 1.
-
-Example: n = 86240 should return "(2**5)(5)(7**2)(11)"
-*/
-function primeFactors(n) {
-  //your code here
-}
-// console.log(primeFactors(7775460)); // "(2**2)(3**3)(5)(7)(11**2)(17)"
-//?-------------------------------------------------------
-
-/*
 6
 Simple Encryption #1 - Alternating Split
 
@@ -177,65 +80,115 @@ function decrypt(encryptedText, n) {
 
 //? ------------------------------------------------
 
-/*
-5 kyu
-Sum of Pairs
+const str = 'fjd3I R9';
+const str2 = 'DSJKHD23';
+const REGEXP = str2.match(/[A-z + \d + \S]/g);
 
-Учитывая список целых чисел и одно значение суммы, верните первые два значения 
-(анализируйте слева) в порядке появления, которые в сумме образуют сумму.
-
-Если имеется две или более пар с требуемой суммой, то решением является пара, 
-второй элемент которой имеет наименьший индекс.
-
-sum_pairs([11, 3, 7, 5],         10)
-#              ^--^      3 + 7 = 10
-== [3, 7]
-
-sum_pairs([4, 3, 2, 3, 4],         6)
-#          ^-----^         4 + 2 = 6, indices: 0, 2 *
-#             ^-----^      3 + 3 = 6, indices: 1, 3
-#                ^-----^   2 + 4 = 6, indices: 2, 4
-#  * the correct answer is the pair whose second value has the smallest index
-== [4, 2]
-
-sum_pairs([0, 0, -2, 3], 2)
-#  there are no pairs of values that can be added to produce 2.
-== None/nil/undefined (Based on the language)
-
-sum_pairs([10, 5, 2, 3, 7, 5],         10)
-#              ^-----------^   5 + 5 = 10, indices: 1, 5
-#                    ^--^      3 + 7 = 10, indices: 3, 4 *
-#  * the correct answer is the pair whose second value has the smallest index
-== [3, 7]
-Отрицательные числа и повторяющиеся числа могут и будут появляться.
-
-ПРИМЕЧАНИЕ. Также будут тестироваться списки длиной более 10 000 000 элементов. 
-Убедитесь, что ваш код не истекает по тайм-ауту.
-
-O(n) time | O(n) space
-*/
-function sumPairs(ints, s) {
-  const nums = {};
-  for (const currentNum of ints) {
-    const potentialMatch = s - currentNum;
-
-    if (potentialMatch in nums) {
-      return [currentNum, potentialMatch];
-    } else {
-      nums[currentNum] = true;
-    }
-  }
-  return [];
-}
-// console.log(sumPairs([1, 4, 8, 7, 3, 15], 8)); // [1, 7]
-// console.log(sumPairs([1, -2, 3, 0, -6, 1], -6)); // [0, -6]
-// console.log(sumPairs([20, -13, 40], -7)); // undefined
-// console.log(sumPairs([2, 1, 3, 4, 1, 0], 2)); // [1, 1]
-// console.log(sumPairs([4, -2, 3, 3, 4], 8)); // [4, 4]
+// console.log(REGEXP);
 
 //? ------------------------------------------------
 /*
+7 kyu
+Recursion 101
 
+В этом Ката вам будут даны два положительных целых числа a, b и ваша задача будет состоять 
+в том, чтобы применить следующие операции:
+
+i) If a = 0 or b = 0, return [a,b]. Otherwise, go to step (ii);
+ii) If a ≥ 2*b, set a = a - 2*b, and repeat step (i). Otherwise, go to step (iii);
+iii) If b ≥ 2*a, set b = b - 2*a, and repeat step (i). Otherwise, return [a,b].
+a и b оба будут ниже 10E8.
 */
 
-//? ---------------------------------------------------
+function solve(a, b) {}
+
+// console.log(solve(6, 19)); // [6,7]
+// console.log(solve(2, 1)); // [0, 1]
+// console.log(solve(22, 5)); // [0, 1]
+// console.log(solve(2, 10)); // [2, 2]
+
+//? ------------------------------------------------
+/*
+8 kyu
+Simple validation of a username with regex
+Напишите простое регулярное выражение для проверки имени пользователя. Допустимые символы:
+строчные буквы,
+числа,
+нижнее подчеркивание
+Длина должна быть от 4 до 16 символов (включая оба).
+*/
+function validateUsr(username) {
+  const res = /[a-z]?(\d*)?(\_*)/g.test(username);
+  return res;
+}
+
+// console.log(validateUsr('asddsa')); // true
+// console.log(validateUsr('Hasd_12assssssasasasasasaasasasasas')); // false
+// console.log(validateUsr('asd43_34')); // true
+
+//? ------------------------------------------------
+/*
+6 kyu
+A Rule of Divisibility by 13
+
+«Правило делимости — это сокращенный способ определения, делится ли заданное целое число 
+на фиксированный делитель без выполнения деления, обычно путем проверки его цифр».
+
+Когда вы делите последовательные степени на, 10вы 13получаете следующие остатки от целочисленных делений:
+
+1, 10, 9, 12, 3, 4потому что:
+
+10 ^ 0 ->  1 (mod 13)
+10 ^ 1 -> 10 (mod 13)
+10 ^ 2 ->  9 (mod 13)
+10 ^ 3 -> 12 (mod 13)
+10 ^ 4 ->  3 (mod 13)
+10 ^ 5 ->  4 (mod 13)
+
+Затем весь узор повторяется. Отсюда следующий метод:
+
+Умножить
+
+самая правая цифра числа с самой левой цифрой в последовательности, показанной выше,
+вторая самая правая цифра со второй самой левой цифрой числа в последовательности.
+Цикл продолжается, и вы суммируете все эти продукты. Повторяйте этот процесс, 
+пока последовательность сумм не станет стационарной .
+
+Пример:
+Какой остаток при 1234567делении на 13?
+
+7      6     5      4     3     2     1  (digits of 1234567 from the right)
+×      ×     ×      ×     ×     ×     ×  (multiplication)
+1     10     9     12     3     4     1  (the repeating sequence)
+Следовательно, следуя методу, мы получаем:
+
+ 7×1 + 6×10 + 5×9 + 4×12 + 3×3 + 2×4 + 1×1 = 178
+
+Повторяем процесс с числом 178:
+
+8x1 + 7x10 + 1x9 = 87
+
+и снова с 87:
+
+7x1 + 8x10 = 87
+
+С этого момента последовательность является стационарной (мы всегда получаем 87), 
+а остаток от 1234567by 13такой же, как остаток от 87by 13(т.е. 9).
+
+Задача:
+Вызовите thirtфункцию, которая обрабатывает эту последовательность операций над целым числом n (>=0). 
+thirt вернет стационарный номер.
+
+thirt(1234567)вычисляет 178, затем 87, затем 87 и возвращает 87.
+
+thirt(321)вычисляет 48, 48 и возвращает48
+*/
+function thirt(n) {
+  // your code
+}
+
+// console.log(thirt(8529)); // 79
+// console.log(thirt(85299258)); // 31
+// console.log(thirt(1111111111)); // 71
+// console.log(thirt(987654321)); // 30
+//? ------------------------------------------------------------
