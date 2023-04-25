@@ -177,7 +177,7 @@ var permute = function (nums) {};
 /*
 48. Rotate Image
 
-Вам дано n x n2D matrix изображение, поверните изображение на 90 градусов 
+Вам дано n x n 2D matrix изображение, поверните изображение на 90 градусов 
 (по часовой стрелке).
 
 Вы должны повернуть изображение на месте , что означает, что вы должны изменить 
@@ -238,23 +238,24 @@ strs[i]состоит из строчных английских букв.
  * @return {string[][]}
  */
 var groupAnagrams = function (strs) {
-  const arr = [];
+  if (strs.length <= 1) return strs;
 
-  for (let i = 0; i < strs.length; i++) {
-    for (let j = i + 1; j < strs.length; j++) {
-      if (
-        strs[i].split('').sort().join('') === strs[j].split('').sort().join('')
-      ) {
-        arr.push([strs[i], strs[j]]);
-      }
+  const sortLetters = strs.map((el) => el.split('').sort().join('')).sort();
+  const obj = {};
+
+  for (let i = 0; i < sortLetters.length; i++) {
+    obj[sortLetters[i]] = [sortLetters[i]];
+    if (sortLetters[i] === sortLetters[i + 1]) {
+      obj[sortLetters[i]].push(sortLetters[i]);
     }
   }
 
-  return arr;
+  return obj;
 };
 
-console.log(groupAnagrams(['eat', 'tea', 'tan', 'ate', 'nat', 'bat']));
-console.log(groupAnagrams('a'));
+// console.log(groupAnagrams(['eat', 'tea', 'tan', 'ate', 'nat', 'bat']));
+// console.log(groupAnagrams(['a']));
+
 //? ==============================================
 /*
 53. Maximum Subarray
@@ -1032,43 +1033,6 @@ var isPalindrome = function (s) {};
 
 //? ==============================================
 /*
-136. Single Number
-
-Учитывая непустой  массив целых чисел nums, каждый элемент 
-встречается дважды , кроме одного. Найди ту единственную.
-
-Вы должны реализовать решение с линейной сложностью времени
-выполнения и использовать только постоянное дополнительное 
-пространство.
-
-Пример 1:
-Ввод: числа = [2,2,1]
- Вывод: 1
-
-Пример 2:
-Ввод: числа = [4,1,2,1,2]
- Вывод: 4
-
-Пример 3:
-Ввод: число = [1]
- Вывод: 1 
-
-Ограничения:
-1 <= nums.length <= 3 * 104
--3 * 104 <= nums[i] <= 3 * 104
-Каждый элемент в массиве появляется дважды, за исключением одного элемента, который появляется только один раз.
-*/
-/**
- * @param {number[]} nums
- * @return {number}
- */
-var singleNumber = function (nums) {};
-// console.log(singleNumber([2, 2, 1]));
-// console.log(singleNumber([4, 1, 2, 1, 2]));
-// console.log(singleNumber([1]));
-
-//? ==============================================
-/*
 141. Linked List Cycle
 
 Учитывая head, заголовок связанного списка, определите, 
@@ -1169,7 +1133,7 @@ var preorderTraversal = function (root) {};
 /*
 145. Binary Tree Postorder Traversal
 
-Учитывая rootбинарное дерево, вернуть обратный порядок значений 
+Учитывая root бинарное дерево, вернуть обратный порядок значений 
 его узлов . 
 
 Пример 1:

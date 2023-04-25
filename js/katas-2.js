@@ -100,7 +100,9 @@ iii) If b ≥ 2*a, set b = b - 2*a, and repeat step (i). Otherwise, retu
 a и b оба будут ниже 10E8.
 */
 
-function solve(a, b) {}
+function solve(a, b) {
+  if (a === 0 || b === 0) return [a, b];
+}
 
 // console.log(solve(6, 19)); // [6,7]
 // console.log(solve(2, 1)); // [0, 1]
@@ -192,3 +194,13 @@ function thirt(n) {
 // console.log(thirt(1111111111)); // 71
 // console.log(thirt(987654321)); // 30
 //? ------------------------------------------------------------
+let value = 0;
+let i = 0;
+
+function rec(n) {
+  i++;
+  if (i > n) return;
+  return 1 + rec(n - 1);
+}
+console.log(rec(15));
+// console.log(value);
