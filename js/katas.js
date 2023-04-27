@@ -5054,3 +5054,103 @@ function dirReduc(arr) {
 // ); // [WEST, SOUTH]
 // console.log(dirReduc(['NORTH', 'WEST', 'SOUTH', 'EAST'])); // ["NORTH", "WEST", "SOUTH", "EAST"]
 // console.log(dirReduc(['NORTH', 'SOUTH', 'EAST', 'WEST', 'EAST', 'WEST'])); // []
+//? -----------------------------------------------------
+/*
+6 kyu
+Help the bookseller !
+
+У продавца есть много книг, классифицированных по 26 категориям, обозначенным A, B, ... Z. 
+Каждая книга имеет код cиз 3, 4, 5 или более символов. Первый символ кода — заглавная буква, 
+определяющая категорию книги .
+
+В номенклатуре книготорговца cза каждым кодом следует пробел и положительное целое число n (int n >= 0), 
+которое указывает количество книг с этим кодом на складе.
+
+Например, выдержка из номенклатуры может быть:
+
+L = {"ABART 20", "CDXEF 50", "BKWRK 25", "BTSQZ 89", "DRTYM 60"}.
+or
+L = ["ABART 20", "CDXEF 50", "BKWRK 25", "BTSQZ 89", "DRTYM 60"] or ....
+Вам будет предоставлен список товаров (например: L) и список категорий заглавными буквами, например:
+
+M = {"A", "B", "C", "W"} 
+or
+M = ["A", "B", "C", "W"] or ...
+и ваша задача — найти все книги L с кодами, принадлежащими каждой категории M, 
+и просуммировать их количество по каждой категории.
+
+Для списков L и M примера вы должны вернуть строку (в Haskell/Clojure/Racket/Prolog список пар):
+
+(A : 20) - (B : 114) - (C : 50) - (W : 0)
+где A, B, C, W — категории, 20 — сумма уникальной книги категории A, 114 — сумма, 
+соответствующая «BKWRK» и «BTSQZ», 50 — соответствующая «CDXEF» и 0 — категория «W». так как нет кода, 
+начинающегося с W.
+
+Если L или M пусты, возвращается строка ""(вместо этого Clojure/Racket/Prolog должны возвращать 
+пустой массив/список).
+
+Примечания:
+В результате коды и их значения идут в том же порядке, что и в M.
+*/
+function stockList(listOfArt, listOfCat) {
+  if (listOfArt.length === 0 || listOfCat.length === 0) return '';
+
+  const objCategories = {};
+
+  for (const el of listOfArt) {
+    objCategories[el.split(' ')[0][0]] =
+      objCategories[el.split(' ')[0][0]] + Number(el.split(' ')[1]) ||
+      Number(el.split(' ')[1]);
+  }
+
+  let result = '';
+  const res = '(A : 0) - (B : 1290) - (C : 515) - (D : 600)';
+
+  for (const el of listOfCat) {
+    if (Object.keys(objCategories).includes(el)) {
+      result += `(${el} : ${objCategories[el]}) - `;
+    } else {
+      result += `(${el} : 0) - `;
+    }
+  }
+
+  return result.slice(0, -3);
+
+  // var 2
+  // 	if (!listOfArt.length || !listOfCat.length) return '';
+  //   return listOfCat
+  //     .map((w) => {
+  //       const s = listOfArt.reduce(
+  //         (a, b) => a + (b.charAt(0) === w ? +b.split(' ')[1] : 0),
+  //         0
+  //       );
+  //       return `(${w} : ${s})`;
+  //     })
+  //     .join(' - ');
+
+  // var 3
+  // listOfArt.length
+  // ? listOfCat
+  //     .map(
+  //       (val) =>
+  //         `(${val} : ${listOfArt.reduce(
+  //           (pre, v) => pre + (v[0] === val) * v.split(` `)[1],
+  //           0
+  //         )})`
+  //     )
+  //     .join(` - `)
+  // : ``;
+}
+
+// console.log(
+//   stockList(
+//     ['BBAR 150', 'CDXE 515', 'BKWR 250', 'BTSQ 890', 'DRTY 600'],
+//     ['A', 'B', 'C', 'D']
+//   )
+// ); // "(A : 0) - (B : 1290) - (C : 515) - (D : 600)"
+// console.log(
+//   stockList(
+//     ['ABAR 200', 'CDXE 500', 'BKWR 250', 'BTSQ 890', 'DRTY 600'],
+//     ['A', 'B']
+//   )
+// ); // "(A : 200) - (B : 1140)"
