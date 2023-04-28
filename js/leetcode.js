@@ -238,23 +238,35 @@ strs[i]состоит из строчных английских букв.
  * @return {string[][]}
  */
 var groupAnagrams = function (strs) {
-  if (strs.length <= 1) return strs;
+  //   if (strs.length <= 1) return [strs];
 
-  const sortLetters = strs.map((el) => el.split('').sort().join('')).sort();
-  const obj = {};
+  //   const sortSet = new Set(strs.map((el) => el.split('').sort().join('')));
+  //   const obj = {};
 
-  for (let i = 0; i < sortLetters.length; i++) {
-    obj[sortLetters[i]] = [sortLetters[i]];
-    if (sortLetters[i] === sortLetters[i + 1]) {
-      obj[sortLetters[i]].push(sortLetters[i]);
-    }
+  //   for (let item of sortSet) {
+  //     obj[item] = [];
+  //   }
+
+  //   for (let i = 0; i < strs.length; i++) {
+  //     if (sortSet.has(strs[i].split('').sort().join(''))) {
+  //       obj[strs[i].split('').sort().join('')].push(strs[i]);
+  //     }
+  //   }
+
+  // 	return Object.values(obj);
+
+  let map = {};
+
+  for (let str of strs) {
+    let s = str.split('').sort().join('');
+    if (!map[s]) map[s] = [];
+    map[s].push(str);
   }
-
-  return obj;
+  return Object.values(map);
 };
 
-// console.log(groupAnagrams(['eat', 'tea', 'tan', 'ate', 'nat', 'bat']));
-// console.log(groupAnagrams(['a']));
+console.log(groupAnagrams(['eat', 'tea', 'tan', 'ate', 'nat', 'bat']));
+console.log(groupAnagrams(['a']));
 
 //? ==============================================
 /*
