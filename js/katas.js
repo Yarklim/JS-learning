@@ -4729,10 +4729,10 @@ function domainName(url) {
 
   return url.match(/(?:http(?:s)?:\/\/)?(?:w{3}\.)?([^\.]+)/i)[1];
 }
-console.log(domainName('http://google.co.jp'));
-console.log(domainName('https://github.com/carbonfive/raygun'));
-console.log(domainName('http://www.zombie-bites.com'));
-console.log(domainName('www.xakep.ru'));
+// console.log(domainName('http://google.co.jp'));
+// console.log(domainName('https://github.com/carbonfive/raygun'));
+// console.log(domainName('http://www.zombie-bites.com'));
+// console.log(domainName('www.xakep.ru'));
 
 //? ------------------------------------------------
 /*
@@ -5154,3 +5154,42 @@ function stockList(listOfArt, listOfCat) {
 //     ['A', 'B']
 //   )
 // ); // "(A : 200) - (B : 1140)"
+//? ------------------------------------------------------------
+/*
+5 kyu
+Maximum subarray sum
+
+Задача о максимальной сумме подмассива состоит в нахождении максимальной суммы 
+непрерывной подпоследовательности в массиве целых чисел:
+
+maxSequence([-2, 1, -3, 4, -1, 2, 1, -5, 4]) should be 6: [4, -1, 2, 1]
+Простой случай — это когда массив состоит только из положительных чисел, 
+а максимальная сумма — это сумма всего массива. 
+Если массив состоит только из отрицательных чисел, вместо этого верните 0.
+
+Пустой массив считается имеющим нулевую наибольшую сумму. 
+Обратите внимание, что пустой массив также является допустимым подмассивом.
+*/
+var maxSequence = function (arr) {
+  if (arr.length === 0) return 0;
+
+  let prevSum = 0;
+  let curentSum = 0;
+
+  for (let i = 0; i < arr.length - 1; i++) {
+    curentSum = arr[i];
+    for (let j = i + 1; j < arr.length; j++) {
+      curentSum += arr[j];
+      if (curentSum > prevSum) {
+        prevSum = curentSum;
+      }
+    }
+  }
+
+  return prevSum;
+};
+
+// console.log(maxSequence([-2, 1, -3, 4, -1, 2, 1, -5, 4])); // 6
+// console.log(maxSequence([])); // 0
+// console.log(maxSequence([-1, -2, -3])); // 0
+//? ------------------------------------------------------
