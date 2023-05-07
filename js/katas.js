@@ -5193,3 +5193,231 @@ var maxSequence = function (arr) {
 // console.log(maxSequence([])); // 0
 // console.log(maxSequence([-1, -2, -3])); // 0
 //? ------------------------------------------------------
+function remove(s, n) {
+  //   let countExlamation = 0;
+  //   let newString = '';
+
+  //   for (let i = 0; i < s.length; i++) {
+  //     if (s[i] === '!') {
+  //       countExlamation += 1;
+  //       if (countExlamation <= n) continue;
+  //     }
+  //     newString += s[i];
+  //   }
+
+  // 	return newString;
+
+  return n > 0 ? remove(s.replace('!', ''), n - 1) : s;
+}
+// console.log(remove('!!!Hi !!hi!!! !hi', 1)); // "!!Hi !!hi!!! !hi"
+// console.log(remove('!!!Hi !!hi!!! !hi', 5)); // "Hi hi!!! !hi"
+//? -------------------------------------------------------
+/*
+49. Group Anagrams
+
+Учитывая массив строк strs, сгруппируйте анаграммы вместе. 
+Вы можете вернуть ответ в любом порядке .
+
+Анаграмма — это слово или фраза, образованная путем перестановки букв другого слова 
+или фразы, обычно с использованием всех исходных букв ровно один раз.
+
+Пример 1:
+Ввод: strs = ["eat","tea","tan","ate","nat","bat"]
+ Вывод: [["bat"],["nat","tan"],["ate","eat","tea"]]
+
+Пример 2:
+Ввод: strs = [""]
+ Вывод: [[""]]
+
+Пример 3:
+Ввод: strs = ["a"]
+ Вывод: [["a"]]
+ 
+
+Ограничения:
+
+1 <= strs.length <= 104
+0 <= strs[i].length <= 100
+strs[i]состоит из строчных английских букв.
+*/
+/**
+ * @param {string[]} strs
+ * @return {string[][]}
+ */
+var groupAnagrams = function (strs) {
+  //   if (strs.length <= 1) return [strs];
+
+  //   const sortSet = new Set(strs.map((el) => el.split('').sort().join('')));
+  //   const obj = {};
+
+  //   for (let item of sortSet) {
+  //     obj[item] = [];
+  //   }
+
+  //   for (let i = 0; i < strs.length; i++) {
+  //     if (sortSet.has(strs[i].split('').sort().join(''))) {
+  //       obj[strs[i].split('').sort().join('')].push(strs[i]);
+  //     }
+  //   }
+
+  // return Object.values(obj);
+
+  let map = {};
+
+  for (let str of strs) {
+    let s = str.split('').sort().join('');
+    if (!map[s]) map[s] = [];
+    map[s].push(str);
+  }
+  return Object.values(map);
+};
+
+// console.log(groupAnagrams(['eat', 'tea', 'tan', 'ate', 'nat', 'bat']));
+// console.log(groupAnagrams(['a']));
+
+//? ==============================================
+// primes numbers from chatGPT
+function isPrime(number) {
+  if (number <= 1) return false;
+  for (let i = 2; i <= Math.sqrt(number); i++) {
+    if (number % i === 0) return false;
+  }
+  return true;
+}
+
+function findPrimes(start, end) {
+  const primes = [];
+  for (let i = start; i <= end; i++) {
+    if (isPrime(i)) {
+      primes.push(i);
+    }
+  }
+  return primes;
+}
+
+// console.log(findPrimes(100, 110)); // [ 101, 103, 107, 109 ]
+//? -----------------------------------------------
+/*
+5 kyu
+Gap in Primes
+
+Простые числа расположены неравномерно. Например, от 2до 3пробел 1. От 3до 5разрыв 2. От 7до 11это 4. Между 2 и 50 у нас есть следующие пары простых чисел с 2 пробелами: 3-5, 5-7, 11-13, 17-19, 29-31, 41-43
+
+Промежуток между простыми числами длины n – это серия из n-1 последовательных составных чисел между двумя последовательными простыми числами (см. http://mathworld.wolfram.com/PrimeGaps.html ).
+
+Напишем функцию gap с параметрами:
+
+g(целое число >= 2), что указывает на искомый пробел
+
+m(целое число > 2), что дает начало поиска (m включительно)
+
+n(целое число >= m), которое дает конец поиска (n включительно)
+
+В приведенном выше примере gap(2, 3, 50)будет возвращена [3, 5] or (3, 5) or {3, 5}первая пара от 3 до 50 с разрывом в 2.
+
+Таким образом, эта функция должна возвращать первую пару двух простых чисел, разделенных промежутком gмежду пределами m, nесли эти числа существуют, в противном случае `nil или null или None или Nothing (или... в зависимости от языка).
+
+In such a case (no pair of prime numbers with a gap of `g`)
+In C: return [0, 0]
+In C++, Lua, COBOL: return `{0, 0}`. 
+In F#: return `[||]`. 
+In Kotlin, Dart and Prolog: return `[]`.
+In Pascal: return Type TGap (0, 0).
+Примеры:
+- gap(2, 5, 7) --> [5, 7] or (5, 7) or {5, 7}
+
+gap(2, 5, 5) --> nil. In C++ {0, 0}. In F# [||]. In Kotlin, Dart and Prolog return []`
+
+gap(4, 130, 200) --> [163, 167] or (163, 167) or {163, 167}
+
+([193, 197] тоже такие 4-разрядные простые числа между 130 и 200, но это не первая пара)
+
+gap(6,100,110) --> nil or {0, 0} or ...: между 100 и 110 у нас есть, 101, 103, 107, 109но 101-107это не 6-пробел, потому что 103между ними и 103-109не 6-пробел, потому что между ними 107.
+
+Вы можете увидеть больше примеров возврата в Sample Tests.
+
+Примечание для перехода
+Для Go: ожидается нулевой срез, когда между m и n нет промежутка. Пример: пробел(11,30000,100000) --> ноль
+*/
+function gap(g, m, n) {
+  let primeNum = 0;
+  for (let i = m; i <= n; i++) {
+    if (isPrime(i)) {
+      if (i - primeNum === g) {
+        return [primeNum, i];
+      }
+      primeNum = i;
+    }
+  }
+  return null;
+}
+
+function isPrime(num) {
+  if (num < 2) {
+    return false;
+  }
+  for (let i = 2; i <= Math.sqrt(num); i++) {
+    if (num % i === 0) {
+      return false;
+    }
+  }
+  return true;
+}
+
+// console.log(gap(2, 100, 110)); // [101, 103]
+// console.log(gap(6, 100, 110)); // null
+// console.log(gap(8, 300, 400)); // [359, 367]
+//? ----------------------------------------------------------
+function solve(s) {
+  const consonant = s.replace(/[aeiou]/gi, '-');
+
+  return Math.max(
+    ...consonant
+      .split('-')
+      .map((el) =>
+        el
+          .split('')
+          .reduce((sum, letter) => sum + (letter.charCodeAt() - 96), 0)
+      )
+  );
+}
+// console.log(solve('mischtschenkoana')); // 57
+//? -----------------------------------------------------
+const data1 = [
+  1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0,
+  1, 0, 1, 0, 1, 0,
+];
+function dataReverse(data) {
+  //   const objBytes = {};
+  //   let count = 1;
+  //   for (let i = 0; i < data.length; i++) {
+  //     if (!objBytes[count]) objBytes[count] = [];
+  //     objBytes[count].push(data[i]);
+  //     if (objBytes[count].length === 8) {
+  //       count += 1;
+  //     }
+  //   }
+
+  // 	return Object.values(objBytes).reverse().flat(1);
+
+  const result = [];
+
+  while (data.length) {
+    result.push(...data.splice(-8));
+  }
+
+  return result;
+}
+// console.log(dataReverse(data1)); // [1,0,1,0,1,0,1,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1]
+//? ---------------------------------------------------------------
+function toBinary(n) {
+  let num = n;
+  let binary = (num % 2).toString();
+  for (; num > 1; ) {
+    num = parseInt(num / 2);
+    binary = (num % 2) + binary;
+  }
+  return Number(binary);
+}
+
+// console.log(toBinary(5)); // 101

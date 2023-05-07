@@ -43,33 +43,45 @@ function encrypt(text, n) {
   return result;
 }
 
+// function decrypt(encryptedText, n) {
+//   if (encryptedText === '' || n <= 0) {
+//     return encryptedText;
+//   }
+//   let result = encryptedText;
+
+//   for (let i = 0; i < n; i++) {
+//     let halfLen = Math.floor(result.length / 2);
+//     let odd = result.slice(0, halfLen + (result.length % 2));
+//     let even = result.slice(halfLen + (result.length % 2));
+//     result = '';
+//     let len = halfLen + (even.length % 2);
+//     for (let j = 0; j < len; j++) {
+//       result += odd[j] + (even[j] || '');
+//     }
+//   }
+//   return result;
+// }
 function decrypt(encryptedText, n) {
   if (encryptedText === '' || n <= 0) {
     return encryptedText;
   }
   let result = encryptedText;
-
   for (let i = 0; i < n; i++) {
-    let halfLen = Math.floor(result.length / 2);
-    let odd = result.slice(0, halfLen + (result.length % 2));
-    let even = result.slice(halfLen + (result.length % 2));
-    result = '';
-    for (let j = 0; j < halfLen + (result.length % 2); j++) {
-      result += odd[j] + (even[j] || '');
+    let odd = '';
+    let even = '';
+
+    for (let j = 0; j < result.length; j++) {
+      if (j % 2 !== 0) {
+        even += result[j];
+      } else {
+        odd += result[j];
+      }
     }
+    result = even + odd;
   }
   return result;
 }
-
-// console.log(encrypt('012345', 2)); // "135024"  ->  "304152"
-// console.log(encrypt('This is a test!', 0)); // "This is a test!"
-// console.log(encrypt('This is a test!', 1)); // "hsi  etTi sats!"
-// console.log(encrypt('This is a test!', 2)); // "s eT ashi tist!"
-// console.log(encrypt('This is a test!', 3)); // " Tah itse sits!"
-// console.log(encrypt('This is a test!', 4)); // "This is a test!"
-// console.log(encrypt('This is a test!', -1)); // "This is a test!"
-// console.log(encrypt('This kata is very interesting!', 1)); // "hskt svr neetn!Ti aai eyitrsig"
-
+// console.log(decrypt('304152', 2)); // "012345"
 // console.log(decrypt('This is a test!', 0)); // "This is a test!"
 // console.log(decrypt('hsi  etTi sats!', 1)); // "This is a test!"
 // console.log(decrypt('s eT ashi tist!', 2)); // "This is a test!"
@@ -77,6 +89,15 @@ function decrypt(encryptedText, n) {
 // console.log(decrypt('This is a test!', 4)); // "This is a test!"
 // console.log(decrypt('This is a test!', -1)); // "This is a test!"
 // console.log(decrypt('hskt svr neetn!Ti aai eyitrsig', 1)); // "This kata is very interesting!"
+
+// console.log(encrypt('012345', 2)); // "304152"
+// console.log(encrypt('This is a test!', 0)); // "This is a test!"
+// console.log(encrypt('This is a test!', 1)); // "hsi  etTi sats!"
+// console.log(encrypt('This is a test!', 2)); // "s eT ashi tist!"
+// console.log(encrypt('This is a test!', 3)); // " Tah itse sits!"
+// console.log(encrypt('This is a test!', 4)); // "This is a test!"
+// console.log(encrypt('This is a test!', -1)); // "This is a test!"
+// console.log(encrypt('This kata is very interesting!', 1)); // "hskt svr neetn!Ti aai eyitrsig"
 
 //? ------------------------------------------------
 
@@ -174,9 +195,9 @@ function thirt(n) {
 /*
 6 kyu
 Reverse or rotate?
-Вход представляет собой строку strцифр. 
+Вход представляет собой строку str цифр. 
 Разрежьте строку на куски (кусок здесь — это подстрока исходной строки) 
-размера sz(игнорируйте последний кусок, если его размер меньше sz).
+размера sz (игнорируйте последний кусок, если его размер меньше sz).
 
 Если блок представляет собой целое число, например, сумма кубов его цифр делится на 2, 
 переверните этот блок; в противном случае поверните его влево на одну позицию. 
@@ -184,8 +205,8 @@ Reverse or rotate?
 
 Если
 
-szis <= 0or if stris emptyreturn ""
-szбольше (>), чем длина strневозможно взять кусок размера, szследовательно, вернуть "".
+szis <= 0or if str is empty return ""
+sz больше (>), чем длина str невозможно взять кусок размера, sz следовательно, вернуть "".
 Примеры:
 revrot("123456987654", 6) --> "234561876549"
 revrot("123456987653", 6) --> "234561356789"
@@ -210,7 +231,87 @@ function revrot(str, sz) {
 // console.log(revrot('123456987654', 6)); // "234561876549"
 // console.log(revrot('664438769', 8)); // "67834466"
 //? -----------------------------------------------------
-function findShort(s) {
-  return Math.min(...s.split(' ').map((el) => el.length));
+/*
+4 kyu
+Strings Mix
+
+Имея две строки s1 и s2, мы хотим визуализировать, насколько они различаются. 
+Мы будем учитывать только строчные буквы (от a до z). 
+Сначала давайте подсчитаем частоту каждой строчной буквы в s1 и s2.
+
+s1 = "A aaaa bb c"
+
+s2 = "& aaa bbb c d"
+
+s1 has 4 'a', 2 'b', 1 'c'
+
+s2 has 3 'a', 3 'b', 1 'c', 1 'd'
+
+Таким образом, максимум для «a» в s1 и s2 равен 4 из s1; максимум для «b» равен 3 из s2. 
+В дальнейшем мы не будем рассматривать буквы, максимальное количество которых меньше 
+или равно 1.
+
+Мы можем резюмировать различия между s1 и s2 в следующей строке: 
+"1:aaaa/2:bbb" где 1 in 1:aaaa означает строку s1 и aaaa потому, что максимум для a равен 4. 
+Таким же образом 2:bbb обозначается строка s2 и bbb потому что максимум для bравен 3.
+
+Задача состоит в том, чтобы создать строку, в которой каждая строчная буква s1 или s2 
+встречается столько раз, сколько ее максимум, если этот максимум строго больше 1 ; 
+перед этими буквами будет стоять номер строки, в которой они появляются, 
+с их максимальным значением и :. Если максимум находится как в s1, так и в s2, 
+префикс равен =:.
+
+В результате подстроки (например, подстрока 2:nnnnn или 1:hhh; она содержит префикс) 
+будут располагаться в порядке убывания их длины, а при одинаковой длине — 
+в возрастающем лексикографическом порядке (буквы и цифры — более точно отсортированы 
+по кодовой точке); различные группы будут разделены символом '/'. 
+
+
+Надеюсь, другие примеры могут прояснить это.
+
+s1 = "my&friend&Paul has heavy hats! &"
+s2 = "my friend John has many many friends &"
+mix(s1, s2) --> "2:nnnnn/1:aaaa/1:hhh/2:mmm/2:yyy/2:dd/2:ff/2:ii/2:rr/=:ee/=:ss"
+
+s1 = "mmmmm m nnnnn y&friend&Paul has heavy hats! &"
+s2 = "my frie n d Joh n has ma n y ma n y frie n ds n&"
+mix(s1, s2) --> "1:mmmmmm/=:nnnnnn/1:aaaa/1:hhh/2:yyy/2:dd/2:ff/2:ii/2:rr/=:ee/=:ss"
+
+s1="Are the kids at home? aaaaa fffff"
+s2="Yes they are here! aaaaa fffff"
+mix(s1, s2) --> "=:aaaaaa/2:eeeee/=:fffff/1:tt/2:rr/=:hh"
+*/
+
+function mix(s1, s2) {
+  if (s1 === s2) return '';
+  const arrS1 = s1.match(/[a-z]/g).sort();
+  const arrS2 = s2.match(/[a-z]/g).sort();
+
+  const objS1 = {};
+  const objS2 = {};
+
+  for (let letter of arrS1) {
+    if (!objS1[letter]) objS1[letter] = 0;
+    objS1[letter] += 1;
+  }
+
+  for (let letter of arrS2) {
+    if (!objS2[letter]) objS2[letter] = 0;
+    objS2[letter] += 1;
+  }
+
+  const letters1 = Object.entries(objS1)
+    .filter((el) => el[1] > 1)
+    .sort((a, b) => b[1] - a[1]);
+
+  const letters2 = Object.entries(objS2)
+    .filter((el) => el[1] > 1)
+    .sort((a, b) => b[1] - a[1]);
+
+  return letters2;
 }
-console.log(findShort('bitcoin take over the world maybe who knows perhaps'));
+
+// console.log(mix('Are they here', 'yes, they are here')); // "2:eeeee/2:yy/=:hh/=:rr"
+// console.log(mix('A generation must confront the looming ', 'codewarrs')); // "1:nnnnn/1:ooooo/1:tttt/1:eee/1:gg/1:ii/1:mm/=:rr"
+// console.log(mix('codewars', 'codewars')); // ''
+//? ------------------------------------------------------
