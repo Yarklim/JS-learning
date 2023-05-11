@@ -315,3 +315,80 @@ function mix(s1, s2) {
 // console.log(mix('A generation must confront the looming ', 'codewarrs')); // "1:nnnnn/1:ooooo/1:tttt/1:eee/1:gg/1:ii/1:mm/=:rr"
 // console.log(mix('codewars', 'codewars')); // ''
 //? ------------------------------------------------------
+/*
+6 kyu
+Buying a car
+
+Начнем с примера:
+У человека довольно старая машина стоимостью 2000 долларов. 
+Он увидел подержанную машину стоимостью 8000 долларов. 
+Он хочет сохранить свою старую машину, пока не купит подержанную.
+
+Он думает, что сможет экономить 1000 долларов каждый месяц, 
+но цены на его старую машину и на новую уменьшаются на 1,5 процента в месяц.
+Кроме того, этот процент потерь увеличивается на 0.5процент в конце каждых 
+двух месяцев. Нашему человеку сложно произвести все эти расчеты.
+
+Вы можете помочь ему?
+
+Сколько месяцев ему понадобится, чтобы накопить достаточно денег, 
+чтобы купить машину, которую он хочет, и сколько денег у него останется?
+
+Параметры и возврат функции:
+
+parameter (positive int or float, guaranteed) start_price_old (Old car price)
+parameter (positive int or float, guaranteed) start_price_new (New car price)
+parameter (positive int or float, guaranteed) saving_per_month 
+parameter (positive float or int, guaranteed) percent_loss_by_month
+
+nbMonths(2000, 8000, 1000, 1.5) should return [6, 766] or (6, 766)
+Детали приведенного выше примера:
+end month 1: percent_loss 1.5 available -4910.0
+end month 2: percent_loss 2.0 available -3791.7999...
+end month 3: percent_loss 2.0 available -2675.964
+end month 4: percent_loss 2.5 available -1534.06489...
+end month 5: percent_loss 2.5 available -395.71327...
+end month 6: percent_loss 3.0 available 766.158120825...
+return [6, 766] or (6, 766)
+где 6– количество месяцев, по истечении которых он может купить новую машину, 
+и 766– ближайшее целое число к 766.158...(округление 766.158дает 766).
+
+Примечание:
+
+Продажи, покупки и сбережения обычно совершаются в конце месяца. 
+Расчеты обрабатываются в конце каждого рассматриваемого месяца, 
+но если случайно с самого начала стоимость старого автомобиля больше 
+стоимости нового или равна, то экономить не нужно, не нужно ждать, 
+поэтому он можно в начале месяца купить новую машину:
+
+nbMonths(12000, 8000, 1000, 1.5) should return [0, 4000]
+nbMonths(8000, 8000, 1000, 1.5) should return [0, 0]
+Мы не заботимся о депозите сбережений в банке :-)
+*/
+function nbMonths(
+  startPriceOld,
+  startPriceNew,
+  savingperMonth,
+  percentLossByMonth
+) {
+  //your code here
+}
+// console.log(nbMonths(2000, 8000, 1000, 1.5)); // [6, 766]
+// console.log(nbMonths(12000, 8000, 1000, 1.5)); // [0, 4000]
+//? ------------------------------------------------------
+function partlist(arr) {
+  const resultArr = [];
+
+  for (let i = 1; i < arr.length; i++) {
+    resultArr.push([
+      arr.slice(0, i).join(' '),
+      arr.slice(i, arr.length).join(' '),
+    ]);
+  }
+
+  return resultArr;
+}
+
+// console.log(partlist(['I', 'wish', 'I', "hadn't", 'come']));
+// [["I", "wish I hadn't come"], ["I wish", "I hadn't come"],
+// ["I wish I", "hadn't come"], ["I wish I hadn't", "come"]]

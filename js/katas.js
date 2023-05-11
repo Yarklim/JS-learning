@@ -5421,3 +5421,24 @@ function toBinary(n) {
 }
 
 // console.log(toBinary(5)); // 101
+//?----------------------------------------------------------------
+// function adjacentElementsProduct(array) {
+//   let result = array[0] * array[1];
+//   let tempSum = result;
+
+//   for (let i = 1; i < array.length; i++) {
+//     tempSum = array[i] * array[i + 1];
+//     if (tempSum > result) {
+//       result = tempSum;
+//     }
+//   }
+
+//   return result;
+// }
+// console.log(adjacentElementsProduct([1, -2, 1, -1, 1000])); // -1
+//? -------------------------------------------------------------
+function fn(s) {
+  return s.length === 1 && '0' <= s && s <= '9';
+}
+
+// console.log(fn('8'));
