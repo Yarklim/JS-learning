@@ -5442,3 +5442,82 @@ function fn(s) {
 }
 
 // console.log(fn('8'));
+//? --------------------------------------------------------
+function partlist(arr) {
+  const resultArr = [];
+
+  for (let i = 1; i < arr.length; i++) {
+    resultArr.push([
+      arr.slice(0, i).join(' '),
+      arr.slice(i, arr.length).join(' '),
+    ]);
+  }
+
+  return resultArr;
+}
+
+// console.log(partlist(['I', 'wish', 'I', "hadn't", 'come']));
+// [["I", "wish I hadn't come"], ["I wish", "I hadn't come"],
+// ["I wish I", "hadn't come"], ["I wish I hadn't", "come"]]
+//? ------------------------------------------------------
+function isSortedAndHow(arr) {
+  return arr.every((el, i) => i === 0 || arr[i] >= arr[i - 1])
+    ? 'yes, ascending'
+    : arr.every((el, i) => i === 0 || arr[i] <= arr[i - 1])
+    ? 'yes, descending'
+    : 'no';
+
+  let ascending = array.filter((e, i, a) => e > a[i + 1]).length == 0;
+  let descending = array.filter((e, i, a) => e < a[i + 1]).length == 0;
+
+  return ascending ? 'yes, ascending' : descending ? 'yes, descending' : 'no';
+}
+
+// console.log(isSortedAndHow([1, 2, 3, 5]));
+// console.log(isSortedAndHow([15, 7, 3, -8]));
+// console.log(isSortedAndHow([4, 2, 30]));
+//? ----------------------------------------------------
+// Leetcode 238
+// var productExceptSelf = function (nums) {
+//   if (nums.length <= 2) return nums.reverse();
+//   const map = new Map();
+//   const result = [];
+
+//   for (let i = 0; i < nums.length; i++) {
+//     map.set(i, nums[i]);
+//   }
+
+//   for (let i = 0; i < nums.length; i++) {
+//     let tempMap = new Map(map);
+//     tempMap.delete(i);
+//     result.push([...tempMap.values()].reduce((acc, el) => acc * el, 1));
+//   }
+
+//   return result;
+// };
+// console.log(productExceptSelf([1, 2, 3, 4])); // [24,12,8,6]
+// console.log(productExceptSelf([0, 4, 0])); // [0,0,0]
+// console.log(productExceptSelf([-1, 1, 0, -3, 3])); // [0,0,9,0,0]
+
+var productExceptSelf = function (nums) {
+  const result = new Array(nums.length);
+
+  result[0] = 1;
+  for (let i = 1; i < nums.length; i++) {
+    result[i] = result[i - 1] * nums[i - 1];
+  }
+
+  let rightProduct = 1;
+  for (let i = nums.length - 1; i >= 0; i--) {
+    result[i] *= rightProduct;
+    rightProduct *= nums[i];
+  }
+
+  return result;
+};
+
+// console.log(productExceptSelf([1, 2, 3, 4])); // [24, 12, 8, 6]
+// console.log(productExceptSelf([0, 4, 0])); // [0, 0, 0]
+// console.log(productExceptSelf([-1, 1, 0, -3, 3])); // [0, 0, 9, 0, 0]
+
+//? --------------------------------------------------------

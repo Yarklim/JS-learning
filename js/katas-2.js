@@ -376,19 +376,114 @@ function nbMonths(
 // console.log(nbMonths(2000, 8000, 1000, 1.5)); // [6, 766]
 // console.log(nbMonths(12000, 8000, 1000, 1.5)); // [0, 4000]
 //? ------------------------------------------------------
-function partlist(arr) {
-  const resultArr = [];
+/*
+5 kyu
+Common Denominators
 
-  for (let i = 1; i < arr.length; i++) {
-    resultArr.push([
-      arr.slice(0, i).join(' '),
-      arr.slice(i, arr.length).join(' '),
-    ]);
-  }
+Общие знаменатели
 
-  return resultArr;
+У вас будет список рациональных чисел в виде
+
+{ {numer_1, denom_1} , ... {numer_n, denom_n} } 
+or
+[ [numer_1, denom_1] , ... [numer_n, denom_n] ] 
+or
+[ (numer_1, denom_1) , ... (numer_n, denom_n) ] 
+где все числа являются положительными целыми числами. 
+Вы должны получить результат в виде:
+
+(N_1, D) ... (N_n, D) 
+or
+[ [N_1, D] ... [N_n, D] ] 
+or
+[ (N_1', D) , ... (N_n, D) ] 
+or
+{{N_1, D} ... {N_n, D}} 
+or
+"(N_1, D) ... (N_n, D)"
+в зависимости от языка (см. примеры тестов), в котором D как можно меньше и
+
+N_1/D == numer_1/denom_1 ... N_n/D == numer_n,/denom_n.
+Пример:
+convertFracs [(1, 2), (1, 3), (1, 4)] `shouldBe` [(6, 12), (4, 12), (3, 12)]
+Примечание:
+В связи с тем, что первые переводы были написаны давно - более 6 лет 
+- в этих первых переводах есть только несократимые дроби.
+
+В более новых переводах есть некоторые сократимые дроби. 
+Чтобы быть в безопасности, лучше проделать немного больше работы, упростив дроби, 
+даже если это не обязательно.
+*/
+
+function convertFrac(lst) {
+  //Your code here
 }
 
-// console.log(partlist(['I', 'wish', 'I', "hadn't", 'come']));
-// [["I", "wish I hadn't come"], ["I wish", "I hadn't come"],
-// ["I wish I", "hadn't come"], ["I wish I hadn't", "come"]]
+// console.log(
+//   convertFrac([
+//     [1, 2],
+//     [1, 3],
+//     [1, 4],
+//   ])
+// ); // "(6,12)(4,12)(3,12)"
+
+//? ------------------------------------------------------
+/*
+8 kyu
+Basic subclasses - Adam and Eve
+
+Согласно мифам о сотворении авраамических религий, 
+Адам и Ева были первыми людьми, бродившими по Земле.
+
+Вы должны делать работу Бога. 
+Метод создания должен возвращать массив длины 2, 
+содержащий объекты (представляющие Адама и Еву). 
+Первый объект в массиве должен быть экземпляром класса Man. 
+Второй должен быть экземпляром класса Woman. 
+Оба объекта должны быть подклассами Human. 
+Ваша задача — реализовать Human, Man and Womanклассы.
+*/
+class God {
+  /**
+   * @returns Human[]
+   */
+  static create() {
+    // code
+  }
+}
+// code
+//? --------------------------------------------------------
+function closeCompare(a, b, margin) {
+  return (margin && Math.abs(a - b)) >= margin
+    ? 1
+    : a < b
+    ? -1
+    : a === b
+    ? 0
+    : 1;
+}
+// console.log(closeCompare(8.1, 5, 3));
+//? ----------------------------------------------------------
+class Player {
+  constructor(name) {
+    this.name = name;
+  }
+}
+
+let ex_names = ['a', 'b', 'c', 'd', 'c', 'e', 'f', 'g', 'h', 'z'];
+let players = ex_names.map((n) => new Player(n));
+
+function duckDuckGoose(players, goose) {
+  return players.length >= goose
+    ? players[goose - 1].name
+    : players[(goose % players.length) - 1].name;
+}
+
+// console.log(duckDuckGoose(players, 10)); // z
+// console.log(duckDuckGoose(players, 28)); // g
+//? --------------------------------------------------------
+function lowercaseCount(str) {
+  return str.match(/[a-z]/g);
+}
+
+console.log(lowercaseCount("ABC123!@€£#$%^&*()_-+=}{[]|':;?/>.<,~"));
