@@ -483,7 +483,7 @@ function duckDuckGoose(players, goose) {
 // console.log(duckDuckGoose(players, 28)); // g
 //? --------------------------------------------------------
 function lowercaseCount(str) {
-  return str.match(/[a-z]/g);
+  return str.match(/[a-z]/g).length;
 }
 
-console.log(lowercaseCount("ABC123!@€£#$%^&*()_-+=}{[]|':;?/>.<,~"));
+// console.log(lowercaseCount("ABC123!@€£#$%^&*()_-+=}{[]|':;?/>.<,~"));
