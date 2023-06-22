@@ -489,20 +489,3 @@ function lowercaseCount(str) {
 // console.log(lowercaseCount("ABC123!@€£#$%^&*()_-+=}{[]|':;?/>.<,~"));
 
 //? --------------------------------------------------------
-function seven(m) {
-  let count = 0;
-  const stringNum = String(m);
-  const newNum = Number(
-    stringNum.slice(0, stringNum.length - 1) -
-      stringNum[stringNum.length - 1] * 2
-  );
-
-  if (stringNum.length > 2) {
-    count += 1;
-    return seven(newNum);
-  }
-
-  return [Number(stringNum), count];
-}
-
-console.log(seven(1603)); // [7, 2]

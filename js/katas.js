@@ -5521,3 +5521,30 @@ var productExceptSelf = function (nums) {
 // console.log(productExceptSelf([-1, 1, 0, -3, 3])); // [0, 0, 9, 0, 0]
 
 //? --------------------------------------------------------
+function seven(m) {
+  //   let count = 0;
+  //   let stringNum = String(m);
+
+  //   while (stringNum.length > 2) {
+  //     stringNum = String(
+  //       Number(
+  //         stringNum.slice(0, stringNum.length - 1) -
+  //           stringNum[stringNum.length - 1] * 2
+  //       )
+  //     );
+  //     count += 1;
+  //   }
+
+  //   return [Number(stringNum), count];
+
+  let i = 0;
+  while (m.toString().length > 2) {
+    m = Math.floor(m / 10) - (m % 10) * 2;
+    i++;
+  }
+  return [m, i];
+}
+
+// console.log(seven(1603)); // [7, 2]
+
+//? -------------------------------------------------------
