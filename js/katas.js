@@ -5548,3 +5548,17 @@ function seven(m) {
 // console.log(seven(1603)); // [7, 2]
 
 //? -------------------------------------------------------
+function calc(x) {
+  let total1 = x
+    .split('')
+    .reduce((acc, el) => acc + String(el.charCodeAt()), '');
+  let total2 = total1.replaceAll('7', '1');
+
+  return (
+    total1.split('').reduce((acc, el) => acc + Number(el), 0) -
+    total2.split('').reduce((acc, el) => acc + Number(el), 0)
+  );
+}
+
+console.log(calc('aaaaaddddr'));
+//? -----------------------------------------------------
