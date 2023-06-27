@@ -489,3 +489,19 @@ function lowercaseCount(str) {
 // console.log(lowercaseCount("ABC123!@€£#$%^&*()_-+=}{[]|':;?/>.<,~"));
 
 //? --------------------------------------------------------
+function reverse(str) {
+  return str
+    .trim()
+    .split(' ')
+    .map((el, i) => {
+      if (i % 2 !== 0) {
+        return el.split('').reverse().join('');
+      } else {
+        return el;
+      }
+    })
+    .join(' ');
+}
+
+console.log(reverse(' Reverse this string, please! ')); // "Reverse siht string, !esaelp"
+console.log(reverse("I really don't like reversing strings!")); // "I yllaer don't ekil reversing !sgnirts"
