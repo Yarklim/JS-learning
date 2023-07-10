@@ -108,25 +108,7 @@ const REGEXP = str2.match(/[A-z + \d + \S]/g);
 // console.log(REGEXP);
 
 //? ------------------------------------------------
-/*
-8 kyu
-Simple validation of a username with regex
-Напишите простое регулярное выражение для проверки имени пользователя. Допустимые символы:
-строчные буквы,
-числа,
-нижнее подчеркивание
-Длина должна быть от 4 до 16 символов (включая оба).
-*/
-function validateUsr(username) {
-  const res = /[a-z]?(\d*)?(\_*)/g.test(username);
-  return res;
-}
 
-// console.log(validateUsr('asddsa')); // true
-// console.log(validateUsr('Hasd_12assssssasasasasasaasasasasas')); // false
-// console.log(validateUsr('asd43_34')); // true
-
-//? ------------------------------------------------
 /*
 6 kyu
 A Rule of Divisibility by 13
