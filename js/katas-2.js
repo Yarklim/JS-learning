@@ -489,3 +489,12 @@ function lowercaseCount(str) {
 // console.log(rgb(153, 163, 6)); //'99A306'
 // console.log(rgb(10, 165, 287)); // '0AA5FF'
 // console.log(rgb(173, 255, 47)); // 'ADFF2F'
+
+const dog = { name: 'Poly' };
+
+function showDogName() {
+  console.log(this.name);
+}
+
+const boundShowDogName = showDogName.bind(dog);
+boundShowDogName();
