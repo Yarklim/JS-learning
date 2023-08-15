@@ -5562,3 +5562,23 @@ function calc(x) {
 
 console.log(calc('aaaaaddddr'));
 //? -----------------------------------------------------
+function rgb(r, g, b) {
+  const arrParams = [...arguments];
+  let hex = '';
+
+  arrParams.forEach((el) => {
+    if (el <= 0) return (hex += '00');
+    if (el > 255) return (hex += 'ff');
+    if (Number(el).toString(16).length < 2)
+      return (hex += `0${Number(el).toString(16)}`);
+    hex += Number(el).toString(16);
+  });
+
+  return hex.toUpperCase();
+}
+
+// console.log(rgb(153, 163, 6)); //'99A306'
+// console.log(rgb(10, 165, 287)); // '0AA5FF'
+// console.log(rgb(173, 255, 47)); // 'ADFF2F'
+
+//? ----------------------------------------------------
