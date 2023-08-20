@@ -471,3 +471,52 @@ function lowercaseCount(str) {
 // console.log(lowercaseCount("ABC123!@€£#$%^&*()_-+=}{[]|':;?/>.<,~"));
 
 //? --------------------------------------------------------
+function boredom(staff) {
+  const depArr = Object.values(staff);
+  const score = depArr.reduce((acc, el) => {
+    switch (el) {
+      case 'accounts':
+        return acc + 1;
+      case 'finance':
+        return acc + 2;
+      case 'canteen':
+        return acc + 10;
+      case 'regulation':
+        return acc + 3;
+      case 'trading':
+        return acc + 6;
+      case 'change':
+        return acc + 6;
+      case 'IS':
+        return acc + 8;
+      case 'retail':
+        return acc + 5;
+      case 'cleaning':
+        return acc + 4;
+      case 'pissing about':
+        return acc + 25;
+    }
+  }, 0);
+
+  return score <= 80
+    ? 'kill me now'
+    : score < 100
+    ? 'i can handle this'
+    : 'party time!!';
+}
+
+console.log(
+  boredom({
+    tim: 'accounts',
+    jim: 'accounts',
+    randy: 'pissing about',
+    sandy: 'finance',
+    andy: 'change',
+    katie: 'IS',
+    laura: 'IS',
+    saajid: 'canteen',
+    alex: 'pissing about',
+    john: 'retail',
+    mr: 'pissing about',
+  })
+);
