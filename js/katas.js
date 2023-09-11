@@ -5582,3 +5582,84 @@ function rgb(r, g, b) {
 // console.log(rgb(173, 255, 47)); // 'ADFF2F'
 
 //? ----------------------------------------------------
+// Самая длинная подстрока палиндром в строке
+function longestPalindrome(s) {
+  if (s.length === 0) {
+    return 0;
+  }
+
+  let maxLength = 1;
+  for (let i = 0; i < s.length; i++) {
+    for (let j = i + 1; j < s.length; j++) {
+      const substring = s.slice(i, j + 1);
+      const reversed = substring.split('').reverse().join('');
+      if (substring === reversed && substring.length > maxLength) {
+        maxLength = substring.length;
+      }
+    }
+  }
+
+  return maxLength;
+}
+// console.log(longestPalindrome('baablkj12345432133d')); // 9
+// console.log(longestPalindrome('a')); // 1
+// console.log(longestPalindrome('baa')); // 2
+// console.log(longestPalindrome('BaaBcd')); // 4
+// console.log(longestPalindrome('Aa')); // 1
+//? ------------------------------------------------------------
+// Поворот влево
+function maxRot(n) {
+  let numStr = n.toString();
+  const rotations = [numStr];
+
+  for (let i = 0; i < numStr.length - 1; i++) {
+    numStr = numStr.slice(0, i) + numStr.slice(i + 1) + numStr[i];
+    rotations.push(numStr);
+  }
+  const maxRotated = Math.max(...rotations.map((rot) => parseInt(rot, 10)));
+
+  return maxRotated;
+}
+
+console.log(maxRot(38458215)); // 85821534
+console.log(maxRot(195881031)); // 988103115
+console.log(maxRot(56789)); // 68957
+//? -----------------------------------------------------------
+function Fighter(name, health, damagePerAttack) {
+  this.name = name;
+  this.health = health;
+  this.damagePerAttack = damagePerAttack;
+  this.toString = function () {
+    return this.name;
+  };
+}
+
+function declareWinner(fighter1, fighter2, firstAttacker) {
+  let currentAttacker = firstAttacker === fighter1.name ? fighter1 : fighter2;
+  let opponent = currentAttacker === fighter1 ? fighter2 : fighter1;
+
+  while (true) {
+    opponent.health -= currentAttacker.damagePerAttack;
+
+    if (opponent.health <= 0) {
+      return currentAttacker.name;
+    }
+
+    const temp = currentAttacker;
+    currentAttacker = opponent;
+    opponent = temp;
+  }
+}
+
+// console.log(
+//   declareWinner(new Fighter('Lew', 10, 2), new Fighter('Harry', 5, 4), 'Lew')
+// ); // "Lew"
+
+// console.log(
+//   declareWinner(
+//     new Fighter('Harald', 20, 5),
+//     new Fighter('Harry', 5, 4),
+//     'Harry'
+//   )
+// ); // "Harald"
+//? ---------------------------------------------------------
