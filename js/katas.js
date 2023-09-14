@@ -5700,3 +5700,43 @@ console.log(numbers.even()); // [2, 4]
 console.log(numbers.odd()); // [1, 3, 5]
 
 //? -----------------------------------------------------
+const fighters = [
+  ['Ryu', 'E.Honda', 'Blanka', 'Guile', 'Balrog', 'Vega'],
+  ['Ken', 'Chun Li', 'Zangief', 'Dhalsim', 'Sagat', 'M.Bison'],
+];
+
+function streetFighterSelection(fighters, position, moves) {
+  const result = [];
+
+  moves.forEach(function (move) {
+    if (move === 'up') {
+      position[0] = 0;
+    } else if (move === 'down') {
+      position[0] = 1;
+    } else if (move === 'right') {
+      position[1] = position[1] === 5 ? 0 : position[1] + 1;
+    } else if (move === 'left') {
+      position[1] = position[1] === 0 ? 5 : position[1] - 1;
+    }
+
+    result.push(fighters[position[0]][position[1]]);
+  });
+
+  return result;
+}
+
+// console.log(
+//   streetFighterSelection(
+//     fighters,
+//     [0, 0],
+//     ['up', 'left', 'right', 'left', 'left']
+//   )
+// ); // ['Ryu', 'Vega', 'Ryu', 'Vega', 'Balrog']
+// console.log(
+//   streetFighterSelection(
+//     fighters,
+//     [0, 0],
+//     ['right', 'down', 'left', 'left', 'left', 'left', 'right']
+//   )
+// ); // ['E.Honda', 'Chun Li', 'Ken', 'M.Bison', 'Sagat', 'Dhalsim', 'Sagat']
+//? -------------------------------------------------------------
