@@ -43,44 +43,23 @@ function encrypt(text, n) {
   return result;
 }
 
-// function decrypt(encryptedText, n) {
-//   if (encryptedText === '' || n <= 0) {
-//     return encryptedText;
-//   }
-//   let result = encryptedText;
-
-//   for (let i = 0; i < n; i++) {
-//     let halfLen = Math.floor(result.length / 2);
-//     let odd = result.slice(0, halfLen + (result.length % 2));
-//     let even = result.slice(halfLen + (result.length % 2));
-//     result = '';
-//     let len = halfLen + (even.length % 2);
-//     for (let j = 0; j < len; j++) {
-//       result += odd[j] + (even[j] || '');
-//     }
-//   }
-//   return result;
-// }
 function decrypt(encryptedText, n) {
   if (encryptedText === '' || n <= 0) {
     return encryptedText;
   }
   let result = encryptedText;
   for (let i = 0; i < n; i++) {
-    let odd = '';
-    let even = '';
-
-    for (let j = 0; j < result.length; j++) {
-      if (j % 2 !== 0) {
-        even += result[j];
-      } else {
-        odd += result[j];
-      }
+    let halfLen = Math.floor(result.length / 2);
+    let odd = result.slice(0, halfLen + (result.length % 2));
+    let even = result.slice(halfLen + (result.length % 2));
+    result = '';
+    for (let j = 0; j < halfLen + (result.length % 2); j++) {
+      result += odd[j] + (even[j] || '');
     }
-    result = even + odd;
   }
   return result;
 }
+
 // console.log(decrypt('304152', 2)); // "012345"
 // console.log(decrypt('This is a test!', 0)); // "This is a test!"
 // console.log(decrypt('hsi  etTi sats!', 1)); // "This is a test!"
@@ -98,14 +77,6 @@ function decrypt(encryptedText, n) {
 // console.log(encrypt('This is a test!', 4)); // "This is a test!"
 // console.log(encrypt('This is a test!', -1)); // "This is a test!"
 // console.log(encrypt('This kata is very interesting!', 1)); // "hskt svr neetn!Ti aai eyitrsig"
-
-//? ------------------------------------------------
-
-const str = 'fjd3I R9';
-const str2 = 'DSJKHD23';
-const REGEXP = str2.match(/[A-z + \d + \S]/g);
-
-// console.log(REGEXP);
 
 //? ------------------------------------------------
 
@@ -296,67 +267,7 @@ function mix(s1, s2) {
 // console.log(mix('Are they here', 'yes, they are here')); // "2:eeeee/2:yy/=:hh/=:rr"
 // console.log(mix('A generation must confront the looming ', 'codewarrs')); // "1:nnnnn/1:ooooo/1:tttt/1:eee/1:gg/1:ii/1:mm/=:rr"
 // console.log(mix('codewars', 'codewars')); // ''
-//? ------------------------------------------------------
-/*
-6 kyu
-Buying a car
 
-Начнем с примера:
-У человека довольно старая машина стоимостью 2000 долларов. 
-Он увидел подержанную машину стоимостью 8000 долларов. 
-Он хочет сохранить свою старую машину, пока не купит подержанную.
-
-Он думает, что сможет экономить 1000 долларов каждый месяц, 
-но цены на его старую машину и на новую уменьшаются на 1,5 процента в месяц.
-Кроме того, этот процент потерь увеличивается на 0.5процент в конце каждых 
-двух месяцев. Нашему человеку сложно произвести все эти расчеты.
-
-Вы можете помочь ему?
-
-Сколько месяцев ему понадобится, чтобы накопить достаточно денег, 
-чтобы купить машину, которую он хочет, и сколько денег у него останется?
-
-Параметры и возврат функции:
-
-parameter (positive int or float, guaranteed) start_price_old (Old car price)
-parameter (positive int or float, guaranteed) start_price_new (New car price)
-parameter (positive int or float, guaranteed) saving_per_month 
-parameter (positive float or int, guaranteed) percent_loss_by_month
-
-nbMonths(2000, 8000, 1000, 1.5) should return [6, 766] or (6, 766)
-Детали приведенного выше примера:
-end month 1: percent_loss 1.5 available -4910.0
-end month 2: percent_loss 2.0 available -3791.7999...
-end month 3: percent_loss 2.0 available -2675.964
-end month 4: percent_loss 2.5 available -1534.06489...
-end month 5: percent_loss 2.5 available -395.71327...
-end month 6: percent_loss 3.0 available 766.158120825...
-return [6, 766] or (6, 766)
-где 6– количество месяцев, по истечении которых он может купить новую машину, 
-и 766– ближайшее целое число к 766.158...(округление 766.158дает 766).
-
-Примечание:
-
-Продажи, покупки и сбережения обычно совершаются в конце месяца. 
-Расчеты обрабатываются в конце каждого рассматриваемого месяца, 
-но если случайно с самого начала стоимость старого автомобиля больше 
-стоимости нового или равна, то экономить не нужно, не нужно ждать, 
-поэтому он можно в начале месяца купить новую машину:
-
-nbMonths(12000, 8000, 1000, 1.5) should return [0, 4000]
-nbMonths(8000, 8000, 1000, 1.5) should return [0, 0]
-Мы не заботимся о депозите сбережений в банке :-)
-*/
-function nbMonths(
-  startPriceOld,
-  startPriceNew,
-  savingperMonth,
-  percentLossByMonth
-) {
-  //your code here
-}
-// console.log(nbMonths(2000, 8000, 1000, 1.5)); // [6, 766]
-// console.log(nbMonths(12000, 8000, 1000, 1.5)); // [0, 4000]
 //? ------------------------------------------------------
 /*
 5 kyu
@@ -409,31 +320,6 @@ function convertFrac(lst) {
 //   ])
 // ); // "(6,12)(4,12)(3,12)"
 
-//? ------------------------------------------------------
-/*
-8 kyu
-Basic subclasses - Adam and Eve
-
-Согласно мифам о сотворении авраамических религий, 
-Адам и Ева были первыми людьми, бродившими по Земле.
-
-Вы должны делать работу Бога. 
-Метод создания должен возвращать массив длины 2, 
-содержащий объекты (представляющие Адама и Еву). 
-Первый объект в массиве должен быть экземпляром класса Man. 
-Второй должен быть экземпляром класса Woman. 
-Оба объекта должны быть подклассами Human. 
-Ваша задача — реализовать Human, Man and Womanклассы.
-*/
-class God {
-  /**
-   * @returns Human[]
-   */
-  static create() {
-    // code
-  }
-}
-// code
 //? --------------------------------------------------------
 function closeCompare(a, b, margin) {
   return (margin && Math.abs(a - b)) >= margin
@@ -471,3 +357,54 @@ function lowercaseCount(str) {
 // console.log(lowercaseCount("ABC123!@€£#$%^&*()_-+=}{[]|':;?/>.<,~"));
 
 //? --------------------------------------------------------
+/*
+Вы «компьютерный эксперт» местной спортивной ассоциации (CAA). 
+На соревнования приезжает множество команд бегунов. 
+Каждый раз вы получаете строку со всеми результатами гонок каждой участвовавшей команды. 
+Например, вот строка, показывающая индивидуальные результаты команды из 5 бегунов:
+
+"01|15|59, 1|47|6, 01|17|20, 1|32|34, 2|3|17"
+
+Каждая часть строки имеет следующий вид: h|m|s где h, m, s 
+(h — часы, m — минуты, s — секунды) — положительное или нулевое целое число 
+(представленное в виде строк) с одной или двумя цифрами. 
+Подстроки во входной строке разделяются знаком , или ,.
+
+Для сравнения результатов команд вас просят предоставить три статистики; 
+диапазон, среднее и медианное значение .
+
+Range: разница между самым низким и самым высоким значениями. В {4, 6, 9, 3, 7} 
+самое низкое значение — 3, а самое высокое — 9, поэтому диапазон составляет 9 — 3 = 6.
+
+Mean or Average: Чтобы вычислить среднее значение, сложите все числа, 
+а затем разделите сумму на общее количество чисел.
+
+Median: В статистике медиана — это число, отделяющее верхнюю половину выборки данных от нижней половины. 
+Медиану конечного списка чисел можно найти, расположив все наблюдения от наименьшего значения 
+к наибольшему и выбрав среднее (например, медиана {3, 3, 5, 9, 11} равна 5), 
+когда существует нечетное количество наблюдений. Если имеется четное количество наблюдений, 
+то не существует единого среднего значения; тогда медиана определяется как среднее значение 
+двух средних значений (медиана {3, 5, 6, 9} равна (5 + 6)/2 = 5,5).
+
+Ваша задача — вернуть строку, содержащую эти три значения. Для примера, приведенного выше, 
+строковый результат будет
+
+"Range: 00|47|18 Average: 01|35|15 Median: 01|32|34"
+
+вида: "Диапазон: чч|мм|сс Среднее: чч|мм|сс Медиана: чч|мм|сс"`
+
+где hh, mm, ss — целые числа (представленные строками), состоящие из двух цифр .
+
+Примечания :
+если результат в секундах равен ab.xy... он будет сокращен до ab.
+если данная строка равна "", вы вернете ""
+*/
+
+function stat(strg) {
+  // your code
+}
+
+// console.log(stat('01|15|59, 1|47|16, 01|17|20, 1|32|34, 2|17|17')); // "Range: 01|01|18 Average: 01|38|05 Median: 01|32|34"
+// console.log(
+//   stat('02|15|59, 2|47|16, 02|17|20, 2|32|34, 2|17|17, 2|22|00, 2|31|41')
+// ); // "Range: 00|31|17 Average: 02|26|18 Median: 02|22|00"
