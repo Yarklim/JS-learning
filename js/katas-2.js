@@ -429,12 +429,3 @@ function alignRight(text, width) {
 // console.log(alignRight('I take up the whole line', 24)); // 'I take up the whole line'
 
 //? -----------------------------------------------------------
-function isDigit(s) {
-  //   return Number(s) !== NaN ? true : false;
-  const isNumber = Number(s);
-
-  return !Number.isNaN(isNumber);
-}
-
-// console.log(isDigit('s2324')); // false
-// console.log(isDigit('1e3')); // true
