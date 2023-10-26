@@ -429,3 +429,13 @@ function alignRight(text, width) {
 // console.log(alignRight('I take up the whole line', 24)); // 'I take up the whole line'
 
 //? -----------------------------------------------------------
+// Создание матрицы
+const MATRIX_WIDTH = 3;
+const MATRIX_HEIGTH = 3;
+const matrix = Array.from({ length: MATRIX_WIDTH }).map(() =>
+  Array.from({ length: MATRIX_HEIGTH }).map((_) => '*')
+);
+
+// console.log(matrix);
+
+//? ------------------------------------------------------------
