@@ -5740,3 +5740,13 @@ function streetFighterSelection(fighters, position, moves) {
 //   )
 // ); // ['E.Honda', 'Chun Li', 'Ken', 'M.Bison', 'Sagat', 'Dhalsim', 'Sagat']
 //? -------------------------------------------------------------
+// Преобразование в двоичный код и обратно
+function ipToInt32(ip) {
+  const binary = ip
+    .split('.')
+    .reduce((acc, el) => acc + Number(el).toString(2).padStart(8, '0'), '');
+
+  return parseInt(binary, 2);
+}
+console.log(ipToInt32('128.32.10.1')); // 2149583361
+//? -------------------------------------------------------------
