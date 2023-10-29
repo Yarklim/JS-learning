@@ -5750,3 +5750,39 @@ function ipToInt32(ip) {
 }
 console.log(ipToInt32('128.32.10.1')); // 2149583361
 //? -------------------------------------------------------------
+// Определение произведения простых чисел
+function numPrimorial(n) {
+  let primeCount = 0;
+  let result = 1;
+
+  nextPrime: for (let i = 2; primeCount < n; i++) {
+    for (let j = 2; j < i; j++) {
+      if (i % j === 0) continue nextPrime;
+    }
+    primeCount += 1;
+    result *= i;
+  }
+
+  return result;
+}
+
+// console.log(numPrimorial(3)); // 30
+// console.log(numPrimorial(5)); // 2310
+// console.log(numPrimorial(9)); // 223092870
+//? --------------------------------------------------
+// Тире между нечетными числами
+function dashatize(num) {
+  return isNaN(num)
+    ? 'NaN'
+    : num
+        .toString()
+        .match(/([13579]|[02468]+)/g)
+        .join('-');
+}
+
+// console.log(dashatize(NaN)); // "NaN"
+// console.log(dashatize(974302)); // "9-7-4-3-02"
+// console.log(dashatize(5311)); // "5-3-1-1"
+// console.log(dashatize(-1)); // "1"
+// console.log(dashatize(-28369)); // "28-3-6-9"
+//? -----------------------------------------------------
