@@ -235,40 +235,7 @@ s2="Yes they are here! aaaaa fffff"
 mix(s1, s2) --> "=:aaaaaa/2:eeeee/=:fffff/1:tt/2:rr/=:hh"
 */
 
-function mix(s1, s2) {
-  if (s1 === s2) return '';
-  const arrS1 = s1.match(/[a-z]/g).sort();
-  const arrS2 = s2.match(/[a-z]/g).sort();
-
-  const objS1 = {};
-  const objS2 = {};
-
-  for (let letter of arrS1) {
-    if (!objS1[letter]) objS1[letter] = 0;
-    objS1[letter] += 1;
-  }
-
-  for (let letter of arrS2) {
-    if (!objS2[letter]) objS2[letter] = 0;
-    objS2[letter] += 1;
-  }
-
-  const letters1 = Object.entries(objS1)
-    .filter((el) => el[1] > 1)
-    .sort((a, b) => b[1] - a[1]);
-
-  const letters2 = Object.entries(objS2)
-    .filter((el) => el[1] > 1)
-    .sort((a, b) => b[1] - a[1]);
-
-  return letters2;
-}
-
-// console.log(mix('Are they here', 'yes, they are here')); // "2:eeeee/2:yy/=:hh/=:rr"
-// console.log(mix('A generation must confront the looming ', 'codewarrs')); // "1:nnnnn/1:ooooo/1:tttt/1:eee/1:gg/1:ii/1:mm/=:rr"
-// console.log(mix('codewars', 'codewars')); // ''
-
-//? ------------------------------------------------------
+//? ----------------------------------------------------------
 /*
 5 kyu
 Common Denominators
@@ -439,3 +406,46 @@ const matrix = Array.from({ length: MATRIX_WIDTH }).map(() =>
 // console.log(matrix);
 
 //? ------------------------------------------------------------
+// 7 kyu Drying Potatoes
+
+// function potatoes(p0, w0, p1) {
+//   // your code
+// }
+// console.log(potatoes(82, 127, 80)) // 114;
+// console.log(potatoes(93, 129, 91)); // 100;
+//? ------------------------------------------------------------
+function mix(s1, s2) {
+  if (s1 === s2) return '';
+
+  const obj1 = {};
+  const obj2 = {};
+  const lettersArrr = s1.match(/[a-z]/g);
+
+  for (const el of s1) {
+    if (lettersArrr.includes(el)) {
+      if (!obj1[el]) obj1[el] = 0;
+      obj1[el] += 1;
+    }
+  }
+
+  for (const el of s2) {
+    if (lettersArrr.includes(el)) {
+      if (!obj2[el]) obj2[el] = 0;
+      obj2[el] += 1;
+    }
+  }
+
+  const sortLetters1 = Object.entries(obj1)
+    .filter((el) => el[1] > 1)
+    .sort((a, b) => b[1] - a[1]);
+  const sortLetters2 = Object.entries(obj2)
+    .filter((el) => el[1] > 1)
+    .sort((a, b) => b[1] - a[1]);
+
+  return sortLetters2;
+}
+console.log(mix('Are they here', 'yes, they are here')); // "2:eeeee/2:yy/=:hh/=:rr"
+// console.log(mix('A generation must confront the looming ', 'codewarrs')); // "1:nnnnn/1:ooooo/1:tttt/1:eee/1:gg/1:ii/1:mm/=:rr"
+// console.log(mix('codewars', 'codewars')); // ''
+
+//? ------------------------------------------------------
