@@ -5786,3 +5786,24 @@ function dashatize(num) {
 // console.log(dashatize(-1)); // "1"
 // console.log(dashatize(-28369)); // "28-3-6-9"
 //? -----------------------------------------------------
+// Тире между нечетными числами
+function insertDash(num) {
+  return num
+    .toString()
+    .split('')
+    .reduce((acc, c, i, arr) => {
+      if (i > 0 && Number(arr[i]) % 2 !== 0 && Number(arr[i - 1]) % 2 !== 0)
+        acc = acc + '-';
+
+      return acc + c;
+    }, '');
+}
+// console.log(insertDash(454793)); // '4547-9-3'
+//? ------------------------------------------------------
+function arithmeticSequenceElements(a, d, n) {
+  return Array.from({ length: n }, (_, i) => a + d * i);
+}
+// console.log(arithmeticSequenceElements(1, 2, 5)); // "1, 3, 5, 7, 9"
+// console.log(arithmeticSequenceElements(1, 0, 5)); // "1, 1, 1, 1, 1"
+// console.log(arithmeticSequenceElements(1, -3, 10)); // "1, -2, -5, -8, -11, -14, -17, -20, -23, -26"
+// console.log(arithmeticSequenceElements(100, -10, 10)); // "100, 90, 80, 70, 60, 50, 40, 30, 20, 10"

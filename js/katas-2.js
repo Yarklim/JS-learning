@@ -444,8 +444,32 @@ function mix(s1, s2) {
 
   return sortLetters2;
 }
-console.log(mix('Are they here', 'yes, they are here')); // "2:eeeee/2:yy/=:hh/=:rr"
+// console.log(mix('Are they here', 'yes, they are here')); // "2:eeeee/2:yy/=:hh/=:rr"
 // console.log(mix('A generation must confront the looming ', 'codewarrs')); // "1:nnnnn/1:ooooo/1:tttt/1:eee/1:gg/1:ii/1:mm/=:rr"
 // console.log(mix('codewars', 'codewars')); // ''
 
 //? ------------------------------------------------------
+function findChildren(str) {
+  const obj = {};
+
+  for (const el of str) {
+    if (el.toLowerCase() === el) {
+      if (!obj[el.toLowerCase()]) {
+        obj[el.toLowerCase()] = '';
+
+        obj[el.toLowerCase()] = obj[el.toLowerCase()] += el;
+      }
+    } else {
+      if (!obj[el.toLowerCase()]) {
+        obj[el.toLowerCase()] = '';
+
+        obj[el.toLowerCase()] = obj[el.toLowerCase()] += el;
+      }
+    }
+  }
+  return obj;
+}
+
+console.log(findChildren('beeeEBb')); // BbbEeee
+console.log(findChildren('uwwWUueEe')); // EeeUuuWww
+console.log(findChildren('AaaaaZazzz')); // AaaaaaZzzz
