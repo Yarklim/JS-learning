@@ -470,6 +470,7 @@ function findChildren(str) {
   return obj;
 }
 
-console.log(findChildren('beeeEBb')); // BbbEeee
-console.log(findChildren('uwwWUueEe')); // EeeUuuWww
-console.log(findChildren('AaaaaZazzz')); // AaaaaaZzzz
+// console.log(findChildren('beeeEBb')); // BbbEeee
+// console.log(findChildren('uwwWUueEe')); // EeeUuuWww
+// console.log(findChildren('AaaaaZazzz')); // AaaaaaZzzz
+//? ----------------------------------

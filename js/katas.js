@@ -5807,3 +5807,19 @@ function arithmeticSequenceElements(a, d, n) {
 // console.log(arithmeticSequenceElements(1, 0, 5)); // "1, 1, 1, 1, 1"
 // console.log(arithmeticSequenceElements(1, -3, 10)); // "1, -2, -5, -8, -11, -14, -17, -20, -23, -26"
 // console.log(arithmeticSequenceElements(100, -10, 10)); // "100, 90, 80, 70, 60, 50, 40, 30, 20, 10"
+//? ------------------------------------------------------
+const str = 'Hello World';
+const offset = 3;
+
+const toCezar = (a, b) => {
+  let encodeStr = '';
+
+  for (const ch of a) {
+    let tempCh = ch.charCodeAt();
+    encodeStr += String.fromCharCode(tempCh + b);
+  }
+
+  return encodeStr;
+};
+
+// console.log(toCezar(str, offset));
