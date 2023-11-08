@@ -5823,3 +5823,14 @@ const toCezar = (a, b) => {
 };
 
 // console.log(toCezar(str, offset));
+//? ------------------------------------------------------
+function colorOf(r, g, b) {
+  const toString = (x) => {
+    const res = x.toString(16);
+
+    return res.length === 1 ? `0${x}` : res;
+  };
+  return `#${toString(r)}${toString(g)}${toString(b)}`;
+}
+
+// console.log(colorOf(122, 11, 225)); // #7a011e1
