@@ -4,16 +4,11 @@ function toBubble(arr) {
 
   while (count < arr.length) {
     for (let i = 0; i < arr.length - 1; i++) {
-      let a = arr[i];
-      let b = arr[i + 1];
+      if (arr[i] > arr[i + 1]) {
+        let temp = arr[i];
 
-      if (a > b) {
-        let temp = a;
-        a = b;
-        b = temp;
-
-        arr[i] = a;
-        arr[i + 1] = b;
+        arr[i] = arr[i + 1];
+        arr[i + 1] = temp;
       }
     }
     count += 1;
