@@ -5930,3 +5930,50 @@ function lowercaseCount(str) {
 }
 
 // console.log(lowercaseCount("ABC123!@sdhsd€£#$%^&*()_-+=}{[]|':;?/>.<,~"));
+//? ------------------------------------------------------------
+/*
+6 kyu
+Reverse or rotate?
+Вход представляет собой строку str цифр. 
+Разрежьте строку на куски (кусок здесь — это подстрока исходной строки) 
+размера sz (игнорируйте последний кусок, если его размер меньше sz).
+
+Если блок представляет собой целое число, например, сумма кубов его цифр делится на 2, 
+переверните этот блок; в противном случае поверните его влево на одну позицию. 
+Соедините вместе эти измененные фрагменты и верните результат в виде строки.
+
+Если
+
+sz is <= 0 or if str is empty return ""
+sz больше (>), чем длина str невозможно взять кусок размера, sz следовательно, вернуть "".
+*/
+
+function revrot(str, sz) {
+  if (str === '' || sz < 1 || sz > str.length) return '';
+  const strArr = [];
+
+  for (let i = 0; i < str.length; i += sz) {
+    if (str.slice(i, i + sz).length < sz) break;
+    strArr.push(str.slice(i, i + sz));
+  }
+
+  return strArr
+    .map((el) => {
+      if (
+        el.split('').reduce((acc, item) => acc + Math.pow(Number(item), 3), 0) %
+        2
+      ) {
+        return el.slice(1) + el.slice(0, 1);
+      } else {
+        return el.split('').reverse().join('');
+      }
+    })
+    .join('');
+}
+
+// console.log(revrot('1234', 0)); // ''
+// console.log(revrot('', 0)); // ''
+// console.log(revrot('1234', 5)); // ''
+// console.log(revrot('123456987654', 6)); // "234561876549"
+// console.log(revrot('664438769', 8)); // "67834466"
+//? -----------------------------------------------------
