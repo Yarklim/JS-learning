@@ -5977,3 +5977,13 @@ function revrot(str, sz) {
 // console.log(revrot('123456987654', 6)); // "234561876549"
 // console.log(revrot('664438769', 8)); // "67834466"
 //? -----------------------------------------------------
+// Создание матрицы
+const MATRIX_WIDTH = 3;
+const MATRIX_HEIGTH = 3;
+const matrix = Array.from({ length: MATRIX_WIDTH }).map(() =>
+  Array.from({ length: MATRIX_HEIGTH }).map((_) => '*')
+);
+
+// console.log(matrix);
+
+//? ------------------------------------------------------------

@@ -265,37 +265,8 @@ function stat(strg) {
 // console.log(
 //   stat('02|15|59, 2|47|16, 02|17|20, 2|32|34, 2|17|17, 2|22|00, 2|31|41')
 // ); // "Range: 00|31|17 Average: 02|26|18 Median: 02|22|00"
-//? --------------------------------------------------------
-function alignRight(text, width) {
-  if (text.length === width) return text;
-  if (text.length < width) return text.padStart(width, ' ');
-
-  let countIndex = 0;
-  const trimStr = [];
-
-  while (text.length > countIndex) {
-    trimStr.push(text.slice(countIndex, width + countIndex));
-    countIndex += width;
-  }
-
-  return trimStr.map((str) => str.padStart(width, ' ')).join('\n');
-}
-
-// console.log(alignRight('Two lines, I am', 10)); // 'Two lines,\n      I am'
-// console.log(alignRight('abc def', 10)); // '   abc def'
-// console.log(alignRight('I take up the whole line', 24)); // 'I take up the whole line'
 
 //? -----------------------------------------------------------
-// Создание матрицы
-const MATRIX_WIDTH = 3;
-const MATRIX_HEIGTH = 3;
-const matrix = Array.from({ length: MATRIX_WIDTH }).map(() =>
-  Array.from({ length: MATRIX_HEIGTH }).map((_) => '*')
-);
-
-// console.log(matrix);
-
-//? ------------------------------------------------------------
 
 function mix(s1, s2) {
   if (s1 === s2) return '';
