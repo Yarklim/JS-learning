@@ -7,6 +7,86 @@
     <title>Document</title>
   </head>
   <body>
+    <header class="header">
+      <nav class="nav">
+        <ul class="nav__list">
+          <li class="nav__item">Home</li>
+          <li class="nav__item">About</li>
+          <li class="nav__item">Products</li>
+        </ul>
+      </nav>
+    </header>
+    <main class="main">
+      <section class="section">
+        <article class="main__article">
+          <h1 class="main__title"></h1>
+          <div class="wrapper">
+            <details class="details">
+              <summary class="summary">How to be successfully?</summary>
+              <p class="answer">To be self!</p>
+            </details>
+            <blockquote class="blockquote">
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illum,
+              culpa.
+            </blockquote>
+            <cite class="cite">Lorem Ipsum.</cite>
+          </div>
+          <table id="table">
+            <tr>
+              <td style="width: 30px; height: 30px">1</td>
+              <td style="width: 30px; height: 30px">2</td>
+              <td style="width: 30px; height: 30px">3</td>
+              <td style="width: 30px; height: 30px">4</td>
+              <td style="width: 30px; height: 30px">5</td>
+            </tr>
+            <tr>
+              <td style="width: 30px; height: 30px">6</td>
+              <td style="width: 30px; height: 30px">7</td>
+              <td style="width: 30px; height: 30px">8</td>
+              <td style="width: 30px; height: 30px">9</td>
+              <td style="width: 30px; height: 30px">10</td>
+            </tr>
+            <tr>
+              <td style="width: 30px; height: 30px">11</td>
+              <td style="width: 30px; height: 30px">12</td>
+              <td style="width: 30px; height: 30px">13</td>
+              <td style="width: 30px; height: 30px">14</td>
+              <td style="width: 30px; height: 30px">15</td>
+            </tr>
+            <tr>
+              <td style="width: 30px; height: 30px">16</td>
+              <td style="width: 30px; height: 30px">17</td>
+              <td style="width: 30px; height: 30px">18</td>
+              <td style="width: 30px; height: 30px">19</td>
+              <td style="width: 30px; height: 30px">20</td>
+            </tr>
+            <tr>
+              <td style="width: 30px; height: 30px">21</td>
+              <td style="width: 30px; height: 30px">22</td>
+              <td style="width: 30px; height: 30px">23</td>
+              <td style="width: 30px; height: 30px">24</td>
+              <td style="width: 30px; height: 30px">25</td>
+            </tr>
+          </table>
+        </article>
+      </section>
+    </main>
+    <footer class="footer">
+      <ul class="footter__list">
+        <li class="footer__item">Home</li>
+        <li class="footer__item">About</li>
+        <li class="footer__item">Products</li>
+      </ul>
+    </footer>
+    <script>
+      const tableRows = Array.from(table.rows);
+
+      for (let i = 0; i < tableRows.length; i++) {
+        let elem = tableRows[i].cells[i];
+        elem.style.backgroundColor = 'blue';
+        elem.style.color = 'white';
+      }
+    </script>
     <!-- <script src="./js/oop.js" type="module"></script> -->
     <!-- <script src="./js/snippets.js" type="module"></script> -->
     <!-- <script src="./js/katas.js" type="module"></script> -->
