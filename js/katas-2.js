@@ -296,6 +296,8 @@ function mix(s1, s2) {
     .filter((el) => el[1] > 1)
     .sort((a, b) => b[1] - a[1]);
 
+  let result = '';
+
   return sortLetters2;
 }
 // console.log(mix('Are they here', 'yes, they are here')); // "2:eeeee/2:yy/=:hh/=:rr"
@@ -337,3 +339,24 @@ function toStrReverse(str) {
 
 // console.log(toStrReverse('Hello Yar, you are amazing!')); // 'olleH raY, ouy era gnizama!'
 //? ----------------------------------
+/*
+7 kyu
+Compare Strings by Sum of Chars
+
+Сравните две строки, сравнив сумму их значений (код символов ASCII).
+Для сравнения рассматривайте все буквы как прописные.
+null/NULL/Nil/Noneследует рассматривать как пустые строки
+Если строка содержит символы, отличные от букв, рассматривайте всю строку как пустую.
+Ваш метод должен возвращать значение true, если строки равны и falseне равны.
+*/
+function compare(s1, s2) {
+  //   return s2.match(/\W|\d/gi);
+  return /\W|\d|' '/gi.test(s2);
+}
+// console.log(compare('AD', 'BC')); // true
+// console.log(compare('gf', 'FG')); // true
+// console.log(compare('zz1', '')); // true
+// console.log(compare('Ad', 'DD')); // false
+// console.log(compare('!!', '7476')); // true
+// console.log(compare('##', '1176')); // true
+//? ----------------------------------------------
