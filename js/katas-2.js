@@ -360,3 +360,32 @@ function compare(s1, s2) {
 // console.log(compare('!!', '7476')); // true
 // console.log(compare('##', '1176')); // true
 //? ----------------------------------------------
+function rank(st, we, n) {
+  if (st.length < 1) return 'No participants';
+  const participantsArr = st.split(',');
+
+  if (n > participantsArr.length) return 'Not enough participants';
+
+  const charsSum = participantsArr.reduce((acc, el, i) => {
+    acc[el] =
+      el
+        .split('')
+        .reduce((acc, i) => acc + i.toLowerCase().charCodeAt() - 95, 0) * we[i];
+
+    return acc;
+  }, {});
+
+  return charsSum;
+}
+console.log(
+  rank(
+    'Addison,Jayden,Sofia,Michael,Andrew,Lily,Benjamin',
+    [4, 2, 1, 4, 3, 1, 2],
+    4
+  )
+); // Benjamin
+console.log(rank('Lagon,Lily', [1, 5], 2)); // Lagon
+console.log(
+  rank('COLIN,AMANDBA,AMANDAB,CAROL,PauL,JOSEPH', [1, 4, 4, 5, 2, 1], 4)
+); // "PauL"
+console.log(rank('', [4, 2, 1, 4, 3, 1, 2], 6)); // "No participants"
