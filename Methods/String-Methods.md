@@ -2,7 +2,7 @@
 "Hello".concat("", "world") 	=> Hello world
 "Hello".startsWith("H") 		=> true
 "Hello".endsWith("o") 			=> true
-"Hello".includes("x)			=> false
+"Hello".includes("x")			=> false
 "Hello".indexOf("l")			=> 2
 "Hello".lastIndexOf("l")		=> 3
 "Hello".match(/[A-Z]/g)			=> ['H'] // Метод match() возвращает получившиеся совпадения при сопоставлении строки с регулярным выражением.

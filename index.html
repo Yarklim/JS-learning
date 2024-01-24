@@ -31,6 +31,7 @@
             </blockquote>
             <cite class="cite">Lorem Ipsum.</cite>
           </div>
+          <br />
           <table id="table">
             <tr>
               <td style="width: 30px; height: 30px">1</td>
@@ -80,6 +81,8 @@
     </footer>
     <script>
       const tableRows = Array.from(table.rows);
+
+      //   console.log(tableRows);
 
       for (let i = 0; i < tableRows.length; i++) {
         let elem = tableRows[i].cells[i];

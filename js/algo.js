@@ -45,7 +45,7 @@ const recursiveBinartSearch = (array, item, start, end) => {
   }
 };
 
-console.log(recursiveBinartSearch(arraySort, 8, 0, arraySort.length));
+// console.log(recursiveBinartSearch(arraySort, 8, 0, arraySort.length));
 
 //? ===================================================
 
